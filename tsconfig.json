@@ -1,5 +1,10 @@
 {
-  "files": [],
+  "files": [
+    // Lista de archivos del proyecto
+    "src/components/HeaderComponent.vue",
+    "src/components/HomeComponent.vue",
+    "src/components/ProductComponent.vue"
+  ],
   "references": [
     {
       "path": "./tsconfig.node.json"
