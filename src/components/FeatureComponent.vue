@@ -1,7 +1,7 @@
 <template>
   <section class="section feature" aria-label="feature-label">
     <div class="container">
-      <h2 class="h2 section-title title text-center" id="feature-label">Featured products</h2>
+      <h2 class="h2 section-title title text-center" id="feature-label">Productos destacados</h2>
 
       <ul class="feature-list">
         <li>
@@ -9,7 +9,7 @@
             <div class="card-banner">
               <figure class="product-banner img-holder" style="--width: 448; --height: 470">
                 <img
-                  src="../assets/imagenes/shoes-feature1.jpg"
+                  src="../assets/images/shoes-feature7.jpg"
                   width="448"
                   height="470"
                   loading="lazy"
@@ -21,7 +21,7 @@
               <a href="#" class="btn product-btn">
                 <ion-icon name="bag" aria-hidden="true"></ion-icon>
 
-                <span class="span">Add To Cart</span>
+                <span class="span">Agregar al carrito</span>
               </a>
             </div>
 
@@ -40,7 +40,7 @@
             <div class="card-banner">
               <figure class="product-banner img-holder" style="--width: 448; --height: 470">
                 <img
-                  src="../assets/imagenes/shoes-feature2.jpg"
+                  src="../assets/images/shoes-feature2.jpg"
                   width="448"
                   height="470"
                   loading="lazy"
@@ -52,7 +52,7 @@
               <a href="#" class="btn product-btn">
                 <ion-icon name="bag" aria-hidden="true"></ion-icon>
 
-                <span class="span">Add To Cart</span>
+                <span class="span">Agregar al carrito</span>
               </a>
             </div>
 
@@ -71,7 +71,7 @@
             <div class="card-banner">
               <figure class="product-banner img-holder" style="--width: 448; --height: 470">
                 <img
-                  src="../assets/Imagenes/shoes-feature3.jpg"
+                  src="../assets/images/shoes-feature6.jpg"
                   width="448"
                   height="470"
                   loading="lazy"
@@ -83,7 +83,7 @@
               <a href="#" class="btn product-btn">
                 <ion-icon name="bag" aria-hidden="true"></ion-icon>
 
-                <span class="span">Add To Cart</span>
+                <span class="span">Agregar al carrito</span>
               </a>
             </div>
 
@@ -102,7 +102,7 @@
             <div class="card-banner">
               <figure class="product-banner img-holder" style="--width: 448; --height: 470">
                 <img
-                  src="../assets/Imagenes/shoes-feature4.jpg"
+                  src="../assets/images/shoes-feature8.jpg"
                   width="448"
                   height="470"
                   loading="lazy"
@@ -114,7 +114,7 @@
               <a href="#" class="btn product-btn">
                 <ion-icon name="bag" aria-hidden="true"></ion-icon>
 
-                <span class="span">Add To Cart</span>
+                <span class="span">Agregar al carrito</span>
               </a>
             </div>
 
@@ -133,7 +133,7 @@
             <div class="card-banner">
               <figure class="product-banner img-holder" style="--width: 448; --height: 470">
                 <img
-                  src="../assets/Imagenes/shoes-feature5.jpg"
+                  src="../assets/images/shoes-feature9.jpg"
                   width="448"
                   height="470"
                   loading="lazy"
@@ -145,7 +145,7 @@
               <a href="#" class="btn product-btn">
                 <ion-icon name="bag" aria-hidden="true"></ion-icon>
 
-                <span class="span">Add To Cart</span>
+                <span class="span">Agregar al carrito</span>
               </a>
             </div>
 
@@ -164,7 +164,7 @@
             <div class="card-banner">
               <figure class="product-banner img-holder" style="--width: 448; --height: 470">
                 <img
-                  src="../assets/Imagenes/shoes-feature6.jpg"
+                  src="../assets/images/shoes-feature10.jpg"
                   width="448"
                   height="470"
                   loading="lazy"
@@ -176,7 +176,7 @@
               <a href="#" class="btn product-btn">
                 <ion-icon name="bag" aria-hidden="true"></ion-icon>
 
-                <span class="span">Add To Cart</span>
+                <span class="span">Agregar al carrito</span>
               </a>
             </div>
 
@@ -191,14 +191,14 @@
         </li>
       </ul>
 
-      <a href="#" class="btn btn-secondary">View All Products</a>
+      <a href="#" class="btn btn-secondary">Ver todos los productos</a>
     </div>
   </section>
 </template>
 
 <style scoped>
 .section.feature {
-  padding-block-start: 0;
+  /* padding-block-start: 0; */
 }
 
 .feature-list {

@@ -5,7 +5,7 @@
         <div class="footer-brand">
           <a href="#" class="logo">
             <img
-              src="../assets/Imagenes/logo.png"
+              src="../assets/images/logo.png"
               width="132"
               height="27"
               loading="lazy"
@@ -14,8 +14,8 @@
           </a>
 
           <p class="footer-text">
-            Main factor that sets us apart competition allows deliver a specialist business
-            consultancy service applies its ranging experience
+            Lorem ipsum dolor sit, amet consectetur adipisicing elit. Atque suscipit maiores nisi
+            possimus neque! Nisi!
           </p>
 
           <ul class="social-list">
@@ -27,13 +27,13 @@
 
             <li>
               <a href="#" class="social-link">
-                <ion-icon name="logo-twitter"></ion-icon>
+                <ion-icon name="logo-instagram"></ion-icon>
               </a>
             </li>
 
             <li>
               <a href="#" class="social-link">
-                <ion-icon name="logo-linkedin"></ion-icon>
+                <ion-icon name="logo-twitter"></ion-icon>
               </a>
             </li>
           </ul>
@@ -41,61 +41,61 @@
 
         <ul class="footer-list">
           <li>
-            <p class="footer-list-title title">Contact info</p>
+            <p class="footer-list-title title">Información de contacto</p>
 
             <address class="footer-text">
-              Neal St, London WC2H 9PR <br />
-              United Kingdom
+              9 de Julio 3270, CABA <br />
+              Buenos Aires, Argentina
             </address>
           </li>
 
           <li>
-            <a href="mailto:info.shoppie@support.com" class="email">info.shoppie@support.com</a>
+            <a href="mailto:info.shoppie@support.com" class="email">info@lerici.com</a>
           </li>
 
           <li>
-            <a href="tel:+00 123 456 789" class="call">+00 123 456 789</a>
+            <a href="tel:+00 123 456 789" class="call">+54 911 27305048</a>
           </li>
         </ul>
 
         <div class="footer-list">
-          <p class="footer-list-title title">Subscribe newsletter</p>
+          <p class="footer-list-title title">Suscribite al newsletter</p>
 
           <input
             type="email"
             name="email_address"
-            placeholder="Enter your email address"
+            placeholder="Ingresa tu correo electrónico"
             required
             autocomplete="off"
             class="input-field"
           />
 
-          <button class="btn btn-secondary">Subscribe</button>
+          <button class="btn btn-secondary">Suscribite</button>
         </div>
       </div>
 
       <div class="footer-bottom">
         <div class="wrapper">
           <div class="link-wrapper">
-            <a href="#" class="footer-bottom-link">Portfolio</a>
-            <a href="#" class="footer-bottom-link">Our Team</a>
-            <a href="#" class="footer-bottom-link">Pricing Plan</a>
-            <a href="#" class="footer-bottom-link">Services</a>
-            <a href="#" class="footer-bottom-link">Contact Us</a>
+            <a href="#" class="footer-bottom-link">Nosotros</a>
+            <a href="#" class="footer-bottom-link">Nuestro equipo</a>
+            <a href="#" class="footer-bottom-link">Tienda</a>
+            <a href="#" class="footer-bottom-link">Carrito</a>
+            <a href="#" class="footer-bottom-link">Contacto</a>
           </div>
 
           <div class="link-wrapper">
-            <a href="#" class="footer-bottom-link">Terms & Conditions</a>
+            <a href="#" class="footer-bottom-link">Términos & Condiciones</a>
 
-            <a href="#" class="footer-bottom-link">Privacy Policy</a>
+            <a href="#" class="footer-bottom-link">Políticas de Privacidad</a>
           </div>
         </div>
 
-        <p class="copyright">&copy; 2024 Bug, All Rights Reserved</p>
+        <p class="copyright">&copy; 2024 Bug Development, All Rights Reserved</p>
       </div>
 
       <img
-        src="../assets/Imagenes/footer-shape-1.png"
+        src="../assets/images/footer-shape-1.png"
         width="245"
         height="165"
         loading="lazy"
@@ -104,7 +104,7 @@
       />
 
       <img
-        src="../assets/Imagenes/footer-shape-2.png"
+        src="../assets/images/footer-shape-2.png"
         width="138"
         height="316"
         loading="lazy"
@@ -113,7 +113,7 @@
       />
 
       <img
-        src="../assets/Imagenes/footer-shape-3.png"
+        src="../assets/images/footer-shape-3.png"
         width="346"
         height="92"
         loading="lazy"
@@ -127,14 +127,14 @@
 <style scoped>
 .footer {
   position: relative;
-  background-color: var(--bg-gainsboro);
+  background-color: var(--color-green);
   padding-block-start: 160px;
 }
 
 .footer-top {
   display: grid;
   gap: 30px;
-  font-size: var(--fontSize-8);
+  font-size: var(--fs-8);
   line-height: 1.7;
   margin-block-end: 60px;
 }
@@ -150,26 +150,26 @@
 }
 
 .social-link {
-  background-color: var(--bg-white);
+  background-color: var(--color-white);
   width: 52px;
   height: 52px;
   display: grid;
   place-items: center;
   border-radius: var(--radius-circle);
-  border: 2px solid var(--border-eerie-black);
+  border: 2px solid var(--color-eerie-black);
   box-shadow: var(--shadow-3);
   transition: var(--transition-1);
 }
 
 .social-link:is(:hover, :focus-visible) {
   box-shadow: none;
-  color: var(--text-orange-crayola);
+  color: var(--color-red);
   transform: translateY(-2px);
   border-color: currentColor;
 }
 
 .footer-list-title {
-  font-size: var(--fontSize-10);
+  font-size: var(--fs-10);
   margin-block-end: 30px;
 }
 
@@ -178,10 +178,10 @@ address.footer-text {
 }
 
 .input-field {
-  background-color: var(--bg-white);
+  background-color: var(--color-white);
   box-shadow: var(--shadow-2);
   padding: 15px 30px;
-  border: 2px solid var(--border-eerie-black);
+  border: 2px solid var(--color-eerie-black);
   margin-block-end: 25px;
   outline: none;
   transition: var(--transition-1);
@@ -197,7 +197,7 @@ address.footer-text {
 }
 
 .footer-bottom .wrapper {
-  border-block-end: 2px solid var(--border-eerie-black);
+  border-block-end: 1px solid var(--color-eerie-black);
   padding-block-end: 15px;
 }
 
@@ -210,19 +210,19 @@ address.footer-text {
 }
 
 .footer-bottom-link {
-  font-size: var(--fontSize-11);
+  font-size: var(--fs-11);
   font-weight: var(--weight-semiBold);
   text-transform: uppercase;
   transition: var(--transition-1);
 }
 
 .footer-bottom-link:is(:hover, :focus-visible) {
-  color: var(--text-orange-crayola);
+  color: var(--color-red);
 }
 
 .copyright {
   padding-block: 30px;
-  font-size: var(--fontSize-8);
+  font-size: var(--fs-8);
   text-align: center;
 }
 

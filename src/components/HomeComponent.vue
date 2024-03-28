@@ -1,61 +1,105 @@
 <template>
-  <div class="hero">
+  <div class="background">
+    <div class="item">
+      <div class="painted"></div>
+    </div>
+    <div class="item">
+      <div class="painted"></div>
+    </div>
+    <div class="item">
+      <div class="painted"></div>
+    </div>
+    <div class="item">
+      <div class="painted"></div>
+    </div>
+    <div class="item">
+      <div class="painted"></div>
+    </div>
+    <div class="item">
+      <div class="painted"></div>
+    </div>
+    <div class="item">
+      <div class="painted"></div>
+    </div>
+    <div class="item">
+      <div class="painted"></div>
+    </div>
+  </div>
+  <section class="hero section">
     <div class="container">
       <div class="hero-content">
-        <p class="hero-subtitle title">$120.00</p>
+        <!-- <p class="hero-subtitle title">$120.00</p> -->
 
         <h1 class="h1 hero-title title">
-          Man summer <br />
-          collection
+          Donde la calidad se une al estilo
         </h1>
 
         <p class="hero-text">
-          This is the factor that sets us apart from competition and allows us deliver a specialist
-          business service team applies its ranging experience determining
+           Desde chatitas hasta texanas, nuestra amplia seleccion de calzado ofrece lo mejor en comodidad y moda para la ocasion. 
         </p>
 
         <a href="#" class="btn btn-primary">
-          <span class="span">Shop Now</span>
+          <span class="span">Ir a comprar</span>
 
           <ion-icon name="arrow-forward" aria-hidden="true"></ion-icon>
         </a>
       </div>
 
       <div class="hero-banner">
-        <figure class="img-holder" style="--width: 704; --height: 700">
+        <figure class="img-holder" style="--width: 448; --height: 470">
           <img
-            src="../assets/Imagenes/homebanner.jpg"
-            width="704"
-            height="700"
+            src="../assets/images/fashion.jpg"
+            width="448"
+            height="470"
             alt="hero banner"
             class="img-cover"
           />
         </figure>
 
         <img
-          src="./assets/images/hero-shape-1.png"
-          width="255"
-          height="249"
+          src="../assets/images/hero-shape-1.png"
+          width="200"
+          height="200"
           alt="shape"
-          class="shape shape-1"
+          class="shape shape-2"
         />
       </div>
 
-      <img
-        src="./assets/images/hero-shape-2.png"
+      <!-- <img
+        src="../assets/images/hero-shape-2.png"
         width="360"
         height="133"
         alt="shape"
         class="shape shape-2"
-      />
+      /> -->
     </div>
-  </div>
+  </section>
 </template>
 
 <style scoped>
+.background{
+  /* height: 100vh; */
+  width: 100vw;
+  display: flex;
+  background: transparent;
+  padding-top: 250px;
+  /* position: absolute; */
+}
+.item{
+  width: calc(100vw / 8);
+  height: 100%;
+  padding-inline: calc(100vw / 8 / 4);
+}
+.painted{
+  width: calc(100vw / 16);
+  height: calc(100vh - 250px);
+  min-height: 350px;
+  background-color: var(--color-green);
+}
 .hero {
-  background-color: #d4e4e8;
-  padding-block: 130px 75px;
+  background-color: var(--bg-light-blue);
+  /* padding-block: 130px 75px; */
+  /* padding-block: var(--padding-block-2) */
 }
 
 .hero .container {
@@ -64,7 +108,7 @@
 }
 
 .hero-subtitle {
-  font-size: var(--fontSize-4);
+  font-size: var(--fs-4);
 }
 
 .hero-title {
@@ -72,7 +116,7 @@
 }
 
 .hero-text {
-  font-size: var(--fontSize-8);
+  font-size: var(--fs-8);
   line-height: 2.1;
   margin-block-end: 16px;
 }
@@ -84,10 +128,11 @@
 
 @media (min-width: 768px) {
   .hero {
-    padding-block: 200px 130px;
+    /* padding-block: 200px 130px; */
+    /* padding-block: var(--padding-block-2); */
   }
   .hero-text {
-    --fontSize-8: 2.2rem;
+    --fs-8: 2.2rem;
     line-height: 1.8;
   }
   .hero .btn {
@@ -111,15 +156,20 @@
   }
 
   .hero .shape-1 {
+    position: absolute;
     top: -140px;
     left: -120px;
     z-index: -1;
   }
 
   .hero .shape-2 {
-    bottom: 0;
-    left: 50%;
-    transform: translateX(-50%);
+    /* position: static; */
+    bottom: -220px;
+    left: -52vw;
+    transform: rotate(35deg);
+    z-index: -1;
+    position: absolute;
+    /* left: 50%; */
   }
 }
 </style>

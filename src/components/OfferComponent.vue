@@ -1,16 +1,15 @@
 <template>
-  <section class="offer has-bg-image" style="background-image: url('../assets/Imagenes/offer.jpg')">
+  <section class="offer has-bg-image" style="background-image: url('../assets/images/offer.jpg')">
     <div class="container">
       <div class="offer-card">
         <h2 class="title card-title">35% Off</h2>
 
         <p class="card-text">
-          This is the main factor that sets us apart our competition and allows us deliver a
-          specialist business consultancy service
+        Lorem ipsum dolor sit amet consectetur adipisicing elit. Corrupti nulla veniam iure aperiam suscipit at fuga nisi obcaecati commodi distinctio.
         </p>
 
         <a href="#" class="btn btn-secondary">
-          <span class="span">Shop Now</span>
+          <span class="span">Comprar ahora</span>
 
           <ion-icon name="arrow-forward" aria-hidden="true"></ion-icon>
         </a>
@@ -25,18 +24,18 @@
 }
 
 .offer-card {
-  background-color: var(--bg-white);
-  border: 2px solid var(--border-eerie-black);
+  background-color: var(--color-white);
+  border: 2px solid var(--color-eerie-black);
   box-shadow: var(--shadow-2);
   padding: 80px 30px;
 }
 
 .offer-card .card-title {
-  font-size: var(--fontSize-1);
+  font-size: var(--fs-1);
 }
 
 .offer-card .card-text {
-  font-size: var(--fontSize-8);
+  font-size: var(--fs-8);
   line-height: 1.8;
   margin-block: 20px 45px;
 }

@@ -1,7 +1,7 @@
 <template>
   <section class="section product" aria-label="product">
     <div class="container">
-      <h2 class="h2 section-title title text-center">Explore new arrivals</h2>
+      <h2 class="h2 section-title title text-center">Novedades</h2>
 
       <ul class="product-list has-scrollbar">
         <li class="scrollbar-item">
@@ -9,7 +9,7 @@
             <div class="card-banner">
               <figure class="product-banner img-holder" style="--width: 448; --height: 470">
                 <img
-                  src="../assets/Imagenes/shoes.jpg"
+                  src="../assets/images/product-1.jpg"
                   width="448"
                   height="470"
                   loading="lazy"
@@ -21,7 +21,7 @@
               <a href="#" class="btn product-btn">
                 <ion-icon name="bag" aria-hidden="true"></ion-icon>
 
-                <span class="span">Add To Cart</span>
+                <span class="span">Agregar al carrito</span>
               </a>
             </div>
 
@@ -40,7 +40,7 @@
             <div class="card-banner">
               <figure class="product-banner img-holder" style="--width: 448; --height: 470">
                 <img
-                  src="./assets/images/product-2.png"
+                  src="../assets/images/product-2.jpg"
                   width="448"
                   height="470"
                   loading="lazy"
@@ -52,7 +52,7 @@
               <a href="#" class="btn product-btn">
                 <ion-icon name="bag" aria-hidden="true"></ion-icon>
 
-                <span class="span">Add To Cart</span>
+                <span class="span">Agregar al carrito</span>
               </a>
             </div>
 
@@ -66,12 +66,12 @@
           </div>
         </li>
 
-        <li class="scrollbar-item">
+        <!-- <li class="scrollbar-item">
           <div class="product-card text-center">
             <div class="card-banner">
               <figure class="product-banner img-holder" style="--width: 448; --height: 470">
                 <img
-                  src="./assets/images/product-3.png"
+                  src="../assets/images/product-3.png"
                   width="448"
                   height="470"
                   loading="lazy"
@@ -83,7 +83,7 @@
               <a href="#" class="btn product-btn">
                 <ion-icon name="bag" aria-hidden="true"></ion-icon>
 
-                <span class="span">Add To Cart</span>
+                <span class="span">Agregar al carrito</span>
               </a>
             </div>
 
@@ -95,8 +95,15 @@
               <span class="price">$90.00</span>
             </div>
           </div>
-        </li>
+        </li> -->
       </ul>
     </div>
   </section>
 </template>
+
+<style scoped>
+.product-list{
+  display: flex;
+  justify-content: space-around;
+}
+</style>

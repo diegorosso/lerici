@@ -2,28 +2,25 @@
   <header class="header" :class="{ active: isHeaderActive }" data-header>
     <div class="container">
       <a href="/" class="logo">
-        <img src="../assets/Imagenes/logo.png" width="132" height="27" alt="shoppie home" />
+        <img src="../assets/images/logo.png" width="132" height="27" alt="shoppie home" />
       </a>
       <nav class="navbar" :class="{ active: isNavbarActive }">
         <ul class="navbar-list">
           <li>
-            <a href="#" class="navbar-link">Home</a>
+            <a href="#" class="navbar-link">Nosotros</a>
           </li>
           <li>
-            <a href="#" class="navbar-link">Portfolio</a>
+            <a href="#" class="navbar-link">Nuestro equipo</a>
           </li>
           <li>
-            <a href="#" class="navbar-link">Blog</a>
-          </li>
-          <li>
-            <a href="#" class="navbar-link">Shop </a>
+            <a href="#" class="navbar-link">Tienda </a>
           </li>
         </ul>
         <button class="card-btn">
           <ion-icon name="bag" aria-hidden="true"></ion-icon>
-          <span class="span">Cart (02)</span>
+          <span class="span">Carrito (02)</span>
         </button>
-        <a href="btn" class="btn">Contact Us</a>
+        <a href="btn" class="btn">Contacto</a>
       </nav>
       <button class="nav-open-btn" aria-label="toggle menu" @click="toggleNavbar">
         <ion-icon name="menu-outline" aria-hidden="true"></ion-icon>
@@ -67,13 +64,15 @@ export default {
   top: 0;
   left: 0;
   width: 100%;
-  padding-block: 25px;
+  padding-block: var(--padding-block-3);
   z-index: 4;
+  color: var(--color-blue);
 }
 
 .header.active {
-  background-color: var(--bg-white);
+  background-color: var(--color-white);
   box-shadow: var(--shadow-1);
+  color: var(--color-eerie-black);
 }
 
 .header .container {
@@ -91,10 +90,10 @@ export default {
   top: 85px;
   left: 0;
   right: 0;
-  background-color: var(--bg-white);
+  background-color: var(--color-white);
   max-height: 0;
   overflow: hidden;
-  visibility: height;
+  /* visibility: height; */
   transition: var(--transition-2);
 }
 
@@ -105,13 +104,19 @@ export default {
 
 .navbar-list {
   padding-block-start: 15px;
-  font-family: Arial, Helvetica, sans-serif;
+  font-family: 'Helvetica Neue', sans-serif;
 }
 
 .navbar-link,
 .card-btn .span {
-  font-weight: var(--weight-semiBold);
+  font-size: var(--fs-8);
+  /* font-weight: var(--weight-semiBold); */
   text-transform: uppercase;
+}
+
+.navbar-link:hover,
+.card-btn .span:hover{
+  color: var(--color-red);
 }
 
 .navbar-link {
@@ -122,16 +127,19 @@ export default {
   align-items: center;
   gap: 4px;
   padding: 25px 20px;
-  font-family: Arial, Helvetica, sans-serif;
+  font-family: "Helvetica Neue", sans-serif;
+  /* color: var(--color-blue); */
+  color: inherit;
+}
+
+.card-btn:hover{
+  color: var(--color-red);
 }
 
 @media (min-width: 992px) {
-  .header {
-    padding-block: 0;
-  }
 
-  .header .container {
-    border-block-end: 2px solid var(--border-eerie-black);
+  .header{
+    border-block-end: 1px solid var(--color-eerie-black);
   }
 
   .nav-open-btn {
@@ -151,7 +159,7 @@ export default {
   }
 
   .cart-btn {
-    border-inline-start: 2px solid var(--border-eerie-black);
+    border-inline-start: 2px solid var(--color-eerie-black);
     padding-inline-start: 50px;
     margin-inline-start: 20px;
   }

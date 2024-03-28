@@ -1,66 +1,67 @@
 :root {
+  /* Colores */
+  --color-light-blue: #d4e4e8;
+  --color-green: #008438;
+  --color-red: #b70000;
+  --color-blue: #173751;
+  --color-white: hsla(0, 0%, 100%, 1);
+  /* --color-light: #D7D5D3; */
+  --color-light: #e2e2e2;
 
-  /* Colores del Proyecto */
-
-  --bg-white: hsla(0, 0%, 100%, 1);
-  --bg-gainsboro: hsla(154, 10%, 86%, 1);
-  --bg-wild-blue-yonder: hsla(227, 39%, 75%, 1);
-  --bg-orange-crayola: hsla(18, 97%, 62%, 1);
-  --bg-roman-silver-alpha-30: hsla(210, 9%, 57%, 0.3);
-
-  /* Colores de Texto */
-
-  --text-orange-crayola: hsla(18, 97%, 62%, 1);
-  --text-blue-crayola: hsla(216, 98%, 52%, 1);
-  --text-eerie-black: hsla(210, 11%, 15%, 1);
-  --text-eerie-black-2: hsla(0, 0%, 7%, 1);
-  --text-black: hsla(270, 100%, 0%, 1);
-
-  /* Color de Borde */
-
-  --border-eerie-black: hsla(0, 0%, 7%, 1);
+  --color-eerie-black: #1D1D1B;
 
   /* Font Size */
 
-  --fontSize-1: 6.2rem;
-  --fontSize-2: 4.4rem;
-  --fontSize-3: 3.8rem;
-  --fontSize-4: 3.4rem;
-  --fontSize-5: 3rem;
-  --fontSize-6: 2.5rem;
-  --fontSize-7: 2rem;
-  --fontSize-8: 1.8rem;
-  --fontSize-9: 1.4rem;
-  --fontSize-10: 2.4rem;
+  --fs-1: 6.2rem;
+  --fs-2: 4.4rem;
+  --fs-3: 3.8rem;
+  --fs-4: 3.4rem;
+  --fs-5: 3rem;
+  --fs-6: 2.5rem;
+  --fs-7: 2rem;
+  --fs-8: 1.8rem;
+  --fs-9: 1.4rem;
+  --fs-10: 2.4rem;
 
   /* Font Weight*/
 
   --weight-semiBold: 600;
+  
 
   /*Box Shadows*/
 
-  --shadow-1: 0 4px 6px hsla(256, 100%, 9%, 0.1);
-  --shadow-2: 4px 4px 0px hsla(0, 0%, 7%, 1);
-  --shadow-3: 2px 2px 0px hsla(0, 0%, 7%, 1);
+  --shadow-1: 0 4px 6px var(--color-eerie-black);
+  --shadow-2: 4px 4px 0px var(--color-eerie-black);
+  --shadow-3: 2px 2px 0px var(--color-eerie-black);
 
-  /* Trnsition */
+  /* Transition */
 
   --transition-1: 250ms ease;
   --transition-2: 500ms ease;
 
-
-  --color-background: var(--vt-c-white);
-  --color-background-soft: var(--vt-c-white-soft);
-  --color-background-mute: var(--vt-c-white-mute);
-
-  --color-border: var(--vt-c-divider-light-2);
-  --color-border-hover: var(--vt-c-divider-light-1);
-
-  --color-heading: var(--vt-c-text-light-1);
-  --color-text: var(--vt-c-text-light-1);
+  --color-background: var(--color-white);
 
   --section-gap: 160px;
 
+  /* Padding */
+  --padding-inline-section: calc(12px + 2vw); 
+  --padding-block-section: 60px; 
+
+  --padding-block-1: 3rem;
+  --padding-block-2: 2rem;
+  --padding-block-3: 1rem;
+
+}
+
+/* Fonts */
+@font-face {
+  font-family: 'Conceta';
+  src: url(../assets/fonts/conceta.ttf) format(opentype);
+}
+
+@font-face {
+  font-family: 'Helvetica Neue Light';
+  src: url(../assets/fonts/HelveticaNeue-Light.eot) format('embedded-opentype');
 }
 
 *,
@@ -73,32 +74,20 @@
 }
 
 body {
-  color: var(--text-eerie-black-2);
-  background-color: #d4e4e8;
+  color: var(--color-eerie-black);
+  background-color: var(--color-light-blue);
   transition:
     color 0.5s,
     background-color 0.5s;
   line-height: 1.5;
-  font-family:
-    Helvetica,
-    Conceta,
-    Inter,
-    -apple-system,
-    BlinkMacSystemFont,
-    'Segoe UI',
-    Roboto,
-    Oxygen,
-    Ubuntu,
-    Cantarell,
-    'Fira Sans',
-    'Droid Sans',
-    'Helvetica Neue',
-    sans-serif;
+  font-family: 'Helvetica Neue Light', sans-serif;
   font-size: 1.6rem;
   text-rendering: optimizeLegibility;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
+  overflow-x: hidden;
 }
+
 
 li {
   list-style: none;
@@ -146,22 +135,20 @@ ion-icon {
 }
 
 html {
-  font-family: var(--fontFamily-inter);
   font-size: 10px;
   scroll-behavior: smooth;
 }
 
 @media (min-width: 768px) {
   :root {
-    --fontSize-4: 4.2rem;
-    --fontSize-2: 7.8rem;
-    --fontSize-3: 6.6rem;
+    --fs-4: 4.2rem;
+    --fs-2: 7.8rem;
+    --fs-3: 6.6rem;
   }
 }
 
 @media (min-width: 1400px) {
   :root {
-    --fontSize-2: 9rem;
-
+    --fs-2: 9rem;
   }
 }

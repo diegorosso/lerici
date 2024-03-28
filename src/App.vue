@@ -1,5 +1,5 @@
 <template>
-  <div>
+  <div style="width: 100vw;">
     <HeaderComponent></HeaderComponent>
     <HomeComponent></HomeComponent>
     <ProductComponent></ProductComponent>
