@@ -94,7 +94,7 @@
         <p class="copyright">&copy; 2024 Bug Development, All Rights Reserved</p>
       </div>
 
-      <img
+      <!-- <img
         src="../assets/images/footer-shape-1.png"
         width="245"
         height="165"
@@ -119,7 +119,7 @@
         loading="lazy"
         alt="shape"
         class="shape shape-3"
-      />
+      /> -->
     </div>
   </footer>
 </template>
@@ -217,7 +217,7 @@ address.footer-text {
 }
 
 .footer-bottom-link:is(:hover, :focus-visible) {
-  color: var(--color-red);
+  color: var(--color-light);
 }
 
 .copyright {

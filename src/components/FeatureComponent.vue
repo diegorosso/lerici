@@ -1,5 +1,31 @@
 <template>
   <section class="section feature" aria-label="feature-label">
+    <div class="background">
+      <div class="item">
+        <div class="painted"></div>
+      </div>
+      <div class="item">
+        <div class="painted"></div>
+      </div>
+      <div class="item">
+        <div class="painted"></div>
+      </div>
+      <div class="item">
+        <div class="painted"></div>
+      </div>
+      <div class="item">
+        <div class="painted"></div>
+      </div>
+      <div class="item">
+        <div class="painted"></div>
+      </div>
+      <div class="item">
+        <div class="painted"></div>
+      </div>
+      <div class="item">
+        <div class="painted"></div>
+      </div>
+    </div>
     <div class="container">
       <h2 class="h2 section-title title text-center" id="feature-label">Productos destacados</h2>
 
@@ -197,8 +223,29 @@
 </template>
 
 <style scoped>
+
+.background{
+  /* height: 100vh; */
+  width: 100vw;
+  display: flex;
+  background: transparent;
+  padding-bottom: 4em;
+  /* position: absolute; */
+}
+.item{
+  width: calc(100vw / 8);
+  height: 100%;
+  padding-inline: calc(100vw / 8 / 4);
+}
+.painted{
+  width: calc(100vw / 16);
+  height: calc(100vh - 250px);
+  min-height: 350px;
+  background-color: var(--color-red);
+}
+
 .section.feature {
-  /* padding-block-start: 0; */
+  padding-block-start: 0;
 }
 
 .feature-list {
@@ -209,6 +256,10 @@
 
 .feature .btn {
   margin-inline: auto;
+}
+
+.product-btn{
+  /* color: var(--color-red); */
 }
 
 @media (min-width: 768px) {

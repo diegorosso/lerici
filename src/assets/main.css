@@ -93,6 +93,7 @@
 
 .section {
   padding-block: var(--padding-block-section);
+  border-bottom: 10px solid var(--color-light);
 }
 
 .text-center {
@@ -100,7 +101,7 @@
 }
 
 .section-title {
-  margin-block-end: 45px;
+  margin-block-end: 2rem;
 }
 
 .product-btn {
