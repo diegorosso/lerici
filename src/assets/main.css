@@ -63,7 +63,7 @@
 }
 
 .btn-primary:is(:hover, :focus-visible) {
-  color: var(--color-green);
+  color: var(--color-light);
 }
 
 .btn-secondary {
@@ -164,6 +164,13 @@
   background-position: center;
 }
 
+.font-weight {
+  font-weight: var(--weight-Bold);
+}
+
+
+
+
 @media (min-width: 576) {
   .container {
     /* max-width: 540px; */
@@ -173,17 +180,13 @@
 }
 
 @media (min-width: 768px) {
-  .container {
-    /* max-width: 720px; */
-  }
+
 
   .btn {
     padding: 20px 50px;
   }
 
-  .section {
-    /* padding-block: 150px; */
-  }
+
 
   .scrollbar-item {
     min-width: calc(50% - 20px);
@@ -194,16 +197,10 @@
   }
 }
 
-@media (min-width: 992px) {
-  .container {
-    /* max-width: 960px; */
-  }
-}
+@media (min-width: 992px) {}
 
 @media (min-width: 1200px) {
-  .container {
-    /* max-width: 1140px; */
-  }
+
 
   .scrollbar-item {
     min-width: calc(33.33% - 40px);
@@ -216,8 +213,4 @@
 
 }
 
-@media (min-width: 1400px) {
-  .container {
-    /* max-width: 1320px; */
-  }
-}
+@media (min-width: 1400px) {}

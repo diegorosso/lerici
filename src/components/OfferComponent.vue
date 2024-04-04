@@ -5,11 +5,12 @@
         <h2 class="title card-title">35% Off</h2>
 
         <p class="card-text">
-        Lorem ipsum dolor sit amet consectetur adipisicing elit. Corrupti nulla veniam iure aperiam suscipit at fuga nisi obcaecati commodi distinctio.
+          Lorem ipsum dolor sit amet consectetur adipisicing elit. Corrupti nulla veniam iure
+          aperiam suscipit at fuga nisi obcaecati commodi distinctio.
         </p>
 
         <a href="#" class="btn btn-secondary">
-          <span class="span">Comprar ahora</span>
+          <span class="span font-weight">Comprar ahora</span>
 
           <ion-icon name="arrow-forward" aria-hidden="true"></ion-icon>
         </a>

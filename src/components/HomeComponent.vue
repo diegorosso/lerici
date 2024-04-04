@@ -1,5 +1,5 @@
 <template>
-  <div class="background">
+  <!--   <div class="background">
     <div class="item">
       <div class="painted"></div>
     </div>
@@ -24,22 +24,21 @@
     <div class="item">
       <div class="painted"></div>
     </div>
-  </div>
+  </div> -->
   <section class="hero section">
     <div class="container">
       <div class="hero-content">
         <!-- <p class="hero-subtitle title">$120.00</p> -->
 
-        <h1 class="h1 hero-title title">
-          Donde la calidad se une al estilo
-        </h1>
+        <h1 class="h1 hero-title title">Donde la calidad se une al estilo</h1>
 
         <p class="hero-text">
-           Desde chatitas hasta texanas, nuestra amplia seleccion de calzado ofrece lo mejor en comodidad y moda para la ocasion. 
+          Desde chatitas hasta texanas, nuestra amplia seleccion de calzado ofrece lo mejor en
+          comodidad y moda para la ocasion.
         </p>
 
         <a href="#" class="btn btn-primary">
-          <span class="span">Ir a comprar</span>
+          <span class="span font-weight">Ir a comprar</span>
 
           <ion-icon name="arrow-forward" aria-hidden="true"></ion-icon>
         </a>
@@ -77,7 +76,10 @@
 </template>
 
 <style scoped>
-.background{
+.container {
+  padding-top: 5rem;
+}
+.background {
   /* height: 100vh; */
   width: 100vw;
   display: flex;
@@ -85,12 +87,12 @@
   padding-top: 250px;
   /* position: absolute; */
 }
-.item{
+.item {
   width: calc(100vw / 8);
   height: 100%;
   padding-inline: calc(100vw / 8 / 4);
 }
-.painted{
+.painted {
   width: calc(100vw / 16);
   height: calc(100vh - 250px);
   min-height: 350px;

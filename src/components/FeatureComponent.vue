@@ -217,14 +217,13 @@
         </li>
       </ul>
 
-      <a href="#" class="btn btn-secondary">Ver todos los productos</a>
+      <a href="#" class="btn btn-secondary font-weight">Ver todos los productos</a>
     </div>
   </section>
 </template>
 
 <style scoped>
-
-.background{
+.background {
   /* height: 100vh; */
   width: 100vw;
   display: flex;
@@ -232,12 +231,14 @@
   padding-bottom: 4em;
   /* position: absolute; */
 }
-.item{
+.item {
   width: calc(100vw / 8);
   height: 100%;
   padding-inline: calc(100vw / 8 / 4);
+  overflow: hidden;
+  position: relative;
 }
-.painted{
+.painted {
   width: calc(100vw / 16);
   height: calc(100vh - 250px);
   min-height: 350px;
@@ -258,8 +259,20 @@
   margin-inline: auto;
 }
 
-.product-btn{
-  /* color: var(--color-red); */
+.product-btn {
+  color: #ffff;
+}
+
+.img-cover {
+  transition:
+    transform 0.3s ease,
+    filter 0.3s ease; /* Transición para el zoom y el cambio de blanco y negro */
+}
+
+.img-cover:hover {
+  transform: scale(1.1); /* Zoom del 10% al pasar el cursor sobre la imagen */
+  filter: grayscale(100%); /* Cambiar a blanco y negro al pasar el cursor sobre la imagen */
+  cursor: pointer;
 }
 
 @media (min-width: 768px) {

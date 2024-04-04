@@ -26,7 +26,8 @@
   /* Font Weight*/
 
   --weight-semiBold: 600;
-  
+  --weight-Bold: 900;
+
 
   /*Box Shadows*/
 
@@ -44,8 +45,8 @@
   --section-gap: 160px;
 
   /* Padding */
-  --padding-inline-section: calc(12px + 2vw); 
-  --padding-block-section: 60px; 
+  --padding-inline-section: calc(12px + 2vw);
+  --padding-block-section: 60px;
 
   --padding-block-1: 3rem;
   --padding-block-2: 2rem;
@@ -86,6 +87,18 @@ body {
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
   overflow-x: hidden;
+}
+
+::-webkit-scrollbar {
+  width: 10px;
+}
+
+::-webkit-scrollbar-track {
+  background-color: hsl(0, 0%, 95%);
+}
+
+::-webkit-scrollbar-thumb {
+  background-color: var(--color-blue);
 }
 
 

@@ -102,9 +102,25 @@
 </template>
 
 <style scoped>
-.product-list{
+.product-list {
   display: flex;
   justify-content: space-around;
 }
 
+.product-banner {
+  position: relative;
+  overflow: hidden;
+  cursor: pointer;
+}
+
+.product-banner img {
+  transition:
+    transform 0.3s ease,
+    filter 0.3s ease; /* Transición para el zoom y el cambio de blanco y negro */
+}
+
+.product-banner:hover img {
+  transform: scale(1.1); /* Zoom del 10% al pasar el cursor sobre la imagen */
+  filter: grayscale(100%); /* Cambiar a blanco y negro al pasar el cursor sobre la imagen */
+}
 </style>

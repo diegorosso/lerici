@@ -5,7 +5,7 @@
         <div class="footer-brand">
           <a href="#" class="logo">
             <img
-              src="../assets/images/logo.png"
+              src="../assets/images/logo-blanco.png"
               width="132"
               height="27"
               loading="lazy"
@@ -13,7 +13,7 @@
             />
           </a>
 
-          <p class="footer-text">
+          <p class="footer-text color-white">
             Lorem ipsum dolor sit, amet consectetur adipisicing elit. Atque suscipit maiores nisi
             possimus neque! Nisi!
           </p>
@@ -43,18 +43,18 @@
           <li>
             <p class="footer-list-title title">Información de contacto</p>
 
-            <address class="footer-text">
+            <address class="footer-text color-white">
               9 de Julio 3270, CABA <br />
               Buenos Aires, Argentina
             </address>
           </li>
 
           <li>
-            <a href="mailto:info.shoppie@support.com" class="email">info@lerici.com</a>
+            <a href="mailto:info.shoppie@support.com" class="email color-white">info@lerici.com</a>
           </li>
 
           <li>
-            <a href="tel:+00 123 456 789" class="call">+54 911 27305048</a>
+            <a href="tel:+00 123 456 789" class="call color-white">+54 911 27305048</a>
           </li>
         </ul>
 
@@ -70,7 +70,7 @@
             class="input-field"
           />
 
-          <button class="btn btn-secondary">Suscribite</button>
+          <button class="btn btn-secondary font-weight">Suscribite</button>
         </div>
       </div>
 
@@ -90,8 +90,12 @@
             <a href="#" class="footer-bottom-link">Políticas de Privacidad</a>
           </div>
         </div>
-
-        <p class="copyright">&copy; 2024 Bug Development, All Rights Reserved</p>
+        <div class="copyright">
+          <p>&copy; 2024 Bug Development, All Rights Reserved</p>
+          <button class="icon-chevron" @click="scrollToTop">
+            <ion-icon name="chevron-up-outline"></ion-icon>
+          </button>
+        </div>
       </div>
 
       <!-- <img
@@ -123,6 +127,19 @@
     </div>
   </footer>
 </template>
+
+<script>
+export default {
+  methods: {
+    scrollToTop() {
+      window.scrollTo({
+        top: 0, // Posición superior de la página (parte superior)
+        behavior: 'smooth' // Desplazamiento suave animado
+      })
+    }
+  }
+}
+</script>
 
 <style scoped>
 .footer {
@@ -163,7 +180,6 @@
 
 .social-link:is(:hover, :focus-visible) {
   box-shadow: none;
-  color: var(--color-red);
   transform: translateY(-2px);
   border-color: currentColor;
 }
@@ -171,6 +187,8 @@
 .footer-list-title {
   font-size: var(--fs-10);
   margin-block-end: 30px;
+  color: var(--color-light);
+  letter-spacing: 0.1rem;
 }
 
 address.footer-text {
@@ -197,7 +215,7 @@ address.footer-text {
 }
 
 .footer-bottom .wrapper {
-  border-block-end: 1px solid var(--color-eerie-black);
+  border-block-end: 2px solid var(--color-light);
   padding-block-end: 15px;
 }
 
@@ -214,22 +232,41 @@ address.footer-text {
   font-weight: var(--weight-semiBold);
   text-transform: uppercase;
   transition: var(--transition-1);
+  color: var(--color-light);
+  text-decoration: none;
+  position: relative;
 }
 
-.footer-bottom-link:is(:hover, :focus-visible) {
-  color: var(--color-light);
+.footer-bottom-link::after {
+  content: '';
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  width: 0; /* Ancho inicial de la línea (0) */
+  height: 2px; /* Altura de la línea */
+  background-color: var(--color-light); /* Color de la línea */
+  transition: width 0.3s ease; /* Transición para la animación de ancho */
+}
+
+.footer-bottom-link:hover::after {
+  width: 100%; /* Ancho al pasar el mouse (100%) */
 }
 
 .copyright {
   padding-block: 30px;
   font-size: var(--fs-8);
   text-align: center;
+  color: var(--color-light);
 }
 
 .footer .shape-1 {
   display: block;
   top: 0;
   right: 0;
+}
+
+.color-white {
+  color: var(--color-light);
 }
 
 @media (min-width: 768px) {
@@ -267,8 +304,16 @@ address.footer-text {
   }
 
   .copyright {
-    text-align: left;
-    padding-block-end: 50px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center; /* Alinear elementos verticalmente */
+  }
+
+  .icon-chevron {
+    margin-left: 5px; /* Espacio entre el texto y el icono */
+    color: var(--color-light); /* Color del icono */
+    font-size: 3rem; /* Tamaño del icono */
+    transform: scaleX(-1); /* Espejar horizontalmente */
   }
 }
 
