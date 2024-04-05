@@ -79,7 +79,7 @@
           <div class="link-wrapper">
             <a href="#" class="footer-bottom-link">Nosotros</a>
             <a href="#" class="footer-bottom-link">Nuestro equipo</a>
-            <a href="#" class="footer-bottom-link">Tienda</a>
+            <router-link to="tienda" class="footer-bottom-link">Tienda</router-link>
             <a href="#" class="footer-bottom-link">Carrito</a>
             <a href="#" class="footer-bottom-link">Contacto</a>
           </div>
