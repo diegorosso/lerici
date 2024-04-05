@@ -1,5 +1,10 @@
 <template>
   <section class="offer has-bg-image" style="background-image: url('../assets/images/offer.jpg')">
+    <div class="logos-container">
+      <div class="half-logo"></div>
+      <div class="half-logo"></div>
+    </div>
+
     <div class="container">
       <div class="offer-card">
         <h2 class="title card-title">35% Off</h2>
@@ -20,8 +25,19 @@
 </template>
 
 <style scoped>
+.logos-container {
+  display: flex;
+  justify-content: space-around;
+  width: 100vw;
+}
+.half-logo {
+  width: 250px;
+  height: 250px;
+  background: url(../assets/images/Lerici-medio-logo-rojo-abajo.png) top / contain no-repeat;
+}
+
 .offer {
-  padding-block: 100px;
+  padding-bottom: 100px;
 }
 
 .offer-card {
@@ -54,7 +70,7 @@
 }
 @media (min-width: 1200px) {
   .offer {
-    padding-block: 200px;
+    padding-bottom: 200px;
   }
 
   .offer-card {

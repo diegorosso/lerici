@@ -1,4 +1,8 @@
 <template>
+  <div class="logos-container">
+    <div class="half-logo"></div>
+    <div class="half-logo"></div>
+  </div>
   <section class="section product" aria-label="product">
     <div class="container">
       <h2 class="h2 section-title title text-center">Novedades</h2>
@@ -102,6 +106,24 @@
 </template>
 
 <style scoped>
+
+.logos-container{
+  display: flex;
+  justify-content: space-around;
+  width: 100vw;
+}
+.half-logo{
+  width: 250px;
+  height: 200px;
+  background: url(../assets/images/Lerici-medio-logo-verde-abajo.png) top / contain no-repeat;
+}
+
+/* .half-logo:nth-child(2){
+  width: 250px;
+  height: 250px;
+  background: url(../assets/images/Lerici-medio-logo-rojo-abajo.png) top / contain no-repeat;
+} */
+
 .product-list {
   display: flex;
   justify-content: space-around;

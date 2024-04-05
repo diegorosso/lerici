@@ -219,10 +219,26 @@
 
       <a href="#" class="btn btn-secondary font-weight">Ver todos los productos</a>
     </div>
+    <div class="logos-container">
+      <div class="half-logo"></div>
+      <div class="half-logo"></div>
+    </div>
   </section>
 </template>
 
 <style scoped>
+.logos-container {
+  display: flex;
+  justify-content: space-around;
+  width: 100vw;
+}
+
+.half-logo{
+  width: 250px;
+  height: 250px;
+  background: url(../assets/images/Lerici-medio-logo-rojo-arriba.png) bottom / contain no-repeat;
+}
+
 .background {
   /* height: 100vh; */
   width: 100vw;
@@ -246,7 +262,7 @@
 }
 
 .section.feature {
-  padding-block-start: 0;
+  padding-block: 0;
 }
 
 .feature-list {

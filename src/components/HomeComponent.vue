@@ -55,13 +55,13 @@
           />
         </figure>
 
-        <img
+        <!-- <img
           src="../assets/images/hero-shape-1.png"
           width="200"
           height="200"
           alt="shape"
           class="shape shape-2"
-        />
+        /> -->
       </div>
 
       <!-- <img
@@ -72,10 +72,32 @@
         class="shape shape-2"
       /> -->
     </div>
+    <div class="logos-container">
+      <div class="half-logo"></div>
+      <div class="half-logo"></div>
+    </div>
   </section>
 </template>
 
 <style scoped>
+.logos-container {
+  display: flex;
+  justify-content: space-around;
+  width: 100vw;
+}
+
+.half-logo{
+  width: 250px;
+  height: 250px;
+  background: url(../assets/images/Lerici-medio-logo-verde-arriba.png) bottom / contain no-repeat;
+}
+
+/* .half-logo:nth-child(2){
+  width: 250px;
+  height: 250px;
+  background: url(../assets/images/Lerici-medio-logo-rojo-arriba.png) bottom / contain no-repeat;
+} */
+
 .container {
   padding-top: 5rem;
 }
@@ -100,8 +122,7 @@
 }
 .hero {
   background-color: var(--bg-light-blue);
-  /* padding-block: 130px 75px; */
-  /* padding-block: var(--padding-block-2) */
+  padding-bottom: 0;
 }
 
 .hero .container {
@@ -129,10 +150,6 @@
 }
 
 @media (min-width: 768px) {
-  .hero {
-    /* padding-block: 200px 130px; */
-    /* padding-block: var(--padding-block-2); */
-  }
   .hero-text {
     --fs-8: 2.2rem;
     line-height: 1.8;
