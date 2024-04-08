@@ -29,7 +29,7 @@
     <div class="modal" v-if="isModalOpen">
       <div class="modal-overlay" @click="closeModal"></div>
       <div class="modal-content right-aligned full-height">
-        <div>
+        <div class="close-cotainer">
           <button @click="closeModal" aria-label="Cerrar modal">
             <ion-icon class="close-style" name="close-outline" aria-hidden="true"></ion-icon>
           </button>
@@ -43,23 +43,43 @@
               <img :src="product.image" alt="Product" />
             </div>
             <div class="product-details">
-              <div>
-                <h3>{{ product.name }}</h3>
+              <div class="product-style">
+                <div>
+                  <h3 class="name-style">{{ product.name }}</h3>
+                  <div class="size-style">
+                    <div>
+                      <select v-model="product.size">
+                        <option value="Talle" selected>Talle</option>
+                        <option value="39">39</option>
+                        <option value="40">40</option>
+                        <option value="41">41</option>
+                        <option value="42">42</option>
+                      </select>
+                    </div>
+                  </div>
+                </div>
+                <div>
+                  <ion-icon name="close-outline"></ion-icon>
+                </div>
               </div>
               <div style="display: flex">
                 <div class="counter-style">
-                  <button>+</button><span><span>1</span></span
-                  ><button>-</button>
+                  <button @click="incrementQuantity(product)">+</button>
+                  <span class="span-style">
+                    <span>{{ product.quantity }}</span></span
+                  >
+                  <button @click="decrementQuantity(product)">-</button>
                 </div>
-                <div>
-                  <p>{{ product.price }}</p>
+                <div class="price-style">
+                  <p>{{ calculateProductPrice(product) }}</p>
                 </div>
               </div>
             </div>
           </div>
         </div>
         <div class="modal-footer">
-          <button class="btn-cancel" @click="closeModal">Seguir Comprando</button>
+          <p class="total-style">Total: {{ formattedTotal }}</p>
+          <button class="btn-cancel" @click="closeModal">Finalizar Compra</button>
         </div>
       </div>
     </div>
@@ -77,13 +97,39 @@ export default {
       isNavbarActive: false,
       isLogoBlack: false, // Nueva propiedad para controlar el cambio de imagen del logo
       isModalOpen: false,
-      cartProducts: [{ name: 'Bluchers', price: '$11500', image: '/img/product-1-public.jpg' }]
+      cartProducts: [
+        {
+          name: 'Bluchers',
+          price: '$11500',
+          image: '/img/product-1-public.jpg',
+          quantity: 1,
+          sinze: ''
+        },
+        {
+          name: 'Loafers',
+          price: '$15000',
+          image: '/img/product-1-public.jpg',
+          quantity: 1,
+          sinze: ''
+        }
+      ]
     }
   },
   computed: {
     // Calcula dinámicamente la fuente de la imagen del logo basándote en la propiedad isLogoBlack
     logoSource() {
       return this.isLogoBlack ? logoNegro : logo
+    },
+    total() {
+      return this.cartProducts.reduce((acc, product) => {
+        const price = parseFloat(product.price.replace('$', ''))
+        const totalPrice = price * product.quantity
+        return acc + totalPrice
+      }, 0)
+    },
+    formattedTotal() {
+      const totalWithCommas = this.total.toFixed(0).replace(/\B(?=(\d{3})+(?!\d))/g, '.')
+      return `$${totalWithCommas}`
     }
   },
   methods: {
@@ -100,11 +146,33 @@ export default {
     // Método para abrir el modal
     openModal() {
       this.isModalOpen = true
+      // Establecer el valor predeterminado del select en "Talle" cuando se abre el modal
+      this.cartProducts.forEach((product) => {
+        product.size = 'Talle'
+      })
     },
 
     // Método para cerrar el modal
     closeModal() {
       this.isModalOpen = false
+    },
+    incrementQuantity(product) {
+      product.quantity++
+    },
+    decrementQuantity(product) {
+      if (product.quantity > 1) {
+        product.quantity--
+      }
+    },
+    calculateProductPrice(product) {
+      // Elimina el signo de dólar y convierte la cadena de precio a número
+      const price = parseFloat(product.price.replace('$', ''))
+      const totalPrice = price * product.quantity
+      const formattedPrice = totalPrice.toLocaleString('en-US', {
+        style: 'currency',
+        currency: 'USD'
+      })
+      return formattedPrice
     }
   },
   mounted() {
@@ -193,7 +261,6 @@ export default {
   /* color: var(--color-blue); */
   color: inherit;
 }
-
 .card-btn:hover {
   color: var(--color-red);
 }
@@ -247,6 +314,7 @@ export default {
   justify-content: space-between;
   align-items: center;
   margin-bottom: 20px;
+  padding: 20px 0 0 20px;
 }
 
 .modal-header h2 {
@@ -256,6 +324,7 @@ export default {
 
 .modal-body {
   text-align: center;
+  height: 70vh;
 }
 
 .modal-body img {
@@ -277,17 +346,13 @@ export default {
   cursor: pointer;
 }
 
-.modal-body button:hover {
-  background-color: var(--color-dark-blue);
-}
-
 .product-item {
   display: flex;
   align-items: center;
   gap: 10px;
   margin-bottom: 15px;
   border-top: 1px solid #ccc;
-  padding: 20px; /* Ajusta el espacio entre productos si es necesario */
+  padding: 20px;
 }
 
 .product-item img {
@@ -302,24 +367,31 @@ export default {
 
 .product-details p {
   margin: 0;
-  font-size: 14px;
+  font-size: 20px;
+  font-weight: bold;
 }
 
 .modal-footer {
   margin-top: 20px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
 }
 
 .btn-cancel,
 .btn-checkout {
   padding: 10px 20px;
-  border: none;
+  border: 2px solid transparent;
   border-radius: 4px;
   cursor: pointer;
+  transition: border-color 0.3s ease;
 }
 
 .btn-cancel {
-  background-color: #ccc;
-  color: #333;
+  background-color: var(--color-blue);
+  color: var(--color-white);
+  width: 90%;
 }
 
 .btn-checkout {
@@ -329,7 +401,10 @@ export default {
 
 .btn-cancel:hover,
 .btn-checkout:hover {
-  filter: brightness(90%);
+  background-color: var(--color-white);
+  color: var(--color-dark-blue);
+  font-weight: bold;
+  border-color: var(--color-blue);
 }
 
 .bag-width {
@@ -355,9 +430,58 @@ export default {
   display: flex;
   align-items: center;
 }
+
 .close-style {
   font-size: 3rem;
   padding: 0 1rem 1rem 0;
+  color: var(--color-blue);
+}
+
+.product-style {
+  width: 80%;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding-bottom: 1rem;
+}
+
+.name-style {
+  font-weight: bold;
+}
+
+.close-cotainer {
+  padding: 20px 0 0 20px;
+}
+
+.span-style {
+  padding: 10px 20px;
+  border-radius: 4px;
+  border: none;
+}
+
+.price-style {
+  display: flex;
+  align-items: center;
+  padding: 0 0 0 1rem;
+}
+
+.total-style {
+  font-size: 20px;
+  font-weight: bold;
+}
+
+.modal-enter-active,
+.modal-leave-active {
+  transition: opacity 0.5s ease;
+}
+
+.modal-enter,
+.modal-leave-to {
+  opacity: 0;
+}
+
+.size-style {
+  display: flex;
 }
 
 @media (min-width: 992px) {
