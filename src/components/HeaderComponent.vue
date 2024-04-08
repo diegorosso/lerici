@@ -13,7 +13,7 @@
             <a href="#" class="navbar-link">Nuestro equipo</a>
           </li>
           <li>
-            <a href="#" class="navbar-link">Tienda </a>
+            <router-link to="tienda" class="navbar-link">Tienda</router-link>
           </li>
         </ul>
         <button class="card-btn" @click="openModal">
