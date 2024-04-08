@@ -236,7 +236,7 @@
 .half-logo{
   width: 250px;
   height: 250px;
-  background: url(../assets/images/Lerici-medio-logo-rojo-arriba.png) bottom / contain no-repeat;
+  background: url(../assets/images/Lerici-medio-logo-verde-arriba.png) bottom / contain no-repeat;
 }
 
 .background {

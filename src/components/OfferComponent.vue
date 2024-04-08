@@ -33,7 +33,7 @@
 .half-logo {
   width: 250px;
   height: 250px;
-  background: url(../assets/images/Lerici-medio-logo-rojo-abajo.png) top / contain no-repeat;
+  background: url(../assets/images/Lerici-medio-logo-verde-abajo.png) top / contain no-repeat;
 }
 
 .offer {
