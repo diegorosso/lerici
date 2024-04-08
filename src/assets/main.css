@@ -31,6 +31,10 @@
   font-size: var(--fs-6);
 }
 
+.cursor-pointer{
+  cursor: pointer;
+}
+
 .btn {
   /* background-color: var(--color-light); */
   display: flex;

@@ -37,11 +37,11 @@
           comodidad y moda para la ocasion.
         </p>
 
-        <a href="#" class="btn btn-primary">
+        <router-link class="btn btn-primary" to="/tienda">
           <span class="span font-weight">Ir a comprar</span>
 
           <ion-icon name="arrow-forward" aria-hidden="true"></ion-icon>
-        </a>
+        </router-link>
       </div>
 
       <div class="hero-banner">
@@ -86,7 +86,7 @@
   width: 100vw;
 }
 
-.half-logo{
+.half-logo {
   width: 250px;
   height: 250px;
   background: url(../assets/images/Lerici-medio-logo-rojo-arriba.png) bottom / contain no-repeat;

@@ -3,7 +3,7 @@
     // Lista de archivos del proyecto
     "src/components/HeaderComponent.vue",
     "src/components/HomeComponent.vue",
-    "src/components/ProductComponent.vue"
+    "src/components/NewsComponent.vue"
   ],
   "references": [
     {

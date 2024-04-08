@@ -30,16 +30,16 @@
       <h2 class="h2 section-title title text-center" id="feature-label">Productos destacados</h2>
 
       <ul class="feature-list">
-        <li>
+        <li v-for="(product, index) in products" :key="index" >
           <div class="product-card text-center">
             <div class="card-banner">
               <figure class="product-banner img-holder" style="--width: 448; --height: 470">
                 <img
-                  src="../assets/images/shoes-feature7.jpg"
+                  :src="product.image"
                   width="448"
                   height="470"
                   loading="lazy"
-                  alt="Acne Baseball Cap"
+                  :alt="product.name"
                   class="img-cover"
                 />
               </figure>
@@ -53,171 +53,15 @@
 
             <div class="card-content">
               <h3 class="h3 title">
-                <a href="#" class="card-title">Acne Baseball Cap</a>
+                <a href="#" class="card-title">{{ product.name }}</a>
               </h3>
-
-              <span class="price">$80.00</span>
-            </div>
-          </div>
-        </li>
-
-        <li>
-          <div class="product-card text-center">
-            <div class="card-banner">
-              <figure class="product-banner img-holder" style="--width: 448; --height: 470">
-                <img
-                  src="../assets/images/shoes-feature2.jpg"
-                  width="448"
-                  height="470"
-                  loading="lazy"
-                  alt="Short Sleeve Shirt"
-                  class="img-cover"
-                />
-              </figure>
-
-              <a href="#" class="btn product-btn">
-                <ion-icon name="bag" aria-hidden="true"></ion-icon>
-
-                <span class="span">Agregar al carrito</span>
-              </a>
-            </div>
-
-            <div class="card-content">
-              <h3 class="h3 title">
-                <a href="#" class="card-title">Short Sleeve Shirt</a>
-              </h3>
-
-              <span class="price">$170.00</span>
-            </div>
-          </div>
-        </li>
-
-        <li>
-          <div class="product-card text-center">
-            <div class="card-banner">
-              <figure class="product-banner img-holder" style="--width: 448; --height: 470">
-                <img
-                  src="../assets/images/shoes-feature6.jpg"
-                  width="448"
-                  height="470"
-                  loading="lazy"
-                  alt="Garcons Parfums"
-                  class="img-cover"
-                />
-              </figure>
-
-              <a href="#" class="btn product-btn">
-                <ion-icon name="bag" aria-hidden="true"></ion-icon>
-
-                <span class="span">Agregar al carrito</span>
-              </a>
-            </div>
-
-            <div class="card-content">
-              <h3 class="h3 title">
-                <a href="#" class="card-title">Garcons Parfums</a>
-              </h3>
-
-              <span class="price">$190.00</span>
-            </div>
-          </div>
-        </li>
-
-        <li>
-          <div class="product-card text-center">
-            <div class="card-banner">
-              <figure class="product-banner img-holder" style="--width: 448; --height: 470">
-                <img
-                  src="../assets/images/shoes-feature8.jpg"
-                  width="448"
-                  height="470"
-                  loading="lazy"
-                  alt="Salomon Sneaker"
-                  class="img-cover"
-                />
-              </figure>
-
-              <a href="#" class="btn product-btn">
-                <ion-icon name="bag" aria-hidden="true"></ion-icon>
-
-                <span class="span">Agregar al carrito</span>
-              </a>
-            </div>
-
-            <div class="card-content">
-              <h3 class="h3 title">
-                <a href="#" class="card-title">Salomon Sneaker</a>
-              </h3>
-
-              <span class="price">$450.00</span>
-            </div>
-          </div>
-        </li>
-
-        <li>
-          <div class="product-card text-center">
-            <div class="card-banner">
-              <figure class="product-banner img-holder" style="--width: 448; --height: 470">
-                <img
-                  src="../assets/images/shoes-feature9.jpg"
-                  width="448"
-                  height="470"
-                  loading="lazy"
-                  alt="Ribbed Beanie Hat"
-                  class="img-cover"
-                />
-              </figure>
-
-              <a href="#" class="btn product-btn">
-                <ion-icon name="bag" aria-hidden="true"></ion-icon>
-
-                <span class="span">Agregar al carrito</span>
-              </a>
-            </div>
-
-            <div class="card-content">
-              <h3 class="h3 title">
-                <a href="#" class="card-title">Ribbed Beanie Hat</a>
-              </h3>
-
-              <span class="price">$120.00</span>
-            </div>
-          </div>
-        </li>
-
-        <li>
-          <div class="product-card text-center">
-            <div class="card-banner">
-              <figure class="product-banner img-holder" style="--width: 448; --height: 470">
-                <img
-                  src="../assets/images/shoes-feature10.jpg"
-                  width="448"
-                  height="470"
-                  loading="lazy"
-                  alt="Acronym Khaki"
-                  class="img-cover"
-                />
-              </figure>
-
-              <a href="#" class="btn product-btn">
-                <ion-icon name="bag" aria-hidden="true"></ion-icon>
-
-                <span class="span">Agregar al carrito</span>
-              </a>
-            </div>
-
-            <div class="card-content">
-              <h3 class="h3 title">
-                <a href="#" class="card-title">Acronym Khaki</a>
-              </h3>
-
-              <span class="price">$220.00</span>
+              <span class="price">${{ product.price }}</span>
             </div>
           </div>
         </li>
       </ul>
 
-      <a href="#" class="btn btn-secondary font-weight">Ver todos los productos</a>
+      <router-link to="/tienda" class="btn btn-secondary font-weight" @click="window.scrollTo(0,0)">Ver todos los productos</router-link>
     </div>
     <div class="logos-container">
       <div class="half-logo"></div>
@@ -225,6 +69,10 @@
     </div>
   </section>
 </template>
+
+<script setup>
+import products from '../stores/products.ts';
+</script>
 
 <style scoped>
 .logos-container {

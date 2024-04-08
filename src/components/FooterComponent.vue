@@ -133,8 +133,8 @@ export default {
   methods: {
     scrollToTop() {
       window.scrollTo({
-        top: 0, // Posición superior de la página (parte superior)
-        behavior: 'smooth' // Desplazamiento suave animado
+        top: 0,
+        behavior: 'smooth'
       })
     }
   }

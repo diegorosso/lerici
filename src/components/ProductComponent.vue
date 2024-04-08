@@ -1,134 +1,49 @@
 <template>
-  <div class="logos-container">
-    <div class="half-logo"></div>
-    <div class="half-logo"></div>
-  </div>
-  <section class="section product" aria-label="product">
-    <div class="container">
-      <h2 class="h2 section-title title text-center">Novedades</h2>
+  <div class="product-card text-center">
+    <div class="card-banner">
+      <figure class="product-banner img-holder" style="--width: 448; --height: 470">
+        <img
+          :src="product.image"
+          width="448"
+          height="470"
+          loading="lazy"
+          :alt="product.name"
+          class="img-cover"
+        />
+      </figure>
 
-      <ul class="product-list has-scrollbar">
-        <li class="scrollbar-item">
-          <div class="product-card text-center">
-            <div class="card-banner">
-              <figure class="product-banner img-holder" style="--width: 448; --height: 470">
-                <img
-                  src="../assets/images/product-1.jpg"
-                  width="448"
-                  height="470"
-                  loading="lazy"
-                  alt="Short Sleeve Shirt"
-                  class="img-cover"
-                />
-              </figure>
+      <a href="#" class="btn product-btn">
+        <ion-icon name="bag" aria-hidden="true"></ion-icon>
 
-              <a href="#" class="btn product-btn">
-                <ion-icon name="bag" aria-hidden="true"></ion-icon>
-
-                <span class="span">Agregar al carrito</span>
-              </a>
-            </div>
-
-            <div class="card-content">
-              <h3 class="h4 title">
-                <a href="#" class="card-title">Short Sleeve Shirt</a>
-              </h3>
-
-              <span class="price">$170.00</span>
-            </div>
-          </div>
-        </li>
-
-        <li class="scrollbar-item">
-          <div class="product-card text-center">
-            <div class="card-banner">
-              <figure class="product-banner img-holder" style="--width: 448; --height: 470">
-                <img
-                  src="../assets/images/product-2.jpg"
-                  width="448"
-                  height="470"
-                  loading="lazy"
-                  alt="Dead Sunglasses"
-                  class="img-cover"
-                />
-              </figure>
-
-              <a href="#" class="btn product-btn">
-                <ion-icon name="bag" aria-hidden="true"></ion-icon>
-
-                <span class="span">Agregar al carrito</span>
-              </a>
-            </div>
-
-            <div class="card-content">
-              <h3 class="h4 title">
-                <a href="#" class="card-title">Dead Sunglasses</a>
-              </h3>
-
-              <span class="price">$210.00</span>
-            </div>
-          </div>
-        </li>
-
-        <!-- <li class="scrollbar-item">
-          <div class="product-card text-center">
-            <div class="card-banner">
-              <figure class="product-banner img-holder" style="--width: 448; --height: 470">
-                <img
-                  src="../assets/images/product-3.png"
-                  width="448"
-                  height="470"
-                  loading="lazy"
-                  alt="Studios Trouser"
-                  class="img-cover"
-                />
-              </figure>
-
-              <a href="#" class="btn product-btn">
-                <ion-icon name="bag" aria-hidden="true"></ion-icon>
-
-                <span class="span">Agregar al carrito</span>
-              </a>
-            </div>
-
-            <div class="card-content">
-              <h3 class="h4 title">
-                <a href="#" class="card-title">Studios Trouser</a>
-              </h3>
-
-              <span class="price">$90.00</span>
-            </div>
-          </div>
-        </li> -->
-      </ul>
+        <span class="span">Agregar al carrito</span>
+      </a>
     </div>
-  </section>
+
+    <div class="card-content">
+      <h3 class="h4 title">
+        <a href="#" class="card-title">{{ product.name }}</a>
+      </h3>
+
+      <span class="price">${{ product.price }}</span>
+    </div>
+  </div>
 </template>
+
+<script setup>
+const props = defineProps({
+  product: {
+    image: String,
+    name: String,
+    price: Number
+  }
+})
+</script>
 
 <style scoped>
 
-.logos-container{
-  display: flex;
-  justify-content: space-around;
-  width: 100vw;
+.product-card{
+  width: 28vw;
 }
-.half-logo{
-  width: 250px;
-  height: 200px;
-  background: url(../assets/images/Lerici-medio-logo-rojo-abajo.png) top / contain no-repeat;
-}
-
-/* .half-logo:nth-child(2){
-  width: 250px;
-  height: 250px;
-  background: url(../assets/images/Lerici-medio-logo-verde-abajo.png) top / contain no-repeat;
-} */
-
-.product-list {
-  display: flex;
-  justify-content: space-around;
-}
-
 .product-banner {
   position: relative;
   overflow: hidden;

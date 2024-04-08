@@ -1,9 +1,9 @@
 <template>
   <header class="header" :class="{ active: isHeaderActive }" data-header>
     <div class="container">
-      <a href="/" class="logo">
+      <router-link to="/" class="logo">
         <img :src="logoSource" width="132" height="27" alt="shoppie home" />
-      </a>
+      </router-link>
       <nav class="navbar" :class="{ active: isNavbarActive }">
         <ul class="navbar-list">
           <li>
