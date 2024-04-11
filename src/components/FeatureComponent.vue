@@ -30,7 +30,7 @@
       <h2 class="h2 section-title title text-center" id="feature-label">Productos destacados</h2>
 
       <ul class="feature-list">
-        <li v-for="(product, index) in products" :key="index" >
+        <li v-for="(product, index) in products" :key="index">
           <div class="product-card text-center">
             <div class="card-banner">
               <figure class="product-banner img-holder" style="--width: 448; --height: 470">
@@ -61,7 +61,9 @@
         </li>
       </ul>
 
-      <router-link to="/tienda" class="btn btn-secondary font-weight" @click="window.scrollTo(0,0)">Ver todos los productos</router-link>
+      <router-link to="/tienda" class="btn btn-secondary font-weight" @click="window.scrollTo(0, 0)"
+        >Ver todos los productos</router-link
+      >
     </div>
     <div class="logos-container">
       <div class="half-logo"></div>
@@ -71,7 +73,7 @@
 </template>
 
 <script setup>
-import products from '../stores/products.ts';
+import { products } from '../stores/products.ts'
 </script>
 
 <style scoped>
@@ -81,19 +83,17 @@ import products from '../stores/products.ts';
   width: 100vw;
 }
 
-.half-logo{
+.half-logo {
   width: 250px;
   height: 250px;
   background: url(../assets/images/Lerici-medio-logo-verde-arriba.png) bottom / contain no-repeat;
 }
 
 .background {
-  /* height: 100vh; */
   width: 100vw;
   display: flex;
   background: transparent;
   padding-bottom: 4em;
-  /* position: absolute; */
 }
 .item {
   width: calc(100vw / 8);
@@ -130,12 +130,12 @@ import products from '../stores/products.ts';
 .img-cover {
   transition:
     transform 0.3s ease,
-    filter 0.3s ease; /* Transición para el zoom y el cambio de blanco y negro */
+    filter 0.3s ease;
 }
 
 .img-cover:hover {
-  transform: scale(1.1); /* Zoom del 10% al pasar el cursor sobre la imagen */
-  filter: grayscale(100%); /* Cambiar a blanco y negro al pasar el cursor sobre la imagen */
+  transform: scale(1.1);
+  /* filter: grayscale(100%); */
   cursor: pointer;
 }
 

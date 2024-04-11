@@ -25,8 +25,10 @@
         <ion-icon name="menu-outline" aria-hidden="true"></ion-icon>
       </button>
     </div>
+
+    <CartComponent :isModalOpen="isModalOpen" v-if="isModalOpen" @closeModal="handleCloseModal"></CartComponent>
     <!-- Modal -->
-    <div class="modal" v-if="isModalOpen">
+    <!-- <div class="modal" v-if="isModalOpen">
       <div class="modal-overlay" @click="closeModal"></div>
       <div class="modal-content right-aligned full-height">
         <div class="close-cotainer">
@@ -82,38 +84,26 @@
           <button class="btn-cancel" @click="closeModal">Finalizar Compra</button>
         </div>
       </div>
-    </div>
+    </div> -->
   </header>
 </template>
 
 <script>
 import logo from '@/assets/images/logo.png'
 import logoNegro from '@/assets/images/logo-negro.png'
+import CartComponent from '../components/CartComponent.vue'
 
 export default {
   data() {
     return {
       isHeaderActive: false,
       isNavbarActive: false,
-      isLogoBlack: false, // Nueva propiedad para controlar el cambio de imagen del logo
+      isLogoBlack: false,
       isModalOpen: false,
-      cartProducts: [
-        {
-          name: 'Bluchers',
-          price: '$11500',
-          image: '/img/product-1-public.jpg',
-          quantity: 1,
-          sinze: ''
-        },
-        {
-          name: 'Loafers',
-          price: '$15000',
-          image: '/img/product-1-public.jpg',
-          quantity: 1,
-          sinze: ''
-        }
-      ]
     }
+  },
+  components: {
+    CartComponent
   },
   computed: {
     // Calcula dinámicamente la fuente de la imagen del logo basándote en la propiedad isLogoBlack
@@ -127,10 +117,10 @@ export default {
         return acc + totalPrice
       }, 0)
     },
-    formattedTotal() {
-      const totalWithCommas = this.total.toFixed(0).replace(/\B(?=(\d{3})+(?!\d))/g, '.')
-      return `$${totalWithCommas}`
-    }
+    // formattedTotal() {
+    //   const totalWithCommas = this.total.toFixed(0).replace(/\B(?=(\d{3})+(?!\d))/g, '.')
+    //   return `$${totalWithCommas}`
+    // }
   },
   methods: {
     toggleNavbar() {
@@ -146,34 +136,34 @@ export default {
     // Método para abrir el modal
     openModal() {
       this.isModalOpen = true
-      // Establecer el valor predeterminado del select en "Talle" cuando se abre el modal
-      this.cartProducts.forEach((product) => {
-        product.size = 'Talle'
-      })
+      // // Establecer el valor predeterminado del select en "Talle" cuando se abre el modal
+      // this.cartProducts.forEach((product) => {
+      //   product.size = 'Talle'
+      // })
     },
 
     // Método para cerrar el modal
-    closeModal() {
+    handleCloseModal() {
       this.isModalOpen = false
     },
-    incrementQuantity(product) {
-      product.quantity++
-    },
-    decrementQuantity(product) {
-      if (product.quantity > 1) {
-        product.quantity--
-      }
-    },
-    calculateProductPrice(product) {
-      // Elimina el signo de dólar y convierte la cadena de precio a número
-      const price = parseFloat(product.price.replace('$', ''))
-      const totalPrice = price * product.quantity
-      const formattedPrice = totalPrice.toLocaleString('en-US', {
-        style: 'currency',
-        currency: 'USD'
-      })
-      return formattedPrice
-    }
+    // incrementQuantity(product) {
+    //   product.quantity++
+    // },
+    // decrementQuantity(product) {
+    //   if (product.quantity > 1) {
+    //     product.quantity--
+    //   }
+    // },
+    // calculateProductPrice(product) {
+    //   // Elimina el signo de dólar y convierte la cadena de precio a número
+    //   const price = parseFloat(product.price.replace('$', ''))
+    //   const totalPrice = price * product.quantity
+    //   const formattedPrice = totalPrice.toLocaleString('en-US', {
+    //     style: 'currency',
+    //     currency: 'USD'
+    //   })
+    //   return formattedPrice
+    // }
   },
   mounted() {
     window.addEventListener('scroll', this.handleScroll)
@@ -284,7 +274,7 @@ export default {
   width: 100%;
 }
 
-.modal {
+/* .modal {
   position: fixed;
   top: 0;
   left: 0;
@@ -348,9 +338,9 @@ export default {
   border: none;
   border-radius: 4px;
   cursor: pointer;
-}
+} */
 
-.product-item {
+/* .product-item {
   display: flex;
   align-items: center;
   gap: 10px;
@@ -409,21 +399,21 @@ export default {
   color: var(--color-dark-blue);
   font-weight: bold;
   border-color: var(--color-blue);
-}
+} */
 
 .bag-width {
   font-size: 2rem;
 }
 
-.modal-content.right-aligned {
+/* .modal-content.right-aligned {
   position: fixed;
   top: 0;
   right: 0;
   bottom: 0;
-  width: 30%; /* Puedes ajustar este valor según tus necesidades */
+  width: 30%; 
   background-color: #fff;
   z-index: 1000;
-  overflow-y: auto; /* Añade scroll si el contenido es más alto que el modal */
+  overflow-y: auto;
 }
 
 .modal-content.full-height {
@@ -472,21 +462,21 @@ export default {
 .total-style {
   font-size: 20px;
   font-weight: bold;
-}
+} */
 
-.modal-enter-active,
+/* .modal-enter-active,
 .modal-leave-active {
   transition: opacity 0.5s ease;
-}
+} */
 
-.modal-enter,
+/* .modal-enter,
 .modal-leave-to {
   opacity: 0;
-}
+} */
 
-.size-style {
+/* .size-style {
   display: flex;
-}
+} */
 
 @media (min-width: 992px) {
   .header {
@@ -509,21 +499,21 @@ export default {
     display: flex;
   }
 
-  .cart-btn {
+  /* .cart-btn {
     border-inline-start: 2px solid var(--color-eerie-black);
     padding-inline-start: 50px;
     margin-inline-start: 20px;
-  }
+  } */
 
   .header.active .container,
-  .header.active .cart-btn {
+  .header.active {
     border: none;
   }
 }
 @media (min-width: 992px) {
-  .cart-btn {
+  /* .cart-btn {
     padding-block: 35px;
-  }
+  } */
 
   .navbar .btn {
     display: block;
@@ -534,9 +524,9 @@ export default {
 }
 
 @media (min-width: 1200px) {
-  .cart-btn {
+  /* .cart-btn {
     padding-block: 35px;
-  }
+  } */
 
   .navbar .btn {
     display: block;

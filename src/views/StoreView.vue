@@ -32,7 +32,7 @@
 
 <script setup>
 import ProductComponent from '../components/ProductComponent.vue'
-import products from '../stores/products.ts'
+import { products, addProduct } from '../stores/products.ts'
 import { ref, onMounted } from 'vue'
 import axios from 'axios'
 
@@ -53,7 +53,7 @@ onMounted(() => {
 const getProducts = async () => {
   const sheetsApi = 'https://sheets.googleapis.com'
   const spreadsheetId = '1yrEnt0uxCPDSho7Fw3jjCmjmdauPSfxbh-UXmkOx618'
-  const apiKey = 'AIzaSyBUcRY921pCPuQcU6dEqwPY64oyVwFbKfs'
+  const apiKey = import.meta.env.VITE_API_KEY;
 
   // GET GOOGLE SHEETS DATA:
   try {
