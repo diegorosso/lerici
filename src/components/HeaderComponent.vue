@@ -19,7 +19,7 @@
         <button class="card-btn" @click="openModal">
           <ion-icon class="bag-width" name="bag-outline" aria-hidden="true"></ion-icon>
         </button>
-        <a href="btn" class="btn font-weight">Contacto</a>
+        <a href="#contact" class="btn font-weight">Contacto</a>
       </nav>
       <button class="nav-open-btn" aria-label="toggle menu" @click="toggleNavbar">
         <ion-icon name="menu-outline" aria-hidden="true"></ion-icon>
@@ -205,6 +205,7 @@ export default {
   background-color: var(--color-white);
   box-shadow: var(--shadow-1);
   color: var(--color-eerie-black);
+  opacity: 0.8;
 }
 
 .header .container {
@@ -239,15 +240,18 @@ export default {
   font-family: 'Helvetica Neue', sans-serif;
 }
 
+.navbar-list > li {
+  padding: 10px 20px;
+}
+
 .navbar-link,
 .card-btn .span {
   font-size: var(--fs-8);
   /* font-weight: var(--weight-semiBold); */
-  text-transform: uppercase;
+  /* text-transform: uppercase; */
 }
 
 .navbar-link {
-  padding: 10px 20px;
   position: relative; /* Añadir posición relativa para que el subrayado sea relativo al enlace */
   color: var(--color-blue);
   text-decoration: none; /* Quitar el subrayado predeterminado del enlace */
@@ -524,7 +528,7 @@ export default {
   .navbar .btn {
     display: block;
     padding: 10px 25px;
-    text-transform: uppercase;
+    /* text-transform: uppercase; */
     margin-inline-start: 20px;
   }
 }
@@ -537,7 +541,7 @@ export default {
   .navbar .btn {
     display: block;
     padding: 10px 25px;
-    text-transform: uppercase;
+    /* text-transform: uppercase; */
     margin-inline-start: 20px;
   }
 }

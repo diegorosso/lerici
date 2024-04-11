@@ -40,8 +40,7 @@ const props = defineProps({
 </script>
 
 <style scoped>
-
-.product-card{
+.product-card {
   width: 28vw;
 }
 .product-banner {
@@ -53,11 +52,15 @@ const props = defineProps({
 .product-banner img {
   transition:
     transform 0.3s ease,
-    filter 0.3s ease; /* Transición para el zoom y el cambio de blanco y negro */
+    filter 0.3s ease;
 }
 
 .product-banner:hover img {
-  transform: scale(1.1); /* Zoom del 10% al pasar el cursor sobre la imagen */
-  filter: grayscale(100%); /* Cambiar a blanco y negro al pasar el cursor sobre la imagen */
+  transform: scale(1.1);
+}
+
+.product-btn {
+  background-color: var(--color-eerie-black);
+  color: var(--color-light);
 }
 </style>

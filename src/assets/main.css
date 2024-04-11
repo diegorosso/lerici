@@ -46,7 +46,7 @@
   box-shadow: var(--shadow-2);
   /* font-weight: var(--weight-semiBold); */
   transition: var(--transition-1);
-  border-radius: 30px;
+  border-radius: 8px;
 }
 
 .btn:is(:hover, :focus-visible) {

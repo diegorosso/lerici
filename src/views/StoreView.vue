@@ -1,22 +1,21 @@
 <template>
-  <div class="container" :class="{ 'flex-row': isFiltersOpen }">
+  <div class="container flex-row">
     <div class="filters">
-      <div @click="handleFilters" class="cursor-pointer">
+      <!-- <div @click="handleFilters" class="cursor-pointer">
         <ion-icon v-if="!isFiltersOpen" name="filter-outline"></ion-icon>
-      </div>
-      <div v-if="isFiltersOpen" class="filters-container">
-        <div class="filters-header">
-          <h2>Filtros</h2>
+      </div> -->
+      <div class="filters-container">
+        <!-- <div class="filters-header">
+          <h3>Filtros</h3>
           <div @click="handleFilters" class="cursor-pointer">
             <ion-icon name="close-outline" class="icon" @click="handleFilters"></ion-icon>
           </div>
-        </div>
+        </div> -->
         <ul class="filters-contain">
           <li class="filters-item cursor-pointer">Mocasines</li>
-          <li class="filters-item cursor-pointer">Sandalias</li>
           <li class="filters-item cursor-pointer">Botas</li>
           <li class="filters-item cursor-pointer">Borcegos</li>
-          <li class="filters-item cursor-pointer">Stilettos</li>
+          <li class="filters-item cursor-pointer">Zapatillas</li>
         </ul>
       </div>
     </div>
@@ -28,12 +27,12 @@
   </div>
 </template>
 
-<script setup lang="ts">
+<script setup>
 import ProductComponent from '../components/ProductComponent.vue'
 import products from '../stores/products.ts'
 import { ref, onMounted } from 'vue'
 
-let isFiltersOpen: boolean = ref(false)
+// let isFiltersOpen = ref(false)
 
 onMounted(() => {
   window.scrollTo({
@@ -42,9 +41,9 @@ onMounted(() => {
   })
 })
 
-const handleFilters = () => {
-  isFiltersOpen.value = !isFiltersOpen.value
-}
+// const handleFilters = () => {
+//   isFiltersOpen.value = !isFiltersOpen.value
+// }
 </script>
 
 <style scoped>
@@ -58,12 +57,12 @@ const handleFilters = () => {
   flex-direction: row;
 }
 .filters {
-  padding-inline: 2em;
+  padding-inline: .5em;
   color: var(--color-blue);
 }
 .filters-container {
-  font-family: 'Conceta', sans-serif;
-  /* font-family: 'Helvetica Neue', sans-serif; */
+  /* font-family: 'Conceta', sans-serif; */
+  font-family: 'Helvetica Neue', sans-serif;
   width: 18vw;
   min-width: 200px;
   height: 100%;
@@ -72,6 +71,8 @@ const handleFilters = () => {
   display: flex;
   justify-content: space-between;
   align-items: center;
+  text-transform: uppercase;
+  /* font-style: italic; */
 }
 .filters-header > ion-icon {
   font-size: 22px;
@@ -100,15 +101,15 @@ ion-icon:hover {
   left: 0;
   width: 0;
   height: 2px;
-  background-color: var(--color-red);
+  background-color: var(--color-blue);
   transition: width 0.3s ease;
 }
 .filters-item:hover::after {
   width: 100%;
 }
-.filters-item:hover {
+/* .filters-item:hover {
   color: var(--color-red);
-}
+} */
 .product-list {
   display: flex;
   justify-content: space-between;
