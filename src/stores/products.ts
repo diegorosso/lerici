@@ -1,40 +1,68 @@
-const products = [
+interface Product {
+  image: string
+  Categoria: string
+  Articulo: string
+  Nombre: string
+  Descripcion: string
+  Talles: string
+  Precio: number
+}
+
+const products: Product[] = [
   {
-    name: 'Acne Baseball Cap',
-    price: 83000,
     image: '/img/shoes-feature7.jpg',
-    size: ''
+    Categoria: 'Mocasines',
+    Articulo: '',
+    Nombre: 'Acne Baseball Cap',
+    Descripcion: '',
+    Talles: '',
+    Precio: 0
   },
   {
-    name: 'Short Sleeve Shirt',
-    price: 17000,
-    image: '/img/shoes-feature2.jpg',
-    size: ''
+    Categoria: 'Botas',
+    Articulo: '',
+    Nombre: 'Short Sleeve Shirt',
+    Descripcion: '',
+    Talles: '',
+    Precio: 17000,
+    image: '/img/shoes-feature2.jpg'
   },
   {
-    name: 'Garcons Parfums',
-    price: 15000,
-    image: '/img/shoes-feature6.jpg',
-    size: ''
+    Categoria: 'Borcegos',
+    Articulo: '',
+    Nombre: 'Garcons Parfums',
+    Descripcion: '',
+    Talles: '',
+    Precio: 15000,
+    image: '/img/shoes-feature6.jpg'
   },
   {
-    name: 'Salomon Sneakers',
-    price: 15000,
-    image: '/img/shoes-feature8.jpg',
-    size: ''
+    Categoria: 'Borcegos',
+    Articulo: '',
+    Nombre: 'Salomon Sneakers',
+    Descripcion: '',
+    Talles: '',
+    Precio: 15000,
+    image: '/img/shoes-feature8.jpg'
   },
   {
-    name: 'Ribbed Beanie Hat',
-    price: 34000,
-    image: '/img/shoes-feature9.jpg',
-    size: ''
+    Categoria: 'Borcegos',
+    Articulo: '',
+    Nombre: 'Ribbed Beanie Hat',
+    Descripcion: '',
+    Talles: '',
+    Precio: 34000,
+    image: '/img/shoes-feature9.jpg'
   },
   {
-    name: 'Acronym Khaki',
-    price: 22000,
-    image: '/img/shoes-feature10.jpg',
-    size: ''
+    Categoria: 'Borcegos',
+    Articulo: '',
+    Nombre: 'Acronym Khaki',
+    Descripcion: '',
+    Talles: '',
+    Precio: 22000,
+    image: '/img/shoes-feature10.jpg'
   }
 ]
 
-export default products;
+export default products

@@ -7,7 +7,7 @@
           width="448"
           height="470"
           loading="lazy"
-          :alt="product.name"
+          :alt="product.Nombre"
           class="img-cover"
         />
       </figure>
@@ -21,20 +21,24 @@
 
     <div class="card-content">
       <h3 class="h4 title">
-        <a href="#" class="card-title">{{ product.name }}</a>
+        <a href="#" class="card-title">{{ product.Nombre }}</a>
       </h3>
 
-      <span class="price">${{ product.price }}</span>
+      <span class="price">${{ product.Precio }}</span>
     </div>
   </div>
 </template>
 
 <script setup>
-const props = defineProps({
+defineProps({
   product: {
     image: String,
-    name: String,
-    price: Number
+    Nombre: String,
+    Precio: Number,
+    Categoria: String,
+    Articulo: String,
+    Descripcion: String,
+    Talles: String
   }
 })
 </script>

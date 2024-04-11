@@ -12,10 +12,13 @@
           </div>
         </div> -->
         <ul class="filters-contain">
-          <li class="filters-item cursor-pointer">Mocasines</li>
-          <li class="filters-item cursor-pointer">Botas</li>
-          <li class="filters-item cursor-pointer">Borcegos</li>
-          <li class="filters-item cursor-pointer">Zapatillas</li>
+          <li
+            class="filters-item cursor-pointer"
+            v-for="(categorie, index) in categories"
+            v-bind:key="index"
+          >
+            {{ categorie.name }}
+          </li>
         </ul>
       </div>
     </div>
@@ -31,6 +34,10 @@
 import ProductComponent from '../components/ProductComponent.vue'
 import products from '../stores/products.ts'
 import { ref, onMounted } from 'vue'
+import axios from 'axios'
+
+let productsList = ref([])
+let categories = ref([])
 
 // let isFiltersOpen = ref(false)
 
@@ -39,7 +46,75 @@ onMounted(() => {
     top: 0,
     behavior: 'smooth'
   })
+
+  getProducts()
 })
+
+const getProducts = async () => {
+  const sheetsApi = 'https://sheets.googleapis.com'
+  const spreadsheetId = '1yrEnt0uxCPDSho7Fw3jjCmjmdauPSfxbh-UXmkOx618'
+  const apiKey = 'AIzaSyBUcRY921pCPuQcU6dEqwPY64oyVwFbKfs'
+
+  // GET GOOGLE SHEETS DATA:
+  try {
+    let sheetData = await axios({
+      method: 'get',
+      url: `${sheetsApi}/v4/spreadsheets/${spreadsheetId}`,
+      params: {
+        key: apiKey
+      }
+    })
+    let endRange = sheetData.data.sheets[0].properties.gridProperties.rowCount
+    let range = `A1:F${endRange}`
+
+    let sheetValues = await axios({
+      method: 'get',
+      url: `${sheetsApi}/v4/spreadsheets/${spreadsheetId}/values/${range}`,
+      params: {
+        key: apiKey
+      }
+    })
+    let keys = []
+    sheetValues.data.values.forEach((row, i) => {
+      let obj = {}
+      row.forEach((cell, index) => {
+        if (i === 0) {
+          keys.push(cell)
+        }
+        if (index === 0) obj[keys[0]] = cell
+        if (index === 1) obj[keys[1]] = cell
+        if (index === 2) {
+          obj[keys[2]] = cell
+        }
+        if (index === 3) obj[keys[3]] = cell
+        if (index === 4) obj[keys[4]] = cell
+      })
+      productsList.value.push(obj)
+    })
+    productsList.value.shift()
+    categories.value = getCategories(productsList.value)
+  } catch (error) {
+    console.log(error)
+  }
+}
+
+const getCategories = (data) => {
+  let categories = []
+  data.forEach((i) => {
+    if (
+      !categories.some(
+        (b) =>
+          b.name?.charAt(0).toUpperCase() + b.name?.slice(1) ===
+          i.Categoria?.charAt(0).toUpperCase() + i.Categoria?.slice(1)
+      )
+    )
+      categories.push({
+        name: i.Categoria.charAt(0).toUpperCase() + i.Categoria.slice(1)
+      })
+  })
+
+  return categories
+}
 
 // const handleFilters = () => {
 //   isFiltersOpen.value = !isFiltersOpen.value
@@ -57,7 +132,7 @@ onMounted(() => {
   flex-direction: row;
 }
 .filters {
-  padding-inline: .5em;
+  padding-inline: 0.5em;
   color: var(--color-blue);
 }
 .filters-container {

@@ -39,7 +39,7 @@
                   width="448"
                   height="470"
                   loading="lazy"
-                  :alt="product.name"
+                  :alt="product.Nombre"
                   class="img-cover"
                 />
               </figure>
@@ -53,9 +53,9 @@
 
             <div class="card-content">
               <h3 class="h3 title">
-                <a href="#" class="card-title">{{ product.name }}</a>
+                <a href="#" class="card-title">{{ product.Nombre }}</a>
               </h3>
-              <span class="price">${{ product.price }}</span>
+              <span class="price">${{ product.Precio }}</span>
             </div>
           </div>
         </li>

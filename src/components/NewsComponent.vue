@@ -12,15 +12,15 @@
           <ProductComponent
             :product="{
               image: '/img/product-1-public.jpg',
-              name: 'Short Sleeve Shirt',
-              price: 150.0
+              Nombre: 'Short Sleeve Shirt',
+              Precio: 150.0
             }"
           ></ProductComponent>
         </li>
 
         <li class="scrollbar-item">
           <ProductComponent
-            :product="{ image: '/img/product-2.jpg', name: 'Dead Sunglasses', price: 210.0 }"
+            :product="{ image: '/img/product-2.jpg', Nombre: 'Dead Sunglasses', Precio: 210.0 }"
           ></ProductComponent>
         </li>
       </ul>
