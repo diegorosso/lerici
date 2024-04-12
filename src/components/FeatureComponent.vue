@@ -30,7 +30,7 @@
       <h2 class="h2 section-title title text-center" id="feature-label">Productos destacados</h2>
 
       <ul class="feature-list">
-        <li v-for="(product, index) in products" :key="index">
+        <li v-for="(product, index) in store.products.slice(0, 6)" :key="index">
           <div class="product-card text-center">
             <div class="card-banner">
               <figure class="product-banner img-holder" style="--width: 448; --height: 470">
@@ -44,11 +44,11 @@
                 />
               </figure>
 
-              <a href="#" class="btn product-btn">
+              <button class="btn product-btn" @click="store.addProduct(product)">
                 <ion-icon name="bag" aria-hidden="true"></ion-icon>
 
                 <span class="span">Agregar al carrito</span>
-              </a>
+              </button>
             </div>
 
             <div class="card-content">
@@ -76,7 +76,7 @@
 import { useProductsStore } from '../stores/products.ts'
 
 const store = useProductsStore();
-const products = store.products;
+// const products = store.products;
 </script>
 
 <style scoped>
