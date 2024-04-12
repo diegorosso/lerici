@@ -73,7 +73,10 @@
 </template>
 
 <script setup>
-import { products } from '../stores/products.ts'
+import { useProductsStore } from '../stores/products.ts'
+
+const store = useProductsStore();
+const products = store.products;
 </script>
 
 <style scoped>

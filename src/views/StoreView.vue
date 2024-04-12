@@ -16,44 +16,102 @@
             class="filters-item cursor-pointer"
             v-for="(categorie, index) in categories"
             v-bind:key="index"
+            @click="setCategorie(categorie.name)"
           >
             {{ categorie.name }}
           </li>
         </ul>
       </div>
     </div>
-    <ul class="product-list has-scrollbar">
-      <li v-for="(product, index) in products" :key="index">
-        <ProductComponent :product="product"></ProductComponent>
-      </li>
-    </ul>
+    <div>
+      <ul class="product-list has-scrollbar">
+        <li v-for="(product, index) in paginatedProducts" :key="index">
+          <ProductComponent :product="product"></ProductComponent>
+        </li>
+      </ul>
+
+      <vue-awesome-paginate
+        :total-items="filteredProducts.length"
+        :items-per-page="12"
+        :max-pages-shown="5"
+        v-model="currentPage"
+        :on-click="setPage"
+      />
+    </div>
   </div>
 </template>
 
 <script setup>
 import ProductComponent from '../components/ProductComponent.vue'
-import { products, addProduct } from '../stores/products.ts'
+import { useProductsStore } from '../stores/products.ts'
 import { ref, onMounted } from 'vue'
 import axios from 'axios'
 
+const store = useProductsStore()
+
 let productsList = ref([])
+let filteredProducts = ref([])
 let categories = ref([])
 
-// let isFiltersOpen = ref(false)
+// FILTER
+let filters = ref({
+  categorie: null
+})
 
-onMounted(() => {
+const setCategorie = (value) => {
+  filters.value.categorie = value
+  setFilters()
+}
+
+// PAGINATION:
+let paginatedProducts = ref([])
+let currentPage = ref(1)
+let itemsPerPage = 12
+
+const setPage = (page) => {
+  const startIndex = (page - 1) * itemsPerPage
+  const endIndex =
+    startIndex + itemsPerPage > filteredProducts.value.length
+      ? filteredProducts.value.length
+      : startIndex + itemsPerPage
+  paginatedProducts.value = filteredProducts.value.slice(startIndex, endIndex)
+
+  window.scrollTo({
+    top: 0,
+    behavior: 'smooth'
+  })
+}
+
+onMounted(async () => {
   window.scrollTo({
     top: 0,
     behavior: 'smooth'
   })
 
-  getProducts()
+  await getProducts()
+  // Temporal:
+  productsList.value = productsList.value.concat(store.products)
+
+  categories.value = getCategories(productsList.value)
+  filteredProducts.value = JSON.parse(JSON.stringify(productsList.value))
+  setPage(1)
 })
+
+const setFilters = () => {
+  filteredProducts.value = productsList.value.filter((i) => {
+    if (filters.value.categorie) {
+      return filters.value.categorie.toLowerCase() === i.Categoria.toLowerCase()
+    }
+  })
+
+  setPage(1)
+  currentPage.value = 1
+}
 
 const getProducts = async () => {
   const sheetsApi = 'https://sheets.googleapis.com'
   const spreadsheetId = '1yrEnt0uxCPDSho7Fw3jjCmjmdauPSfxbh-UXmkOx618'
-  const apiKey = import.meta.env.VITE_API_KEY;
+  const apiKey = import.meta.env.VITE_API_KEY
 
   // GET GOOGLE SHEETS DATA:
   try {
@@ -92,7 +150,6 @@ const getProducts = async () => {
       productsList.value.push(obj)
     })
     productsList.value.shift()
-    categories.value = getCategories(productsList.value)
   } catch (error) {
     console.log(error)
   }
@@ -116,6 +173,7 @@ const getCategories = (data) => {
   return categories
 }
 
+// let isFiltersOpen = ref(false)
 // const handleFilters = () => {
 //   isFiltersOpen.value = !isFiltersOpen.value
 // }

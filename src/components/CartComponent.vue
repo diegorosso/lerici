@@ -11,7 +11,7 @@
         <h2>Carrito</h2>
       </div>
       <div class="modal-body">
-        <div class="product-item" v-for="(product, index) in userCart.cart" :key="index">
+        <div class="product-item" v-for="(product, index) in store.userCart.cart" :key="index">
           <div>
             <img :src="product.image" alt="Product" />
           </div>
@@ -37,11 +37,11 @@
             </div>
             <div style="display: flex">
               <div class="counter-style">
-                <button @click="incrementQuantity(product)">+</button>
+                <button @click="store.incrementQuantity(product)">+</button>
                 <span class="span-style">
                   <span>{{ product.quantity }}</span></span
                 >
-                <button @click="decrementQuantity(product)">-</button>
+                <button @click="store.decrementQuantity(product)">-</button>
               </div>
               <div class="price-style">
                 <p>{{ product.Precio }}</p>
@@ -51,7 +51,7 @@
         </div>
       </div>
       <div class="modal-footer">
-        <p class="total-style">Total: ${{ userCart.totalPrice }}</p>
+        <p class="total-style">Total: ${{ store.userCart.totalPrice }}</p>
         <button class="btn-cancel" @click="closeModal">Finalizar Compra</button>
       </div>
     </div>
@@ -59,39 +59,19 @@
 </template>
 
 <script setup>
-import { getUserCart, incrementQuantity, decrementQuantity } from '../stores/products.ts'
-import { onMounted, ref, watch } from 'vue'
+import { useProductsStore } from '../stores/products.ts'
+
+const store = useProductsStore()
 
 const props = defineProps({
   isModalOpen: Boolean
 })
 
-const emit = defineEmits(['closeModal']);
-
-let userCart = ref([])
-
-onMounted(() => {
-  console.log(props.isModalOpen)
-  userCart.value = getUserCart()
-
-  watch(getUserCart, (newValue) => {
-    userCart.value = newValue;
-  });
-})
-
-// const calculateProductPrice = (product) => {
-//   const price = parseFloat(product.price.replace('$', ''))
-//   const totalPrice = price * product.quantity
-//   const formattedPrice = totalPrice.toLocaleString('en-US', {
-//     style: 'currency',
-//     currency: 'USD'
-//   })
-//   return formattedPrice
-// }
+const emit = defineEmits(['closeModal'])
 
 const closeModal = () => {
-  emit('closeModal', false);
-};
+  emit('closeModal', false)
+}
 </script>
 
 <style scoped>

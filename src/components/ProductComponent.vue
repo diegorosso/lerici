@@ -12,7 +12,7 @@
         />
       </figure>
 
-      <button class="btn product-btn" @click="addProduct(product)">
+      <button class="btn product-btn" @click="store.addProduct(product)">
         <ion-icon name="bag" aria-hidden="true"></ion-icon>
 
         <span class="span">Agregar al carrito</span>
@@ -30,7 +30,9 @@
 </template>
 
 <script setup>
-import { addProduct } from '../stores/products.ts'
+import { useProductsStore } from '../stores/products.ts'
+
+const store = useProductsStore()
 
 defineProps({
   product: {
