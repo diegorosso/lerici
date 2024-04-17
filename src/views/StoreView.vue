@@ -191,6 +191,7 @@ const getCategories = (data) => {
 }
 .filters {
   padding-inline: 0.5em;
+  padding-inline: 0.5em;
   color: var(--color-blue);
 }
 .filters-container {
@@ -244,6 +245,7 @@ ion-icon:hover {
   color: var(--color-red);
 } */
 .product-list {
+  font-family: Arial, Helvetica, sans-serif;
   display: flex;
   justify-content: space-between;
   flex-wrap: wrap;

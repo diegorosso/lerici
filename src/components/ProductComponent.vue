@@ -71,4 +71,8 @@ defineProps({
   background-color: var(--color-eerie-black);
   color: var(--color-light);
 }
+
+.color-class {
+  color: var(--color-blue);
+}
 </style>

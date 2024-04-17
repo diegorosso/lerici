@@ -2,6 +2,7 @@
   <div style="width: 100vw">
     <HeaderComponent></HeaderComponent>
     <router-view></router-view>
+
     <FooterComponent></FooterComponent>
   </div>
 </template>
