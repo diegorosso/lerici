@@ -7,10 +7,7 @@
       <nav class="navbar" :class="{ active: isNavbarActive }">
         <ul class="navbar-list">
           <li>
-            <a href="#" class="navbar-link">Nosotros</a>
-          </li>
-          <li>
-            <a href="#" class="navbar-link">Nuestro equipo</a>
+            <a href="#nosotros" class="navbar-link">Nuestro equipo</a>
           </li>
           <li>
             <router-link to="tienda" class="navbar-link">Tienda</router-link>
@@ -37,7 +34,7 @@
 
 <script setup>
 import logo from '@/assets/images/logo.png'
-import logoNegro from '@/assets/images/logo-negro.png'
+// import logoNegro from '@/assets/images/logo-negro.png'
 import CartComponent from '../components/CartComponent.vue'
 import { useProductsStore } from '../stores/products.ts'
 import { ref, onMounted, onUnmounted } from 'vue'

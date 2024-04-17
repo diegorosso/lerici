@@ -1,6 +1,7 @@
 <template>
   <HomeComponent></HomeComponent>
   <NewsComponent></NewsComponent>
+  <AboutUsComponent></AboutUsComponent>
   <FeatureComponent></FeatureComponent>
   <OfferComponent></OfferComponent>
   <ProductDescriptionComponent></ProductDescriptionComponent>
@@ -9,6 +10,7 @@
 <script setup>
 import HomeComponent from '../components/HomeComponent.vue'
 import NewsComponent from '../components/NewsComponent.vue'
+import AboutUsComponent from '../components/AboutUsComponent.vue'
 import FeatureComponent from '../components/FeatureComponent.vue'
 import OfferComponent from '../components/OfferComponent.vue'
 import ProductDescriptionComponent from '../components/ProductDescriptionComponent.vue'

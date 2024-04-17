@@ -2,7 +2,7 @@
   <footer class="footer" id="contact">
     <div class="container">
       <div class="footer-top">
-        <div class="footer-brand">
+        <div>
           <a href="#" class="logo">
             <img
               src="../assets/images/logo-blanco.png"
@@ -13,10 +13,10 @@
             />
           </a>
 
-          <p class="footer-text color-white">
+          <!-- <p class="footer-text color-white">
             Lorem ipsum dolor sit, amet consectetur adipisicing elit. Atque suscipit maiores nisi
             possimus neque! Nisi!
-          </p>
+          </p> -->
 
           <ul class="social-list">
             <li>
@@ -30,35 +30,34 @@
                 <ion-icon name="logo-instagram"></ion-icon>
               </a>
             </li>
-
-            <li>
-              <a href="#" class="social-link">
-                <ion-icon name="logo-twitter"></ion-icon>
-              </a>
-            </li>
           </ul>
         </div>
 
         <ul class="footer-list">
-          <li>
-            <p class="footer-list-title title">Información de contacto</p>
+          <p class="footer-list-title title">Información de contacto</p>
 
-            <address class="footer-text color-white">
-              9 de Julio 3270, CABA <br />
-              Buenos Aires, Argentina
-            </address>
+          <li class="footer-item">
+            <ion-icon name="location-outline"></ion-icon>
+            <a href="https://maps.app.goo.gl/sJVe2SoBh993YsNZ9" target="_blank" class="footer-text">
+              Arcos 2419 - 9°B, CABA (Buenos Aires, Argentina)
+            </a>
           </li>
 
-          <li>
-            <a href="mailto:info.shoppie@support.com" class="email color-white">info@lerici.com</a>
+          <li class="footer-item">
+            <ion-icon name="mail-outline"></ion-icon>
+            <a href="mailto:info.shoppie@support.com" class="email">info@lerici.com</a>
           </li>
 
-          <li>
-            <a href="tel:+00 123 456 789" class="call color-white">+54 911 27305048</a>
+          <li class="footer-item">
+            <ion-icon name="logo-whatsapp"></ion-icon>
+
+            <a href="https://api.whatsapp.com/send?phone=5491127957486" class="call" target="__blank"
+              >+54 911 27957486</a
+            >
           </li>
         </ul>
 
-        <div class="footer-list">
+        <!-- <div class="footer-list">
           <p class="footer-list-title title">Suscribite al newsletter</p>
 
           <input
@@ -71,23 +70,16 @@
           />
 
           <button class="btn btn-secondary font-weight">Suscribite</button>
-        </div>
+        </div> -->
       </div>
 
       <div class="footer-bottom">
         <div class="wrapper">
           <div class="link-wrapper">
-            <a href="#" class="footer-bottom-link">Nosotros</a>
-            <a href="#" class="footer-bottom-link">Nuestro equipo</a>
+            <a href="#nosotros" class="footer-bottom-link">Nuestro equipo</a>
             <router-link to="tienda" class="footer-bottom-link">Tienda</router-link>
             <a href="#" class="footer-bottom-link">Carrito</a>
             <a href="#" class="footer-bottom-link">Contacto</a>
-          </div>
-
-          <div class="link-wrapper">
-            <a href="#" class="footer-bottom-link">Términos & Condiciones</a>
-
-            <a href="#" class="footer-bottom-link">Políticas de Privacidad</a>
           </div>
         </div>
         <div class="copyright">
@@ -97,33 +89,6 @@
           </button>
         </div>
       </div>
-
-      <!-- <img
-        src="../assets/images/footer-shape-1.png"
-        width="245"
-        height="165"
-        loading="lazy"
-        alt="shape"
-        class="shape shape-1"
-      />
-
-      <img
-        src="../assets/images/footer-shape-2.png"
-        width="138"
-        height="316"
-        loading="lazy"
-        alt="shape"
-        class="shape shape-2"
-      />
-
-      <img
-        src="../assets/images/footer-shape-3.png"
-        width="346"
-        height="92"
-        loading="lazy"
-        alt="shape"
-        class="shape shape-3"
-      /> -->
     </div>
   </footer>
 </template>
@@ -187,8 +152,23 @@ export default {
 .footer-list-title {
   font-size: var(--fs-10);
   margin-block-end: 30px;
-  color: var(--color-light);
   letter-spacing: 0.1rem;
+  color: var(--color-white);
+}
+
+.footer-item {
+  color: var(--color-light);
+  display: flex;
+  cursor: pointer;
+  padding-block: 0.3em;
+  /* align-items: center; */
+}
+
+.footer-item > ion-icon {
+  font-size: 1.3em;
+  padding-right: 0.3em;
+  color: #fff;
+  padding-top: 0.12em;
 }
 
 address.footer-text {
@@ -284,7 +264,7 @@ address.footer-text {
 
 @media (min-width: 1200px) {
   .footer-top {
-    grid-template-columns: repeat(3, 1fr);
+    /* grid-template-columns: repeat(3, 1fr); */
     margin-block-end: 160px;
   }
 

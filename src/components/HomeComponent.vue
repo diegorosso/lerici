@@ -33,8 +33,9 @@
         <h1 class="h1 hero-title title">Donde la calidad se une al estilo</h1>
 
         <p class="hero-text">
-          Desde chatitas hasta texanas, nuestra amplia seleccion de calzado ofrece lo mejor en
-          comodidad y moda para la ocasion.
+          Somos fabricantes de zapatos desde hace más de 20 años. <br> La calidad de nuestros cueros, el
+          diseño innovador de nuestros productos y la puntualidad en las entregas es lo que nos
+          caracteriza.
         </p>
 
         <router-link class="btn btn-primary" to="/tienda">
