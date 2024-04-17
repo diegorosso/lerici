@@ -19,7 +19,7 @@
         </ul>
       </div>
     </div>
-    <ul class="product-list has-scrollbar">
+    <ul class="product-list has-scrollbar font-family">
       <li v-for="(product, index) in products" :key="index">
         <ProductComponent :product="product"></ProductComponent>
       </li>
@@ -57,7 +57,7 @@ onMounted(() => {
   flex-direction: row;
 }
 .filters {
-  padding-inline: .5em;
+  padding-inline: 0.5em;
   color: var(--color-blue);
 }
 .filters-container {
@@ -111,6 +111,7 @@ ion-icon:hover {
   color: var(--color-red);
 } */
 .product-list {
+  font-family: Arial, Helvetica, sans-serif;
   display: flex;
   justify-content: space-between;
   flex-wrap: wrap;

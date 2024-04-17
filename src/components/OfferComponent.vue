@@ -20,11 +20,20 @@
           <ion-icon name="arrow-forward" aria-hidden="true"></ion-icon>
         </a>
       </div>
+      <ContactFormComponent></ContactFormComponent>
     </div>
   </section>
 </template>
 
+<script setup>
+import ContactFormComponent from '@/components/ContactFormComponent.vue'
+</script>
+
 <style scoped>
+.container {
+  display: flex;
+  justify-content: space-between;
+}
 .logos-container {
   display: flex;
   justify-content: space-around;
@@ -45,6 +54,7 @@
   border: 2px solid var(--color-eerie-black);
   box-shadow: var(--shadow-2);
   padding: 80px 30px;
+  width: 35%;
 }
 
 .offer-card .card-title {

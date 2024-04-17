@@ -20,7 +20,7 @@
     </div>
 
     <div class="card-content">
-      <h3 class="h4 title">
+      <h3 class="h4 color-class">
         <a href="#" class="card-title">{{ product.name }}</a>
       </h3>
 
@@ -62,5 +62,9 @@ const props = defineProps({
 .product-btn {
   background-color: var(--color-eerie-black);
   color: var(--color-light);
+}
+
+.color-class {
+  color: var(--color-blue);
 }
 </style>

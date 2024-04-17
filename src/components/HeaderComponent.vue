@@ -89,6 +89,7 @@
 <script>
 import logo from '@/assets/images/logo.png'
 import logoNegro from '@/assets/images/logo-negro.png'
+import products from '../stores/products.ts'
 
 export default {
   data() {
