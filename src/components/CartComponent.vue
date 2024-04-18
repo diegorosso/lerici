@@ -11,7 +11,7 @@
         <h2>Carrito</h2>
       </div>
       <div class="modal-body">
-        <div class="product-item" v-for="(product, index) in store.userCart.cart" :key="index">
+        <div class="product-item" v-for="(product, index) in store.userCart.cart" v-bind:key="index">
           <div>
             <img :src="product.image" alt="Product" />
           </div>

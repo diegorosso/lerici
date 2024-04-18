@@ -6,7 +6,7 @@
         <div class="controls">
           <span
             v-for="(image, index) in images"
-            :key="index"
+            v-bind:key="index"
             class="btn-option"
             :class="{ active: currentIndex === index }"
             @click="changeImage(index)"

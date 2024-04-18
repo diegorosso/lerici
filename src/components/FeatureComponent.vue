@@ -30,7 +30,7 @@
       <h2 class="h2 section-title title text-center" id="feature-label">Productos destacados</h2>
 
       <ul class="feature-list">
-        <li v-for="(product, index) in store.products.slice(0, 6)" :key="index">
+        <li v-for="(product, index) in store.products.slice(0, 6)" v-bind:key="index">
           <div class="product-card text-center">
             <div class="card-banner">
               <figure class="product-banner img-holder" style="--width: 448; --height: 470">

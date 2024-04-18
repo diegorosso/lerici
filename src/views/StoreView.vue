@@ -25,7 +25,7 @@
     </div>
     <div>
       <ul class="product-list has-scrollbar">
-        <li v-for="(product, index) in paginatedProducts" :key="index">
+        <li v-for="(product, index) in paginatedProducts" v-bind:key="index">
           <ProductComponent :product="product"></ProductComponent>
         </li>
       </ul>
