@@ -16,7 +16,6 @@
 
         <a href="#" class="btn btn-secondary">
           <span class="span font-weight">Comprar ahora</span>
-
           <ion-icon name="arrow-forward" aria-hidden="true"></ion-icon>
         </a>
       </div>
@@ -33,11 +32,13 @@ import ContactFormComponent from '@/components/ContactFormComponent.vue'
 .container {
   display: flex;
   justify-content: space-between;
+  flex-wrap: wrap;
 }
 .logos-container {
   display: flex;
   justify-content: space-around;
-  width: 100vw;
+  width: 100%;
+  margin-bottom: 20px;
 }
 .half-logo {
   width: 250px;
@@ -54,7 +55,9 @@ import ContactFormComponent from '@/components/ContactFormComponent.vue'
   border: 2px solid var(--color-eerie-black);
   box-shadow: var(--shadow-2);
   padding: 80px 30px;
-  width: 35%;
+  width: 100%;
+  max-width: 400px;
+  margin: 0 auto;
 }
 
 .offer-card .card-title {
@@ -64,27 +67,35 @@ import ContactFormComponent from '@/components/ContactFormComponent.vue'
 .offer-card .card-text {
   font-size: var(--fs-8);
   line-height: 1.8;
-  margin-block: 20px 45px;
+  margin-block: 20px 0;
 }
 
-@media (min-width: 576) {
-  .offer-card {
-    padding-inline: 50px;
+@media (max-width: 575px) {
+  /* Cambiado a max-width: 575px */
+  .container {
+    flex-direction: column !important;
+  }
+  .container-contact {
+    /* Cambiado de .container-contact a .container */
+    width: 100%;
+  }
+  .item-contact {
+    /* Cambiado de .item-contact a .offer-card */
+    width: 100% !important;
   }
 }
-
 @media (min-width: 768px) {
   .offer-card {
-    padding-inline: 90px;
+    padding: 80px 90px;
   }
 }
-@media (min-width: 1200px) {
+@media (min-width: 1280px) {
   .offer {
     padding-bottom: 200px;
   }
 
   .offer-card {
-    width: 40%;
+    max-width: 500px;
   }
 }
 </style>

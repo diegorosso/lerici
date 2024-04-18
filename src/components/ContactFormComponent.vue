@@ -41,14 +41,14 @@
   justify-content: center;
   align-items: center;
   position: relative;
-  width: 60%;
+  width: 75%;
   background: var(--color-light-blue);
 }
 
 .item-contact {
   width: 100%;
   height: 550px;
-  max-width: 820px;
+  max-width: 1000px;
   background: #fff;
   border-radius: 20px;
   box-shadow: 0 0 20px 10px rgba(0, 0, 0, 0.4);
@@ -174,11 +174,17 @@ textarea.input {
 @media (max-width: 570px) {
   .item-contact {
     grid-template-columns: none;
-    width: 85%;
+    margin-top: 10rem;
   }
 
   .contact {
     display: none;
+  }
+}
+
+@media (max-width: 1280px) {
+  .container-contact {
+    width: 60%;
   }
 }
 </style>
