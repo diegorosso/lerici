@@ -329,7 +329,8 @@ export const useProductsStore = defineStore('products', {
       fullname: '',
       email: '',
       phone: null,
-      cart: []
+      cart: [],
+      totalPrice: 0
     } as UserData,
     products
   }),
@@ -361,7 +362,7 @@ export const useProductsStore = defineStore('products', {
       return this.userCart
     },
     resetCart() {
-      this.userCart = { fullname: '', email: '', phone: null, cart: [] }
+      this.userCart = { fullname: '', email: '', phone: null, cart: [], totalPrice: 0 }
     },
     incrementQuantity(product: Product) {
       const selectedProduct = this.userCart.cart.find((p) => p.Articulo === product.Articulo)
