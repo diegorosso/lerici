@@ -206,7 +206,7 @@ const closeModal = () => {
   top: 0;
   right: 0;
   bottom: 0;
-  width: 30%; /* Puedes ajustar este valor según tus necesidades */
+
   background-color: #fff;
   z-index: 1000;
   overflow-y: auto; /* Añade scroll si el contenido es más alto que el modal */
