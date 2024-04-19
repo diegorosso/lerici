@@ -65,14 +65,20 @@
       </main>
       <footer class="modal-footer" v-if="store.userCart.cart.length >= 1">
         <p class="total-style">Total: ${{ store.totalPrice }}</p>
-        <button class="btn-cancel" @click="closeModal">Finalizar Compra</button>
+        <button class="btn-cancel" @click="buy">Finalizar Compra</button>
+        <div id="wallet_container"></div>
       </footer>
     </div>
   </div>
 </template>
 
 <script setup>
+import axios from 'axios'
 import { useProductsStore } from '../stores/products.ts'
+
+const mp = new MercadoPago(import.meta.env.VITE_MP_PUBLIC_KEY, {
+  locale: 'es-AR'
+})
 
 const store = useProductsStore()
 
@@ -84,6 +90,45 @@ const emit = defineEmits(['closeModal'])
 
 const closeModal = () => {
   emit('closeModal', false)
+}
+const buy = async () => {
+  // Armar bien la orderData
+  const orderData = {
+    title: 'Ejemplo',
+    quantity: 1,
+    price: 5
+  }
+
+  try {
+    const response = await axios.post(
+      'http://localhost:3000/create_preference',
+      JSON.stringify(orderData)
+    )
+    const preference = response.data;
+    createCheckoutButton(preference.id)
+  } catch (error) {
+    console.log(error)
+  }
+}
+
+const createCheckoutButton = (preferenceId) => {
+  const bricksBuilder = mp.bricks()
+
+  const renderComponent = async () => {
+    if (window.checkoutButton) window.checkoutButton.unmount()
+
+    await bricksBuilder.create('wallet', 'wallet_container', {
+      initialization: {
+        preferenceId: preferenceId
+      },
+      customization: {
+        texts: {
+          valueProp: 'TEST DEVELOPMENT BUG'
+        }
+      }
+    })
+  }
+  renderComponent()
 }
 </script>
 
@@ -139,7 +184,7 @@ const closeModal = () => {
 
 .modal-body {
   overflow-y: auto;
-height: calc(70vh);
+  height: calc(70vh);
   text-align: center;
 }
 
