@@ -32,7 +32,6 @@ import ContactFormComponent from '@/components/ContactFormComponent.vue'
 .container {
   display: flex;
   justify-content: space-between;
-  flex-wrap: wrap;
 }
 .logos-container {
   display: flex;
@@ -94,8 +93,15 @@ import ContactFormComponent from '@/components/ContactFormComponent.vue'
     padding-bottom: 200px;
   }
 
+  .container {
+    flex-direction: row !important;
+  }
+
   .offer-card {
     max-width: 500px;
+  }
+  .container-contact {
+    width: 60%;
   }
 }
 </style>
