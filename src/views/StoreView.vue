@@ -122,11 +122,12 @@ const setFilters = () => {
 
 const getProducts = async () => {
   const sheetsApi = 'https://sheets.googleapis.com'
-  const spreadsheetId = '1yrEnt0uxCPDSho7Fw3jjCmjmdauPSfxbh-UXmkOx618'
+  const spreadsheetId = import.meta.env.VITE_SPREADSHEET_ID
   const apiKey = import.meta.env.VITE_API_KEY
 
   // GET GOOGLE SHEETS DATA:
   try {
+    console.log(apiKey)
     let sheetData = await axios({
       method: 'get',
       url: `${sheetsApi}/v4/spreadsheets/${spreadsheetId}`,
