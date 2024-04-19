@@ -1,5 +1,5 @@
 <template>
-  <footer class="footer" id="contact">
+  <footer class="footer">
     <div class="container">
       <div class="footer-top">
         <div>

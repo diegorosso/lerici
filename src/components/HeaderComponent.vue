@@ -17,7 +17,7 @@
           <ion-icon class="bag-width" name="bag-outline" aria-hidden="true"></ion-icon>
           <span>{{ store.totalProducts }}</span>
         </button>
-        <a href="#contact" class="btn font-weight">Contacto</a>
+        <a href="#contacto" class="btn font-weight">Contacto</a>
       </nav>
       <button class="nav-open-btn" aria-label="toggle menu" @click="toggleNavbar">
         <ion-icon name="menu-outline" aria-hidden="true"></ion-icon>

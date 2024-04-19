@@ -1,8 +1,8 @@
 <template>
-  <div class="container-contact">
+  <div class="container-contact" id="contacto">
     <div class="item-contact">
       <div class="contact">
-        <img src="/dist/assets/logo-CU4TmMMY.png" class="logo-width" alt="" />
+        <img src="/src/assets/images/logo.png" class="logo-width" alt="" />
         <div class="photo-style">
           <img src="/src/assets/images/hero-banner.png" alt="" class="img-contact" />
         </div>
