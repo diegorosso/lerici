@@ -1,28 +1,16 @@
 {
-  "extends": ["@tsconfig/node20/tsconfig.json", "@vue/tsconfig/tsconfig.dom.json"],
-  "include": [
-    "env.d.ts", 
-    // "src/**/*",
-    // "src/**/*.vue",
-    "vite.config.*",
-    "vitest.config.*",
-    "cypress.config.*",
-    "nightwatch.conf.*",
-    "playwright.config.*"
+  "files": [
+    // Lista de archivos del proyecto
+    "src/components/HeaderComponent.vue",
+    "src/components/HomeComponent.vue",
+    "src/components/ProductComponent.vue"
   ],
-  "exclude": ["src/**/__tests__/*"],
-  "compilerOptions": {
-    "typeRoots": ["./types", "./node_modules/@types"],
-    "composite": true,
-    "noEmit": true,
-    "tsBuildInfoFile": "./node_modules/.tmp/tsconfig.node.tsbuildinfo",
-    "module": "ESNext",
-    "moduleResolution": "Bundler",
-    "types": ["node"],
-    // "tsBuildInfoFileApp": "./node_modules/.tmp/tsconfig.app.tsbuildinfo",
-    "baseUrl": ".",
-    "paths": {
-      "@/*": ["./src/*"]
+  "references": [
+    {
+      "path": "./tsconfig.node.json"
+    },
+    {
+      "path": "./tsconfig.app.json"
     }
-  }
+  ]
 }

@@ -30,13 +30,23 @@
         </li>
       </ul>
 
-      <vue-awesome-paginate
+      <div class="pagination-container">
+        <pagination
+          :options="{ template: MyPagination }"
+          v-model="currentPage"
+          :records="filteredProducts.length"
+          :per-page="12"
+          @paginate="setPage"
+        />
+      </div>
+
+      <!-- <vue-awesome-paginate
         :total-items="filteredProducts.length"
         :items-per-page="12"
         :max-pages-shown="5"
         v-model="currentPage"
         :on-click="setPage"
-      />
+      /> -->
     </div>
   </div>
 </template>
@@ -46,6 +56,8 @@ import ProductComponent from '../components/ProductComponent.vue'
 import { useProductsStore } from '../stores/products.ts'
 import { ref, onMounted } from 'vue'
 import axios from 'axios'
+import Pagination from 'v-pagination-3'
+import MyPagination from '../components/MyPagination.vue'
 
 const store = useProductsStore()
 
@@ -254,5 +266,9 @@ ion-icon:hover {
 
 .product-card {
   width: 20vw;
+}
+
+.pagination-container{
+  padding-top: 6em;
 }
 </style>
