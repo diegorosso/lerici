@@ -127,7 +127,6 @@ const getProducts = async () => {
 
   // GET GOOGLE SHEETS DATA:
   try {
-    console.log(apiKey)
     let sheetData = await axios({
       method: 'get',
       url: `${sheetsApi}/v4/spreadsheets/${spreadsheetId}`,
@@ -152,14 +151,18 @@ const getProducts = async () => {
         if (i === 0) {
           keys.push(cell)
         }
-        if (index === 0) obj[keys[0]] = cell
-        if (index === 1) obj[keys[1]] = cell
+        if (index === 0) obj[keys[0].replace(/ /g, "")] = cell
+        if (index === 1) obj[keys[1].replace(/ /g, "")] = cell
         if (index === 2) {
           obj[keys[2]] = cell
         }
-        if (index === 3) obj[keys[3]] = cell
-        if (index === 4) obj[keys[4]] = cell
+        if (index === 3) obj[keys[3].replace(/ /g, "")] = cell
+  // Temporal ↓
+        if (index === 4) obj['Talles'] = cell
       })
+      obj.Talles = obj.Talles.split(',');
+      obj.Talles = obj.Talles.map(i => i.trim())
+  // 
       productsList.value.push(obj)
     })
     productsList.value.shift()

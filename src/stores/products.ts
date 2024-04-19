@@ -6,7 +6,7 @@ interface Product {
   Articulo: string
   Nombre: string
   Descripcion: string
-  Talles: string
+  Talles: string[]
   Precio: number
   Cantidad: number
 }
@@ -26,7 +26,7 @@ const products: Product[] = [
     Articulo: '086596',
     Nombre: 'Acne Baseball Cap',
     Descripcion: '',
-    Talles: '',
+    Talles: ['35-1', '35 1/2- 1',  '36-1', '36 1/2- 1', '37-1', '38-1', '39-1'],
     Precio: 11000,
     Cantidad: 0
   },
@@ -35,7 +35,7 @@ const products: Product[] = [
     Articulo: '086597',
     Nombre: 'Short Sleeve Shirt',
     Descripcion: '',
-    Talles: '',
+    Talles: ['35-1', '35 1/2- 1',  '36-1', '36 1/2- 1', '37-1', '38-1', '39-1'],
     Precio: 12000,
     image: '/img/shoes-feature2.jpg',
     Cantidad: 0
@@ -45,7 +45,7 @@ const products: Product[] = [
     Articulo: '086599',
     Nombre: 'Garcons Parfums',
     Descripcion: '',
-    Talles: '',
+    Talles: ['35-1', '35 1/2- 1',  '36-1', '36 1/2- 1', '37-1', '38-1', '39-1'],
     Precio: 13000,
     image: '/img/shoes-feature6.jpg',
     Cantidad: 0
@@ -55,7 +55,7 @@ const products: Product[] = [
     Articulo: '086592',
     Nombre: 'Salomon Sneakers',
     Descripcion: '',
-    Talles: '',
+    Talles: ['35-1', '35 1/2- 1',  '36-1', '36 1/2- 1', '37-1', '38-1', '39-1'],
     Precio: 14000,
     image: '/img/shoes-feature8.jpg',
     Cantidad: 0
@@ -65,17 +65,17 @@ const products: Product[] = [
     Articulo: '086591',
     Nombre: 'Ribbed Beanie Hat',
     Descripcion: '',
-    Talles: '',
+    Talles: ['35-1', '35 1/2- 1',  '36-1', '36 1/2- 1', '37-1', '38-1', '39-1'],
     Precio: 15000,
     image: '/img/shoes-feature9.jpg',
     Cantidad: 0
   },
   {
     Categoria: 'Borcegos',
-    Articulo: '086592',
+    Articulo: '086542',
     Nombre: 'Acronym Khaki',
     Descripcion: '',
-    Talles: '',
+    Talles: ['35-1', '35 1/2- 1',  '36-1', '36 1/2- 1', '37-1', '38-1', '39-1'],
     Precio: 16000,
     image: '/img/shoes-feature10.jpg',
     Cantidad: 0
@@ -87,7 +87,7 @@ const products: Product[] = [
     Articulo: '086596',
     Nombre: 'Acne Baseball Cap',
     Descripcion: '',
-    Talles: '',
+    Talles: ['35-1', '35 1/2- 1',  '36-1', '36 1/2- 1', '37-1', '38-1', '39-1'],
     Precio: 17000,
     Cantidad: 0
   },
@@ -96,7 +96,7 @@ const products: Product[] = [
     Articulo: '086597',
     Nombre: 'Short Sleeve Shirt',
     Descripcion: '',
-    Talles: '',
+    Talles: ['35-1', '35 1/2- 1',  '36-1', '36 1/2- 1', '37-1', '38-1', '39-1'],
     Precio: 18000,
     image: '/img/shoes-feature2.jpg',
     Cantidad: 0
@@ -106,17 +106,17 @@ const products: Product[] = [
     Articulo: '086599',
     Nombre: 'Garcons Parfums',
     Descripcion: '',
-    Talles: '',
+    Talles: ['35-1', '35 1/2- 1',  '36-1', '36 1/2- 1', '37-1', '38-1', '39-1'],
     Precio: 19000,
     image: '/img/shoes-feature6.jpg',
     Cantidad: 0
   },
   {
     Categoria: 'Borcegos',
-    Articulo: '086592',
+    Articulo: '081392',
     Nombre: 'Salomon Sneakers',
     Descripcion: '',
-    Talles: '',
+    Talles: ['35-1', '35 1/2- 1',  '36-1', '36 1/2- 1', '37-1', '38-1', '39-1'],
     Precio: 20000,
     image: '/img/shoes-feature8.jpg',
     Cantidad: 0
@@ -126,17 +126,17 @@ const products: Product[] = [
     Articulo: '086591',
     Nombre: 'Ribbed Beanie Hat',
     Descripcion: '',
-    Talles: '',
+    Talles: ['35-1', '35 1/2- 1',  '36-1', '36 1/2- 1', '37-1', '38-1', '39-1'],
     Precio: 21000,
     image: '/img/shoes-feature9.jpg',
     Cantidad: 0
   },
   {
     Categoria: 'Zapatillas',
-    Articulo: '086592',
+    Articulo: '987654',
     Nombre: 'Acronym Khaki',
     Descripcion: '',
-    Talles: '',
+    Talles: ['35-1', '35 1/2- 1',  '36-1', '36 1/2- 1', '37-1', '38-1', '39-1'],
     Precio: 22000,
     image: '/img/shoes-feature10.jpg',
     Cantidad: 0
@@ -147,7 +147,7 @@ const products: Product[] = [
     Articulo: '086596',
     Nombre: 'Acne Baseball Cap',
     Descripcion: '',
-    Talles: '',
+    Talles: ['35-1', '35 1/2- 1',  '36-1', '36 1/2- 1', '37-1', '38-1', '39-1'],
     Precio: 23000,
     Cantidad: 0
   },
@@ -156,7 +156,7 @@ const products: Product[] = [
     Articulo: '086597',
     Nombre: 'Short Sleeve Shirt',
     Descripcion: '',
-    Talles: '',
+    Talles: ['35-1', '35 1/2- 1',  '36-1', '36 1/2- 1', '37-1', '38-1', '39-1'],
     Precio: 24000,
     image: '/img/shoes-feature2.jpg',
     Cantidad: 0
@@ -166,17 +166,17 @@ const products: Product[] = [
     Articulo: '086599',
     Nombre: 'Garcons Parfums',
     Descripcion: '',
-    Talles: '',
+    Talles: ['35-1', '35 1/2- 1',  '36-1', '36 1/2- 1', '37-1', '38-1', '39-1'],
     Precio: 25000,
     image: '/img/shoes-feature6.jpg',
     Cantidad: 0
   },
   {
     Categoria: 'Borcegos',
-    Articulo: '086592',
+    Articulo: '080292',
     Nombre: 'Salomon Sneakers',
     Descripcion: '',
-    Talles: '',
+    Talles: ['35-1', '35 1/2- 1',  '36-1', '36 1/2- 1', '37-1', '38-1', '39-1'],
     Precio: 26000,
     image: '/img/shoes-feature8.jpg',
     Cantidad: 0
@@ -186,17 +186,17 @@ const products: Product[] = [
     Articulo: '086591',
     Nombre: 'Ribbed Beanie Hat',
     Descripcion: '',
-    Talles: '',
+    Talles: ['35-1', '35 1/2- 1',  '36-1', '36 1/2- 1', '37-1', '38-1', '39-1'],
     Precio: 27000,
     image: '/img/shoes-feature9.jpg',
     Cantidad: 0
   },
   {
     Categoria: 'Zapatillas',
-    Articulo: '086592',
+    Articulo: '087592',
     Nombre: 'Acronym Khaki',
     Descripcion: '',
-    Talles: '',
+    Talles: ['35-1', '35 1/2- 1',  '36-1', '36 1/2- 1', '37-1', '38-1', '39-1'],
     Precio: 28000,
     image: '/img/shoes-feature10.jpg',
     Cantidad: 0
@@ -207,7 +207,7 @@ const products: Product[] = [
     Articulo: '086596',
     Nombre: 'Acne Baseball Cap',
     Descripcion: '',
-    Talles: '',
+    Talles: ['35-1', '35 1/2- 1',  '36-1', '36 1/2- 1', '37-1', '38-1', '39-1'],
     Precio: 29000,
     Cantidad: 0
   },
@@ -216,7 +216,7 @@ const products: Product[] = [
     Articulo: '086597',
     Nombre: 'Short Sleeve Shirt',
     Descripcion: '',
-    Talles: '',
+    Talles: ['35-1', '35 1/2- 1',  '36-1', '36 1/2- 1', '37-1', '38-1', '39-1'],
     Precio: 30000,
     image: '/img/shoes-feature2.jpg',
     Cantidad: 0
@@ -226,17 +226,17 @@ const products: Product[] = [
     Articulo: '086599',
     Nombre: 'Garcons Parfums',
     Descripcion: '',
-    Talles: '',
+    Talles: ['35-1', '35 1/2- 1',  '36-1', '36 1/2- 1', '37-1', '38-1', '39-1'],
     Precio: 31000,
     image: '/img/shoes-feature6.jpg',
     Cantidad: 0
   },
   {
     Categoria: 'Borcegos',
-    Articulo: '086592',
+    Articulo: '038592',
     Nombre: 'Salomon Sneakers',
     Descripcion: '',
-    Talles: '',
+    Talles: ['35-1', '35 1/2- 1',  '36-1', '36 1/2- 1', '37-1', '38-1', '39-1'],
     Precio: 32000,
     image: '/img/shoes-feature8.jpg',
     Cantidad: 0
@@ -246,17 +246,17 @@ const products: Product[] = [
     Articulo: '086591',
     Nombre: 'Ribbed Beanie Hat',
     Descripcion: '',
-    Talles: '',
+    Talles: ['35-1', '35 1/2- 1',  '36-1', '36 1/2- 1', '37-1', '38-1', '39-1'],
     Precio: 33000,
     image: '/img/shoes-feature9.jpg',
     Cantidad: 0
   },
   {
     Categoria: 'Borcegos',
-    Articulo: '086592',
+    Articulo: '0785592',
     Nombre: 'Acronym Khaki',
     Descripcion: '',
-    Talles: '',
+    Talles: ['35-1', '35 1/2- 1',  '36-1', '36 1/2- 1', '37-1', '38-1', '39-1'],
     Precio: 34000,
     image: '/img/shoes-feature10.jpg',
     Cantidad: 0
@@ -267,7 +267,7 @@ const products: Product[] = [
     Articulo: '086596',
     Nombre: 'Acne Baseball Cap',
     Descripcion: '',
-    Talles: '',
+    Talles: ['35-1', '35 1/2- 1',  '36-1', '36 1/2- 1', '37-1', '38-1', '39-1'],
     Precio: 35000,
     Cantidad: 0
   },
@@ -276,7 +276,7 @@ const products: Product[] = [
     Articulo: '086597',
     Nombre: 'Short Sleeve Shirt',
     Descripcion: '',
-    Talles: '',
+    Talles: ['35-1', '35 1/2- 1',  '36-1', '36 1/2- 1', '37-1', '38-1', '39-1'],
     Precio: 36000,
     image: '/img/shoes-feature2.jpg',
     Cantidad: 0
@@ -286,17 +286,17 @@ const products: Product[] = [
     Articulo: '086599',
     Nombre: 'Garcons Parfums',
     Descripcion: '',
-    Talles: '',
+    Talles: ['35-1', '35 1/2- 1',  '36-1', '36 1/2- 1', '37-1', '38-1', '39-1'],
     Precio: 37000,
     image: '/img/shoes-feature6.jpg',
     Cantidad: 0
   },
   {
     Categoria: 'Borcegos',
-    Articulo: '086592',
+    Articulo: '08215492',
     Nombre: 'Salomon Sneakers',
     Descripcion: '',
-    Talles: '',
+    Talles: ['35-1', '35 1/2- 1',  '36-1', '36 1/2- 1', '37-1', '38-1', '39-1'],
     Precio: 38000,
     image: '/img/shoes-feature8.jpg',
     Cantidad: 0
@@ -306,17 +306,17 @@ const products: Product[] = [
     Articulo: '086591',
     Nombre: 'Ribbed Beanie Hat',
     Descripcion: '',
-    Talles: '',
+    Talles: ['35-1', '35 1/2- 1',  '36-1', '36 1/2- 1', '37-1', '38-1', '39-1'],
     Precio: 39000,
     image: '/img/shoes-feature9.jpg',
     Cantidad: 0
   },
   {
     Categoria: 'Borcegos',
-    Articulo: '086592',
+    Articulo: '0654987592',
     Nombre: 'Acronym Khaki',
     Descripcion: '',
-    Talles: '',
+    Talles: ['35-1', '35 1/2- 1',  '36-1', '36 1/2- 1', '37-1', '38-1', '39-1'],
     Precio: 40000,
     image: '/img/shoes-feature10.jpg',
     Cantidad: 0
@@ -341,6 +341,14 @@ export const useProductsStore = defineStore('products', {
         counter += product.Cantidad
       })
       return counter
+    },
+    totalPrice() {
+      const cart = this.userCart.cart;
+      let total = 0;
+      cart.forEach((product: Product) => {
+        total += product.Precio * product.Cantidad
+      });
+      return total
     }
   },
   actions: {

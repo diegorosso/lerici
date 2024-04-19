@@ -2,58 +2,71 @@
   <div class="modal">
     <div class="modal-overlay" @click="closeModal"></div>
     <div class="modal-content right-aligned full-height">
-      <div class="close-cotainer">
-        <button @click="closeModal" aria-label="Cerrar modal">
-          <ion-icon class="close-style" name="close-outline" aria-hidden="true"></ion-icon>
-        </button>
-      </div>
-      <div class="modal-header">
-        <h2>Carrito</h2>
-      </div>
-      <div class="modal-body">
-        <div class="product-item" v-for="(product, index) in store.userCart.cart" v-bind:key="index">
-          <div>
-            <img :src="product.image" alt="Product" />
-          </div>
-          <div class="product-details">
-            <div class="product-style">
-              <div>
-                <h3 class="name-style">{{ product.Nombre }}</h3>
-                <div class="size-style">
-                  <div>
-                    <select v-model="product.Talles">
-                      <option value="Talle" selected>Talle</option>
-                      <option value="39">39</option>
-                      <option value="40">40</option>
-                      <option value="41">41</option>
-                      <option value="42">42</option>
+      <header class="modal-header">
+        <div>
+          <h2>Carrito</h2>
+        </div>
+        <div class="close-container">
+          <button @click="closeModal" aria-label="Cerrar modal">
+            <ion-icon class="close-style" name="close-outline" aria-hidden="true"></ion-icon>
+          </button>
+        </div>
+      </header>
+      <main class="modal-body">
+        <div v-if="store.userCart.cart.length >= 1">
+          <div
+            class="product-item"
+            v-for="(product, index) in store.userCart.cart"
+            v-bind:key="index"
+          >
+            <div>
+              <img :src="product.image" alt="Product" />
+            </div>
+            <div class="product-details">
+              <div class="product-style">
+                <div>
+                  <h3 class="name-style">{{ product.Nombre }}</h3>
+                  <div class="size-style">
+                    <span> Talle:</span>
+                    <select v-model="product.Talles[0]">
+                      <option v-for="(talle, index) in product.Talles" v-bind:key="index">
+                        {{ talle }}
+                      </option>
                     </select>
+                  </div>
+                  <div class="size-style">
+                    <span> Cantidad: {{ product.Cantidad }}</span>
                   </div>
                 </div>
               </div>
-              <div>
-                <ion-icon name="close-outline"></ion-icon>
-              </div>
-            </div>
-            <div style="display: flex">
               <div class="counter-style">
                 <button @click="store.incrementQuantity(product)">+</button>
-                <span class="span-style">
-                  <span>{{ product.quantity }}</span></span
+                <button
+                  @click="store.decrementQuantity(product)"
+                  :class="{ disabled: product.Cantidad === 1 }"
                 >
-                <button @click="store.decrementQuantity(product)">-</button>
+                  -
+                </button>
+                <button @click="store.deleteProduct(product)">
+                  <ion-icon name="trash-outline"></ion-icon>
+                </button>
               </div>
               <div class="price-style">
-                <p>{{ product.Precio }}</p>
+                <p>$ {{ product.Precio * product.Cantidad }}</p>
               </div>
             </div>
           </div>
         </div>
-      </div>
-      <div class="modal-footer">
-        <p class="total-style">Total: ${{ store.userCart.totalPrice }}</p>
+
+        <div class="empty-msg" v-if="store.userCart.cart.length < 1">
+          <ion-icon name="cart-outline"></ion-icon>
+          El carrito se encuentra vacío
+        </div>
+      </main>
+      <footer class="modal-footer" v-if="store.userCart.cart.length >= 1">
+        <p class="total-style">Total: ${{ store.totalPrice }}</p>
         <button class="btn-cancel" @click="closeModal">Finalizar Compra</button>
-      </div>
+      </footer>
     </div>
   </div>
 </template>
@@ -106,8 +119,8 @@ const closeModal = () => {
 
 .modal-header {
   display: flex;
-  justify-content: space-between;
   align-items: center;
+  position: relative;
   margin-bottom: 20px;
   padding: 20px 0 0 20px;
 }
@@ -117,9 +130,39 @@ const closeModal = () => {
   font-size: 24px;
 }
 
+.close-container {
+  position: absolute;
+  right: 0;
+  top: 0;
+  padding: 20px 0 0 20px;
+}
+
 .modal-body {
+  overflow-y: auto;
+height: calc(70vh);
   text-align: center;
-  height: 70vh;
+}
+
+.empty-msg {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  width: 100%;
+  padding-block: 2em;
+  color: var(--color-blue);
+}
+
+.empty-msg > ion-icon {
+  padding-top: 3em;
+  padding-bottom: 0.5em;
+  font-size: 3em;
+}
+
+.product-details {
+  width: 60%;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-end;
 }
 
 .modal-body img {
@@ -133,7 +176,12 @@ const closeModal = () => {
 }
 
 .modal-body button {
-  padding: 10px 20px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 40px;
+  height: 40px;
+  gap: 10px;
   background-color: var(--color-blue);
   color: #fff;
   border: none;
@@ -142,6 +190,7 @@ const closeModal = () => {
 }
 .product-item {
   display: flex;
+  justify-content: space-around;
   align-items: center;
   gap: 10px;
   margin-bottom: 15px;
@@ -209,7 +258,6 @@ const closeModal = () => {
 
   background-color: #fff;
   z-index: 1000;
-  overflow-y: auto; /* Añade scroll si el contenido es más alto que el modal */
 }
 
 .modal-content.full-height {
@@ -218,7 +266,9 @@ const closeModal = () => {
 
 .counter-style {
   display: flex;
+  justify-content: space-between;
   align-items: center;
+  width: 60%;
 }
 
 .close-style {
@@ -228,23 +278,14 @@ const closeModal = () => {
 }
 
 .product-style {
-  width: 80%;
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
   padding-bottom: 1rem;
 }
 
 .name-style {
   font-weight: bold;
+  text-align: end;
 }
-
-.close-cotainer {
-  padding: 20px 0 0 20px;
-}
-
 .span-style {
-  padding: 10px 20px;
   border-radius: 4px;
   border: none;
 }
@@ -262,5 +303,16 @@ const closeModal = () => {
 
 .size-style {
   display: flex;
+  justify-content: flex-end;
+  align-items: center;
+  width: 100%;
+}
+
+.size-style > select {
+  padding: 0.1em 0.3em;
+  font-size: 1em;
+}
+.size-style > span {
+  padding-right: 0.3em;
 }
 </style>
