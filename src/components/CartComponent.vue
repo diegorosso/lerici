@@ -101,6 +101,7 @@ const buy = async () => {
 
   try {
     const response = await axios.post(
+      // 'https://lerici-backend.onrender.com/create_preference',
       'http://localhost:3000/create_preference',
       JSON.stringify(orderData)
     )
