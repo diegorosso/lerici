@@ -35,7 +35,7 @@
             <div class="card-banner">
               <figure class="product-banner img-holder" style="--width: 448; --height: 470">
                 <img
-                  :src="product.image"
+                  :src="product.Imagen"
                   width="448"
                   height="470"
                   loading="lazy"
@@ -61,7 +61,7 @@
         </li>
       </ul>
 
-      <router-link to="/tienda" class="btn btn-secondary font-weight" @click="window.scrollTo(0, 0)"
+      <router-link to="/tienda" class="btn btn-secondary font-weight"
         >Ver todos los productos</router-link
       >
     </div>
@@ -75,8 +75,7 @@
 <script setup>
 import { useProductsStore } from '../stores/products.ts'
 
-const store = useProductsStore();
-// const products = store.products;
+const store = useProductsStore()
 </script>
 
 <style scoped>
@@ -138,7 +137,6 @@ const store = useProductsStore();
 
 .img-cover:hover {
   transform: scale(1.1);
-  /* filter: grayscale(100%); */
   cursor: pointer;
 }
 

@@ -1,7 +1,7 @@
 import { defineStore } from 'pinia'
 
 interface Product {
-  image: string
+  Imagen: string
   Categoria: string
   Articulo: string
   Nombre: string
@@ -332,7 +332,7 @@ export const useProductsStore = defineStore('products', {
       cart: [],
       totalPrice: 0
     } as UserData,
-    products
+    products: []
   }),
   getters: {
     totalProducts() {
@@ -387,6 +387,9 @@ export const useProductsStore = defineStore('products', {
       } else {
         this.deleteProduct(product)
       }
-    }
+    },
+    setAllProducts(products: Product[]) {
+      this.products = products;
+    },
   }
 })
