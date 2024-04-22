@@ -20,7 +20,7 @@
             v-bind:key="index"
           >
             <div>
-              <img :src="product.image" alt="Product" />
+              <img :src="product.Imagen" alt="Product" width="120%"/>
             </div>
             <div class="product-details">
               <div class="product-style">
@@ -92,18 +92,24 @@ const closeModal = () => {
   emit('closeModal', false)
 }
 const buy = async () => {
-  // Armar bien la orderData
-  const orderData = {
-    title: 'Ejemplo',
-    quantity: 1,
-    price: 5
-  }
+  const orderData = store.userCart.cart.map(product => {
+    return {
+      name: product.Nombre,
+      quantity: product.Cantidad,
+      price: product.Precio
+    }
+  })
 
   try {
     const response = await axios.post(
-      // 'https://lerici-backend.onrender.com/create_preference',
-      'http://localhost:3000/create_preference',
-      JSON.stringify(orderData)
+      'https://lerici-backend.onrender.com/create_preference',
+      // 'http://localhost:3000/create_preference',
+      JSON.stringify(orderData),
+      {
+      headers: {
+        'Content-Type': 'application/json',
+      },
+    }
     )
     const preference = response.data;
     createCheckoutButton(preference.id)
@@ -185,7 +191,7 @@ const createCheckoutButton = (preferenceId) => {
 
 .modal-body {
   overflow-y: auto;
-  height: calc(70vh);
+  height: calc(60vh);
   text-align: center;
 }
 
