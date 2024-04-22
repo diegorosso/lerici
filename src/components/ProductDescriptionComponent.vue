@@ -27,61 +27,71 @@
         <div class="size-description">
           <form action="" class="form">
             <div class="select-size">
-              <h3 class="size-options">Size:</h3>
-              <label for="size-34">
-                <input type="radio" name="size" id="size-34" />
-                <span class="size-number">34</span>
-              </label>
-              <label for="size-35">
-                <input type="radio" name="size" id="size-35" />
-                <span class="size-number">35</span>
-              </label>
-              <label for="size-36">
-                <input type="radio" name="size" id="size-36" />
-                <span class="size-number">36</span>
-              </label>
-              <label for="size-37">
-                <input type="radio" name="size" id="size-37" />
-                <span class="size-number">37</span>
-              </label>
-              <label for="size-38">
-                <input type="radio" name="size" id="size-38" />
-                <span class="size-number">38</span>
-              </label>
+              <div>
+                <h3 class="size-options">Talle:</h3>
+              </div>
+              <div class="size-form">
+                <label for="size-34">
+                  <input type="radio" name="size" id="size-34" />
+                  <span class="size-number">34</span>
+                </label>
+                <label for="size-35">
+                  <input type="radio" name="size" id="size-35" />
+                  <span class="size-number">35</span>
+                </label>
+                <label for="size-36">
+                  <input type="radio" name="size" id="size-36" />
+                  <span class="size-number">36</span>
+                </label>
+                <label for="size-37">
+                  <input type="radio" name="size" id="size-37" />
+                  <span class="size-number">37</span>
+                </label>
+                <label for="size-38">
+                  <input type="radio" name="size" id="size-38" />
+                  <span class="size-number">38</span>
+                </label>
+              </div>
             </div>
           </form>
         </div>
         <div class="colors">
           <form action="" class="form">
             <div class="select-colors">
-              <h3>Color:</h3>
-              <label for="red">
-                <input type="radio" name="red" id="red" />
-                <span class="color-dot" style="background-color: red"></span>
-              </label>
-              <label for="green">
-                <input type="radio" name="green" id="green" />
-                <span class="color-dot" style="background-color: green"></span>
-              </label>
-              <label for="blue">
-                <input type="radio" name="blue" id="blue" />
-                <span class="color-dot" style="background-color: blue"></span>
-              </label>
-              <label for="yellow">
-                <input type="radio" name="yellow" id="yellow" />
-                <span class="color-dot" style="background-color: yellow"></span>
-              </label>
+              <div>
+                <h3>Color:</h3>
+              </div>
+              <div class="color-form">
+                <label class="padding-color" for="red">
+                  <input type="radio" name="red" id="red" />
+                  <span class="color-dot" style="background-color: red"></span>
+                </label>
+                <label class="padding-color" for="green">
+                  <input type="radio" name="green" id="green" />
+                  <span class="color-dot" style="background-color: green"></span>
+                </label>
+                <label class="padding-color" for="blue">
+                  <input type="radio" name="blue" id="blue" />
+                  <span class="color-dot" style="background-color: blue"></span>
+                </label>
+                <label class="padding-color" for="yellow">
+                  <input type="radio" name="yellow" id="yellow" />
+                  <span class="color-dot" style="background-color: yellow"></span>
+                </label>
+              </div>
             </div>
           </form>
         </div>
         <div class="quantity">
           <div class="select-quantity">
-            <h3>Queantity:</h3>
-            <input type="number" name="queantity" value="1" />
+            <h3>Cantidad:</h3>
+          </div>
+          <div class="margin-quantity">
+            <input class="quentity-padding" type="number" name="queantity" value="1" />
           </div>
         </div>
         <div class="sub-btn">
-          <button class="submit">Agregar al Carrito</button>
+          <button class="submit btn">Agregar al Carrito</button>
         </div>
       </div>
     </div>
@@ -93,8 +103,8 @@ export default {
   data() {
     return {
       images: [
-        '/dist/assets/product-1-BHgmbLKn.jpg',
-        '/dist/assets/product-2-d-zGLzR3.jpg',
+        '/src/assets/images/product-1.jpg',
+        '/dist/img/product-2.jpg',
         '/dist/assets/shoes-feature2-DcuPd2bJ.jpg'
       ],
       currentIndex: 0
@@ -251,12 +261,14 @@ export default {
 
 .select-size {
   display: flex;
+  padding-top: 3rem;
 }
 
 .colors .form .select-colors {
   display: flex;
   gap: 10px;
   align-items: center;
+  margin-top: 2rem;
 }
 
 .colors .form .select-colors label {
@@ -281,5 +293,49 @@ export default {
 
 .size-number {
   padding: 5px;
+}
+
+.size-form {
+  display: flex;
+  padding: 0px 0 0 4rem;
+}
+
+.color-form {
+  display: flex;
+  margin-bottom: 10px;
+  padding: 0 0 0 2rem;
+}
+
+.padding-color {
+  padding: 5px;
+}
+
+.quantity {
+  display: flex;
+  align-items: center;
+  padding-top: 2rem;
+}
+
+.margin-quantity {
+  margin-bottom: 10px;
+}
+
+.quentity-padding {
+  border-radius: 10px;
+  width: 70%;
+  padding: 0 1rem 0 1rem;
+  border: 2px solid var(--color-blue);
+  margin: 0 0 0 1rem;
+}
+
+.sub-btn {
+  width: 100%;
+  margin-top: 3rem;
+  display: flex;
+  justify-content: center;
+}
+
+.btn {
+  padding: 15px 25px;
 }
 </style>

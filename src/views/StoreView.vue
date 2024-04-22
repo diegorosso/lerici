@@ -269,7 +269,21 @@ ion-icon:hover {
   width: 20vw;
 }
 
-.pagination-container{
+.pagination-container {
   padding-top: 6em;
+}
+
+@media screen and (max-width: 570px) {
+  .filters-container {
+    display: none;
+  }
+}
+.flex-row {
+  flex-direction: row;
+}
+.filters {
+  padding-inline: 0.5em;
+  padding-inline: 0.5em;
+  color: var(--color-blue);
 }
 </style>

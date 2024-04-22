@@ -71,4 +71,16 @@ import ProductComponent from './ProductComponent.vue'
   transform: scale(1.1);
   filter: grayscale(100%); 
 } */
+
+@media (max-width: 570px) {
+  .product-card {
+    width: 100%;
+  }
+  .product-list {
+    flex-direction: column;
+  }
+  .navbar {
+    top: 60px;
+  }
+}
 </style>
