@@ -1,4 +1,5 @@
 import { defineStore } from 'pinia'
+import axios from 'axios'
 
 interface Product {
   Imagen: string
@@ -388,8 +389,79 @@ export const useProductsStore = defineStore('products', {
         this.deleteProduct(product)
       }
     },
-    setAllProducts(products: Product[]) {
-      this.products = products;
-    },
+    async setAllProducts() {
+        const sheetsApi = 'https://sheets.googleapis.com'
+        const spreadsheetId = import.meta.env.VITE_SPREADSHEET_ID
+        const apiKey = import.meta.env.VITE_API_KEY
+      
+        let allProducts = []
+      
+        // GET GOOGLE SHEETS DATA:
+        try {
+          const sheetData = await axios({
+            method: 'get',
+            url: `${sheetsApi}/v4/spreadsheets/${spreadsheetId}`,
+            params: {
+              key: apiKey
+            }
+          })
+          const endRange = sheetData.data.sheets[0].properties.gridProperties.rowCount
+          const range = `A1:F${endRange}`
+      
+          const sheetValues = await axios({
+            method: 'get',
+            url: `${sheetsApi}/v4/spreadsheets/${spreadsheetId}/values/${range}`,
+            params: {
+              key: apiKey
+            }
+          })
+          const keys = []
+          sheetValues.data.values.forEach((row, i) => {
+            let obj = {}
+            row.forEach((cell, index) => {
+              if (i === 0) {
+                keys.push(cell)
+              }
+              if (index === 0) obj[keys[0].replace(/ /g, '')] = cell
+              if (index === 1) obj[keys[1].replace(/ /g, '')] = cell
+              if (index === 2) {
+                obj[keys[2]] = cell
+              }
+              if (index === 3) obj[keys[3].replace(/ /g, '')] = cell
+              if (index === 4) obj[keys[4].replace(/ /g, '')] = cell
+            })
+      
+            obj.Talles = obj.Talles.split('.')
+            obj.Talles = obj.Talles.map((i) => i.trim())
+            obj.Precio = obj.Precio.replace('.', '')
+      
+            allProducts.push(obj)
+          })
+          allProducts.shift()
+          allProducts = this.addImages(allProducts)
+          
+          this.products = allProducts;
+          return products
+        } catch (error) {
+          console.log(error)
+        }
+      },
+      addImages(products) {
+        const context = import.meta.glob('../../public/img/products/*.jpg')
+        const imageNames = Object.keys(context).map((key) =>
+          key.replace(/^..\/..\/public\/img\/products\/|\.jpg$/g, '')
+        )
+      
+        const newProducts = products.map((p) => {
+          const img = imageNames.find((i) => i === p.Nombre)
+          if (img) {
+            return { ...p, Imagen: `/img/products/${img}.jpg` }
+          } else {
+            return { ...p, Imagen: null }
+          }
+        })
+      
+        return newProducts
+      }
   }
 })

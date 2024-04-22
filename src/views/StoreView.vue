@@ -99,7 +99,11 @@ onMounted(async () => {
     behavior: 'smooth'
   })
 
-  productsList.value = store.products;
+  if (store.products.length === 0) {
+    await store.setAllProducts()
+  }
+
+  productsList.value = store.products
 
   categories.value = getCategories(productsList.value)
   filteredProducts.value = JSON.parse(JSON.stringify(productsList.value))
