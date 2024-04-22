@@ -143,6 +143,12 @@ address {
   font-style: normal;
 }
 
+.disabled{
+  pointer-events: none;
+  opacity: .8;
+  cursor: default;
+}
+
 ion-icon {
   pointer-events: none;
 }

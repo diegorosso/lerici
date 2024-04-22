@@ -23,13 +23,13 @@
         <ion-icon name="menu-outline" aria-hidden="true"></ion-icon>
       </button>
     </div>
-
-    <CartComponent
-      :isModalOpen="isModalOpen"
-      v-if="isModalOpen"
-      @closeModal="handleCloseModal"
-    ></CartComponent>
   </header>
+
+  <CartComponent
+    :isModalOpen="isModalOpen"
+    v-if="isModalOpen"
+    @closeModal="handleCloseModal"
+  ></CartComponent>
 </template>
 
 <script setup>
