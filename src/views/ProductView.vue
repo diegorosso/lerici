@@ -98,28 +98,17 @@
   </div>
 </template>
 
-<script>
-export default {
-  data() {
-    return {
-      images: [
-        '/src/assets/images/product-1.jpg',
-        '/dist/img/product-2.jpg',
-        '/dist/assets/shoes-feature2-DcuPd2bJ.jpg'
-      ],
-      currentIndex: 0
-    }
-  },
-  computed: {
-    currentImage() {
-      return this.images[this.currentIndex]
-    }
-  },
-  methods: {
-    changeImage(index) {
-      this.currentIndex = index
-    }
-  }
+<script setup>
+import { ref } from 'vue'
+
+const currentIndex = ref(0)
+
+const currentImage = () => {
+  return images[currentIndex.value]
+}
+
+const changeImage = (index) => {
+  currentIndex.value = index
 }
 </script>
 

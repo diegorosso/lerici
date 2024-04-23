@@ -14,8 +14,8 @@
 
       <div>
         <button class="btn product-btn" @click="store.addProduct(product)">
-            <ion-icon name="bag" aria-hidden="true"></ion-icon>
-            <span class="span">Agregar al carrito</span>
+          <ion-icon name="bag" aria-hidden="true"></ion-icon>
+          <span class="span">Agregar al carrito</span>
         </button>
       </div>
     </div>

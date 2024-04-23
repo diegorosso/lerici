@@ -4,7 +4,6 @@
   <AboutUsComponent></AboutUsComponent>
   <FeatureComponent></FeatureComponent>
   <OfferComponent></OfferComponent>
-  <ProductDescriptionComponent></ProductDescriptionComponent>
 </template>
 
 <script setup>
@@ -13,7 +12,6 @@ import NewsComponent from '../components/NewsComponent.vue'
 import AboutUsComponent from '../components/AboutUsComponent.vue'
 import FeatureComponent from '../components/FeatureComponent.vue'
 import OfferComponent from '../components/OfferComponent.vue'
-import ProductDescriptionComponent from '../components/ProductDescriptionComponent.vue'
 import { onMounted } from 'vue'
 
 onMounted(() => {
