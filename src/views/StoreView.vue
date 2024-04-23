@@ -55,7 +55,6 @@
 import ProductComponent from '../components/ProductComponent.vue'
 import { useProductsStore } from '../stores/products.ts'
 import { ref, onMounted } from 'vue'
-import axios from 'axios'
 import Pagination from 'v-pagination-3'
 import MyPagination from '../components/MyPagination.vue'
 
@@ -100,9 +99,11 @@ onMounted(async () => {
     behavior: 'smooth'
   })
 
-  await getProducts()
-  // Temporal:
-  productsList.value = productsList.value.concat(store.products)
+  if (store.products.length === 0) {
+    await store.setAllProducts()
+  }
+
+  productsList.value = store.products
 
   categories.value = getCategories(productsList.value)
   filteredProducts.value = JSON.parse(JSON.stringify(productsList.value))
@@ -118,57 +119,6 @@ const setFilters = () => {
 
   setPage(1)
   currentPage.value = 1
-}
-
-const getProducts = async () => {
-  const sheetsApi = 'https://sheets.googleapis.com'
-  const spreadsheetId = import.meta.env.VITE_SPREADSHEET_ID
-  const apiKey = import.meta.env.VITE_API_KEY
-
-  // GET GOOGLE SHEETS DATA:
-  try {
-    let sheetData = await axios({
-      method: 'get',
-      url: `${sheetsApi}/v4/spreadsheets/${spreadsheetId}`,
-      params: {
-        key: apiKey
-      }
-    })
-    let endRange = sheetData.data.sheets[0].properties.gridProperties.rowCount
-    let range = `A1:F${endRange}`
-
-    let sheetValues = await axios({
-      method: 'get',
-      url: `${sheetsApi}/v4/spreadsheets/${spreadsheetId}/values/${range}`,
-      params: {
-        key: apiKey
-      }
-    })
-    let keys = []
-    sheetValues.data.values.forEach((row, i) => {
-      let obj = {}
-      row.forEach((cell, index) => {
-        if (i === 0) {
-          keys.push(cell)
-        }
-        if (index === 0) obj[keys[0].replace(/ /g, "")] = cell
-        if (index === 1) obj[keys[1].replace(/ /g, "")] = cell
-        if (index === 2) {
-          obj[keys[2]] = cell
-        }
-        if (index === 3) obj[keys[3].replace(/ /g, "")] = cell
-  // Temporal ↓
-        if (index === 4) obj['Talles'] = cell
-      })
-      obj.Talles = obj.Talles.split(',');
-      obj.Talles = obj.Talles.map(i => i.trim())
-  // 
-      productsList.value.push(obj)
-    })
-    productsList.value.shift()
-  } catch (error) {
-    console.log(error)
-  }
 }
 
 const getCategories = (data) => {

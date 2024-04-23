@@ -1,41 +1,13 @@
 <template>
-  <!--   <div class="background">
-    <div class="item">
-      <div class="painted"></div>
-    </div>
-    <div class="item">
-      <div class="painted"></div>
-    </div>
-    <div class="item">
-      <div class="painted"></div>
-    </div>
-    <div class="item">
-      <div class="painted"></div>
-    </div>
-    <div class="item">
-      <div class="painted"></div>
-    </div>
-    <div class="item">
-      <div class="painted"></div>
-    </div>
-    <div class="item">
-      <div class="painted"></div>
-    </div>
-    <div class="item">
-      <div class="painted"></div>
-    </div>
-  </div> -->
   <section class="hero section">
     <div class="container">
       <div class="hero-content">
-        <!-- <p class="hero-subtitle title">$120.00</p> -->
-
         <h1 class="h1 hero-title title">Donde la calidad se une al estilo</h1>
 
         <p class="hero-text">
-          Somos fabricantes de zapatos desde hace más de 20 años. <br> La calidad de nuestros cueros, el
-          diseño innovador de nuestros productos y la puntualidad en las entregas es lo que nos
-          caracteriza.
+          Somos fabricantes de zapatos desde hace más de 20 años. <br />
+          La calidad de nuestros cueros, el diseño innovador de nuestros productos y la puntualidad
+          en las entregas es lo que nos caracteriza.
         </p>
 
         <router-link class="btn btn-primary" to="/tienda">
@@ -55,23 +27,7 @@
             class="img-cover"
           />
         </figure>
-
-        <!-- <img
-          src="../assets/images/hero-shape-1.png"
-          width="200"
-          height="200"
-          alt="shape"
-          class="shape shape-2"
-        /> -->
       </div>
-
-      <!-- <img
-        src="../assets/images/hero-shape-2.png"
-        width="360"
-        height="133"
-        alt="shape"
-        class="shape shape-2"
-      /> -->
     </div>
     <div class="logos-container">
       <div class="half-logo"></div>
@@ -93,22 +49,14 @@
   background: url(../assets/images/Lerici-medio-logo-rojo-arriba.png) bottom / contain no-repeat;
 }
 
-/* .half-logo:nth-child(2){
-  width: 250px;
-  height: 250px;
-  background: url(../assets/images/Lerici-medio-logo-verde-arriba.png) bottom / contain no-repeat;
-} */
-
 .container {
   padding-top: 5rem;
 }
 .background {
-  /* height: 100vh; */
   width: 100vw;
   display: flex;
   background: transparent;
   padding-top: 250px;
-  /* position: absolute; */
 }
 .item {
   width: calc(100vw / 8);
@@ -173,23 +121,6 @@
   .hero-banner {
     position: relative;
     z-index: 1;
-  }
-
-  .hero .shape-1 {
-    position: absolute;
-    top: -140px;
-    left: -120px;
-    z-index: -1;
-  }
-
-  .hero .shape-2 {
-    /* position: static; */
-    bottom: -220px;
-    left: -52vw;
-    transform: rotate(35deg);
-    z-index: -1;
-    position: absolute;
-    /* left: 50%; */
   }
 }
 </style>

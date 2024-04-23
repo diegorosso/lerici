@@ -3,7 +3,7 @@
     <div class="card-banner">
       <figure class="product-banner img-holder" style="--width: 448; --height: 470">
         <img
-          :src="product.image"
+          :src="product.Imagen"
           width="448"
           height="470"
           loading="lazy"
@@ -37,7 +37,7 @@ const store = useProductsStore()
 
 defineProps({
   product: {
-    image: String,
+    Imagen: String,
     Nombre: String,
     Precio: Number,
     Categoria: String,

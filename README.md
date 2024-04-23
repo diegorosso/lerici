@@ -37,3 +37,7 @@ npm run build
 ```sh
 npm run lint
 ```
+
+
+### Backend running on:
+https://lerici-backend.onrender.com/
