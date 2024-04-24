@@ -40,7 +40,8 @@ export const useProductsStore = defineStore('products', {
       cart: [],
       totalPrice: 0
     } as UserData,
-    products: [] as any[]
+    products: [] as any[],
+    isModalOpen: false as boolean
   }),
   getters: {
     totalProducts() {
@@ -60,11 +61,18 @@ export const useProductsStore = defineStore('products', {
     }
   },
   actions: {
+    handleModal() {
+      this.isModalOpen = !this.isModalOpen;
+    },
     addProduct(product: CartProduct) {
       if (
         !this.userCart.cart.some((p) => p.Nombre === product.Nombre) ||
         this.userCart.cart.some((p) => p.Nombre === product.Nombre && p.Talle !== product.Talle)
       ) {
+        if(this.userCart.cart.some((p) => p.Nombre === product.Nombre && p.Talle === product.Talle)){
+          this.incrementQuantity(product)
+        }
+
         if (!product.Cantidad) product.Cantidad = 1
 
         this.userCart.cart.push(product)
@@ -87,7 +95,8 @@ export const useProductsStore = defineStore('products', {
     incrementQuantity(product: CartProduct) {
       const selectedProduct = this.userCart.cart.find((p) => p.Articulo === product.Articulo)
       if (selectedProduct) {
-        selectedProduct.Cantidad++
+        const quantity = product.Cantidad ? product.Cantidad : 1;
+        selectedProduct.Cantidad += quantity;
       } else {
         console.error('Product not found in cart')
       }

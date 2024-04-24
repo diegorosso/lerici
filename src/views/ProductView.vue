@@ -1,6 +1,5 @@
 <template>
-  <!-- <VueSpinner v-if="showSpinner" size="30" color="#285534" /> -->
-
+  <!-- <div :class="{ visible: showSuccesfulMsg }" class="pop-up">Producto agregado al carrito</div> -->
   <div class="main-wrap" v-if="loadedData">
     <div class="product-description">
       <div class="imagen-galery">
@@ -19,7 +18,6 @@
         <div class="details">
           <h1>{{ productData.Nombre }}</h1>
           <h3>$ {{ productData.Precio }}</h3>
-          <!-- <h4>35% OFF</h4> -->
           <p>
             {{ productData.Descripcion }}
           </p>
@@ -41,22 +39,6 @@
                   />
                   <span class="size-number">{{ talle }}</span>
                 </label>
-                <!-- <label for="size-35">
-                  <input type="radio" name="size" id="size-35" />
-                  <span class="size-number">35</span>
-                </label>
-                <label for="size-36">
-                  <input type="radio" name="size" id="size-36" />
-                  <span class="size-number">36</span>
-                </label>
-                <label for="size-37">
-                  <input type="radio" name="size" id="size-37" />
-                  <span class="size-number">37</span>
-                </label>
-                <label for="size-38">
-                  <input type="radio" name="size" id="size-38" />
-                  <span class="size-number">38</span>
-                </label> -->
               </div>
             </div>
           </form>
@@ -97,7 +79,7 @@
           </div>
         </div>
         <div class="sub-btn">
-          <button class="submit btn" @click="setProduct">Agregar al Carrito</button>
+          <button class="submit btn" @click="setProduct()">Agregar al Carrito</button>
         </div>
       </div>
     </div>
@@ -120,6 +102,7 @@ let productData = ref({})
 let product = ref({})
 let selectedSize = ref(null)
 let quantity = ref(1)
+// let showSuccesfulMsg = ref(false)
 
 onMounted(async () => {
   window.scrollTo({
@@ -148,25 +131,18 @@ onMounted(async () => {
     Cantidad: 1
   }
 
-  loadedData.value = true;
+  loadedData.value = true
 })
 
 const setProduct = () => {
   store.addProduct({ ...product.value, Talle: selectedSize.value, Cantidad: quantity.value })
+  // showSuccesfulMsg.value = true
+  store.handleModal()
+  // setTimeout(() => {
+  //   // showSuccesfulMsg.value = false
+  // }, 1000)
+  history.back()
 }
-// const props = defineProps({
-//   product: {
-//     Imagen: String,
-//     Nombre: String,
-//     Precio: Number,
-//     Categoria: String,
-//     Articulo: String,
-//     Descripcion: String,
-//     Talles: []
-//   }
-// })
-
-// console.log(props.product)
 
 const currentIndex = ref(0)
 
@@ -180,9 +156,26 @@ const changeImage = (index) => {
 </script>
 
 <style>
+.pop-up {
+  position: absolute;
+  font-weight: 500;
+  width: 280px;
+  z-index: 9;
+  top: calc(50vh - 20px);
+  right: calc(50vw - 280px / 2);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding-block: 2em;
+  background-color: var(--color-green);
+  color: var(--color-light-blue);
+  transition: all 500ms ease-in;
+  visibility: hidden;
+}
+
 .main-wrap {
   width: 100%;
-  height: 100vh;
+  padding-block: 200px 100px;
   display: flex;
   justify-content: center;
   align-items: center;
@@ -192,8 +185,6 @@ const changeImage = (index) => {
   width: 90%;
   max-width: 750px;
   display: flex;
-  position: relative;
-  z-index: 9;
 }
 
 .main-wrap .product-description .imagen-galery {
@@ -202,9 +193,9 @@ const changeImage = (index) => {
   box-shadow: -10px 5px 10px 10px rgba(0, 0, 0, 0.1);
   transform: scale(1.05);
   position: relative;
-    display: flex;
-    justify-content: center;
-    align-items: center;
+  display: flex;
+  justify-content: center;
+  align-items: center;
 }
 
 .main-wrap .product-description .imagen-galery img {

@@ -45,14 +45,14 @@
 
           <li class="footer-item">
             <ion-icon name="mail-outline"></ion-icon>
-            <a href="mailto:info.shoppie@support.com" class="email">info@lerici.com</a>
+            <a href="mailto:info.shoppie@support.com" class="email">bautistadcarucci@gmail.com</a>
           </li>
 
           <li class="footer-item">
             <ion-icon name="logo-whatsapp"></ion-icon>
 
-            <a href="https://api.whatsapp.com/send?phone=5491127957486" class="call" target="__blank"
-              >+54 911 27957486</a
+            <a href="https://api.whatsapp.com/send?phone=5491127693948" class="call" target="__blank"
+              >+54 911 27693948</a
             >
           </li>
         </ul>
@@ -78,7 +78,7 @@
           <div class="link-wrapper">
             <a href="#nosotros" class="footer-bottom-link">Nuestro equipo</a>
             <router-link to="/tienda" class="footer-bottom-link">Tienda</router-link>
-            <a href="#" class="footer-bottom-link">Carrito</a>
+            <!-- <a href="#" class="footer-bottom-link">Carrito</a> -->
             <a href="#" class="footer-bottom-link">Contacto</a>
           </div>
         </div>

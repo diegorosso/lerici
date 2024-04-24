@@ -123,17 +123,15 @@ const setFilters = () => {
 
 const getCategories = (data) => {
   let categories = []
+
   data.forEach((i) => {
     if (
-      !categories.some(
-        (b) =>
-          b.name?.charAt(0).toUpperCase() + b.name?.slice(1) ===
-          i.Categoria?.charAt(0).toUpperCase() + i.Categoria?.slice(1)
-      )
-    )
+      !categories.some((c) => c.name?.toUpperCase().trim() === i.Categoria?.toUpperCase().trim())
+    ) {
       categories.push({
         name: i.Categoria.charAt(0).toUpperCase() + i.Categoria.slice(1)
       })
+    }
   })
 
   return categories

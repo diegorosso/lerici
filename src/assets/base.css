@@ -149,6 +149,10 @@ address {
   cursor: default;
 }
 
+.visible{
+  visibility: visible !important;
+}
+
 ion-icon {
   pointer-events: none;
 }

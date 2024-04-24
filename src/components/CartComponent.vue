@@ -1,13 +1,13 @@
 <template>
   <div class="modal">
-    <div class="modal-overlay" @click="closeModal"></div>
+    <div class="modal-overlay" @click="store.handleModal"></div>
     <div class="modal-content right-aligned full-height">
       <header class="modal-header">
         <div>
           <h2>Carrito</h2>
         </div>
         <div class="close-container">
-          <button @click="closeModal" aria-label="Cerrar modal">
+          <button @click="store.handleModal" aria-label="Cerrar modal">
             <ion-icon class="close-style" name="close-outline" aria-hidden="true"></ion-icon>
           </button>
         </div>
@@ -20,7 +20,7 @@
             v-bind:key="index"
           >
             <div>
-              <img :src="product.Imagen" alt="Product" width="120%"/>
+              <img :src="product.Imagen" alt="Product" width="120%" />
             </div>
             <div class="product-details">
               <div class="product-style">
@@ -36,6 +36,9 @@
                   </div>
                   <div class="size-style">
                     <span> Cantidad: {{ product.Cantidad }}</span>
+                  </div>
+                  <div class="size-style">
+                    <span>Precio unitario: ${{ product.Precio }}</span>
                   </div>
                 </div>
               </div>
@@ -82,18 +85,18 @@ const mp = new MercadoPago(import.meta.env.VITE_MP_PUBLIC_KEY, {
 
 const store = useProductsStore()
 
-const props = defineProps({
-  isModalOpen: Boolean
-})
+// const props = defineProps({
+//   isModalOpen: Boolean
+// })
 
-const emit = defineEmits(['closeModal'])
+// const emit = defineEmits(['closeModal'])
 
-const closeModal = () => {
-  emit('closeModal', false)
-}
+// const closeModal = () => {
+//   emit('closeModal', false)
+// }
 const buy = async () => {
-  console.log("je")
-  const orderData = store.userCart.cart.map(product => {
+  console.log('je')
+  const orderData = store.userCart.cart.map((product) => {
     return {
       name: product.Nombre,
       quantity: product.Cantidad,
@@ -107,12 +110,12 @@ const buy = async () => {
       // 'http://localhost:3000/create_preference',
       JSON.stringify(orderData),
       {
-      headers: {
-        'Content-Type': 'application/json',
-      },
-    }
+        headers: {
+          'Content-Type': 'application/json'
+        }
+      }
     )
-    const preference = response.data;
+    const preference = response.data
     createCheckoutButton(preference.id)
   } catch (error) {
     console.log(error)
@@ -192,7 +195,7 @@ const createCheckoutButton = (preferenceId) => {
 
 .modal-body {
   overflow-y: auto;
-  height: calc(60vh);
+  height: 70vh;
   text-align: center;
 }
 
@@ -268,11 +271,14 @@ const createCheckoutButton = (preferenceId) => {
 }
 
 .modal-footer {
-  margin-top: 20px;
+  /* margin-top: 20px; */
   display: flex;
   flex-direction: column;
   justify-content: center;
   align-items: center;
+  position: absolute;
+  bottom: 1em;
+  width: 100%;
 }
 
 .btn-cancel,

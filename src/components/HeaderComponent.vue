@@ -13,7 +13,7 @@
             <router-link to="/tienda" class="navbar-link">Tienda</router-link>
           </li>
         </ul>
-        <button class="card-btn" @click="openModal">
+        <button class="card-btn" @click="store.handleModal">
           <ion-icon class="bag-width" name="bag-outline" aria-hidden="true"></ion-icon>
           <span>{{ store.totalProducts }}</span>
         </button>
@@ -26,9 +26,7 @@
   </header>
 
   <CartComponent
-    :isModalOpen="isModalOpen"
-    v-if="isModalOpen"
-    @closeModal="handleCloseModal"
+    v-if="store.isModalOpen"
   ></CartComponent>
 </template>
 
@@ -41,16 +39,15 @@ import { ref, onMounted, onUnmounted } from 'vue'
 
 const store = useProductsStore()
 
+
 const isHeaderActive = ref(false)
 const isNavbarActive = ref(false)
-const isLogoBlack = ref(false)
-const isModalOpen = ref(false)
+// const isLogoBlack = ref(false)
+// const isModalOpen = ref(false)
 
 const logoSource = ref(logo)
 
 const routeHome = (router) => {
-  console.log(router)
-
   if (router.path != '/') router.push({ path: '/' })
 }
 
@@ -62,26 +59,12 @@ const handleScroll = () => {
   isHeaderActive.value = window.scrollY > 50
 }
 
-const handleScrollLogo = () => {
-  isLogoBlack.value = window.scrollY > 50
-}
-
-const openModal = () => {
-  isModalOpen.value = true
-}
-
-const handleCloseModal = () => {
-  isModalOpen.value = false
-}
-
 onMounted(() => {
   window.addEventListener('scroll', handleScroll)
-  window.addEventListener('scroll', handleScrollLogo)
 })
 
 onUnmounted(() => {
   window.removeEventListener('scroll', handleScroll)
-  window.removeEventListener('scroll', handleScrollLogo)
 })
 </script>
 
@@ -125,7 +108,6 @@ onUnmounted(() => {
   background-color: var(--color-white);
   max-height: 0;
   overflow: hidden;
-  /* visibility: height; */
   transition: var(--transition-2);
 }
 
