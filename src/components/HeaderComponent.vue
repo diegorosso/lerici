@@ -7,17 +7,17 @@
       <nav class="navbar" :class="{ active: isNavbarActive }">
         <ul class="navbar-list">
           <li>
-            <a href="#nosotros" class="navbar-link">Nuestro equipo</a>
+            <a href="#nosotros" class="navbar-link" @click="routeHome($router)">Nuestro equipo</a>
           </li>
           <li>
-            <router-link to="tienda" class="navbar-link">Tienda</router-link>
+            <router-link to="/tienda" class="navbar-link">Tienda</router-link>
           </li>
         </ul>
         <button class="card-btn" @click="openModal">
           <ion-icon class="bag-width" name="bag-outline" aria-hidden="true"></ion-icon>
           <span>{{ store.totalProducts }}</span>
         </button>
-        <a href="#contacto" class="btn font-weight">Contacto</a>
+        <a href="#contacto" class="btn font-weight" @click="routeHome($router)">Contacto</a>
       </nav>
       <button class="nav-open-btn" aria-label="toggle menu" @click="toggleNavbar">
         <ion-icon name="menu-outline" aria-hidden="true"></ion-icon>
@@ -47,6 +47,12 @@ const isLogoBlack = ref(false)
 const isModalOpen = ref(false)
 
 const logoSource = ref(logo)
+
+const routeHome = (router) => {
+  console.log(router)
+
+  if (router.path != '/') router.push({ path: '/' })
+}
 
 const toggleNavbar = () => {
   isNavbarActive.value = !isNavbarActive.value

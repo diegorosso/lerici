@@ -27,12 +27,12 @@
                 <div>
                   <h3 class="name-style">{{ product.Nombre }}</h3>
                   <div class="size-style">
-                    <span> Talle:</span>
-                    <select v-model="product.Talles[0]">
+                    <span> Talle: {{ product.Talle }}</span>
+                    <!-- <select v-model="product.Talles[0]">
                       <option v-for="(talle, index) in product.Talles" v-bind:key="index">
                         {{ talle }}
                       </option>
-                    </select>
+                    </select> -->
                   </div>
                   <div class="size-style">
                     <span> Cantidad: {{ product.Cantidad }}</span>
@@ -92,6 +92,7 @@ const closeModal = () => {
   emit('closeModal', false)
 }
 const buy = async () => {
+  console.log("je")
   const orderData = store.userCart.cart.map(product => {
     return {
       name: product.Nombre,

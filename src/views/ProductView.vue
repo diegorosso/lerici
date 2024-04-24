@@ -1,9 +1,11 @@
 <template>
-  <div class="main-wrap">
+  <!-- <VueSpinner v-if="showSpinner" size="30" color="#285534" /> -->
+
+  <div class="main-wrap" v-if="loadedData">
     <div class="product-description">
       <div class="imagen-galery">
-        <img :src="currentImage" id="productImg" alt="" />
-        <div class="controls">
+        <img :src="product.Imagen" id="productImg" alt="" />
+        <!-- <div class="controls">
           <span
             v-for="(image, index) in images"
             v-bind:key="index"
@@ -11,17 +13,15 @@
             :class="{ active: currentIndex === index }"
             @click="changeImage(index)"
           ></span>
-        </div>
+        </div> -->
       </div>
       <div class="product-details">
         <div class="details">
-          <h1>LOREM, IMPSUM DOLOR.</h1>
-          <h3>$150.000</h3>
-          <h4>35% OFF</h4>
+          <h1>{{ productData.Nombre }}</h1>
+          <h3>$ {{ productData.Precio }}</h3>
+          <!-- <h4>35% OFF</h4> -->
           <p>
-            Lorem ipsum dolor sit, amet consectetur adipisicing elit. Necessitatibus, iure! Dolore
-            in, molestias maxime veniam pariatur quod laudantium eaque laborum eos mollitia itaque
-            ex delectus exercitationem! Vel ratione tempore numquam!
+            {{ productData.Descripcion }}
           </p>
         </div>
         <div class="size-description">
@@ -31,11 +31,17 @@
                 <h3 class="size-options">Talle:</h3>
               </div>
               <div class="size-form">
-                <label for="size-34">
-                  <input type="radio" name="size" id="size-34" />
-                  <span class="size-number">34</span>
+                <label for="talle" v-for="(talle, index) in productData.Talles" v-bind:key="index">
+                  <input
+                    type="radio"
+                    name="size"
+                    id="talle"
+                    :value="talle"
+                    v-model="selectedSize"
+                  />
+                  <span class="size-number">{{ talle }}</span>
                 </label>
-                <label for="size-35">
+                <!-- <label for="size-35">
                   <input type="radio" name="size" id="size-35" />
                   <span class="size-number">35</span>
                 </label>
@@ -50,12 +56,12 @@
                 <label for="size-38">
                   <input type="radio" name="size" id="size-38" />
                   <span class="size-number">38</span>
-                </label>
+                </label> -->
               </div>
             </div>
           </form>
         </div>
-        <div class="colors">
+        <!-- <div class="colors">
           <form action="" class="form">
             <div class="select-colors">
               <div>
@@ -81,17 +87,17 @@
               </div>
             </div>
           </form>
-        </div>
+        </div> -->
         <div class="quantity">
           <div class="select-quantity">
             <h3>Cantidad:</h3>
           </div>
           <div class="margin-quantity">
-            <input class="quentity-padding" type="number" name="queantity" value="1" />
+            <input class="quentity-padding" type="number" name="queantity" v-model="quantity" />
           </div>
         </div>
         <div class="sub-btn">
-          <button class="submit btn">Agregar al Carrito</button>
+          <button class="submit btn" @click="setProduct">Agregar al Carrito</button>
         </div>
       </div>
     </div>
@@ -99,7 +105,68 @@
 </template>
 
 <script setup>
-import { ref } from 'vue'
+import { ref, onMounted, computed } from 'vue'
+import { useProductsStore } from '@/stores/products'
+import { useRoute } from 'vue-router'
+import { VueSpinner } from 'vue3-spinners'
+
+const route = useRoute()
+const store = useProductsStore()
+
+const productName = computed(() => route.params.id)
+
+let loadedData = ref(false)
+let productData = ref({})
+let product = ref({})
+let selectedSize = ref(null)
+let quantity = ref(1)
+
+onMounted(async () => {
+  window.scrollTo({
+    top: 0,
+    behavior: 'smooth'
+  })
+
+  if (store.products.length === 0) {
+    await store.setAllProducts()
+  }
+
+  productData.value = store.products.find((p) => {
+    return p.Nombre.toLowerCase() === productName.value.toLowerCase()
+  })
+
+  selectedSize.value = productData.value.Talles[0]
+
+  product.value = {
+    Nombre: productData.value.Nombre,
+    Imagen: productData.value.Imagen,
+    Categoria: productData.value.Categoria,
+    Articulo: productData.value.Articulo,
+    Descripcion: productData.value.Descripcion,
+    Talle: productData.value.Talles[0],
+    Precio: productData.value.Precio,
+    Cantidad: 1
+  }
+
+  loadedData.value = true;
+})
+
+const setProduct = () => {
+  store.addProduct({ ...product.value, Talle: selectedSize.value, Cantidad: quantity.value })
+}
+// const props = defineProps({
+//   product: {
+//     Imagen: String,
+//     Nombre: String,
+//     Precio: Number,
+//     Categoria: String,
+//     Articulo: String,
+//     Descripcion: String,
+//     Talles: []
+//   }
+// })
+
+// console.log(props.product)
 
 const currentIndex = ref(0)
 
@@ -125,19 +192,24 @@ const changeImage = (index) => {
   width: 90%;
   max-width: 750px;
   display: flex;
+  position: relative;
+  z-index: 9;
 }
 
 .main-wrap .product-description .imagen-galery {
   flex-basis: 43%;
   background: #011627;
   box-shadow: -10px 5px 10px 10px rgba(0, 0, 0, 0.1);
-  transform: scale(1.07);
+  transform: scale(1.05);
   position: relative;
+    display: flex;
+    justify-content: center;
+    align-items: center;
 }
 
 .main-wrap .product-description .imagen-galery img {
   width: 100%;
-  padding-top: 150px;
+  /* padding-top: 150px; */
 }
 
 .main-wrap .product-description .imagen-galery .controls {

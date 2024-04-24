@@ -13,10 +13,10 @@
       </figure>
 
       <div>
-        <button class="btn product-btn" @click="store.addProduct(product)">
+          <button class="btn product-btn" @click="toDetail($router)">
           <ion-icon name="bag" aria-hidden="true"></ion-icon>
           <span class="span">Agregar al carrito</span>
-        </button>
+          </button>
       </div>
     </div>
 
@@ -31,11 +31,11 @@
 </template>
 
 <script setup>
-import { useProductsStore } from '../stores/products.ts'
+// import { useProductsStore } from '../stores/products.ts'
 
-const store = useProductsStore()
+// const store = useProductsStore()
 
-defineProps({
+const props = defineProps({
   product: {
     Imagen: String,
     Nombre: String,
@@ -43,9 +43,14 @@ defineProps({
     Categoria: String,
     Articulo: String,
     Descripcion: String,
-    Talles: String
+    Talles: []
   }
 })
+const toDetail = (router) => {
+  router.push({
+    path: `/producto/${props.product.Nombre}`,
+  });
+}
 </script>
 
 <style scoped>
