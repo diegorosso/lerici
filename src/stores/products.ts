@@ -158,14 +158,14 @@ export const useProductsStore = defineStore('products', {
       }
     },
     addImages(products: any[]) {
-      const context = import.meta.glob('../assets/images/products/*.jpg')
+      const context = import.meta.glob('../../public/img/products/*.jpg')
       const imageNames = Object.keys(context).map((key) =>
-        key.replace(/^..\/assets\/images\/products\/|\.jpg$/g, '')
+        key.replace(/^..\/..\/public\/img\/products\/|\.jpg$/g, '')
       )
       const newProducts = products.map((p: any) => {
         const img = imageNames.find((i) => i.toLowerCase() === p.Nombre.toLowerCase())
         if (img) {
-          return { ...p, Imagen: `/src/assets/images/products/${img}.jpg` }
+          return { ...p, Imagen: `/img/products/${img}.jpg` }
         } else {
           return { ...p, Imagen: null }
         }
