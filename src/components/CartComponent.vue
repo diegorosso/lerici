@@ -68,7 +68,7 @@
       </main>
       <footer class="modal-footer" v-if="store.userCart.cart.length >= 1">
         <p class="total-style">Total: ${{ store.totalPrice }}</p>
-        <button class="btn-cancel" @click="buy">Finalizar Compra</button>
+        <router-link to="/resumen" class="btn-cancel">Finalizar Comprar</router-link>
         <div id="wallet_container"></div>
       </footer>
     </div>
