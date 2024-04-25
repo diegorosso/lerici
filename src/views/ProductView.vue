@@ -81,7 +81,7 @@
           </div>
         </div>
         <div class="sub-btn">
-          <button class="submit btn" @click="setProduct()">Agregar al Carrito</button>
+          <button class="submit btn" @click="setProduct($router)">Agregar al Carrito</button>
         </div>
       </div>
     </div>
@@ -136,14 +136,16 @@ onMounted(async () => {
   loadedData.value = true
 })
 
-const setProduct = () => {
+const setProduct = (router) => {
   store.addProduct({ ...product.value, Talle: selectedSize.value, Cantidad: quantity.value })
   // showSuccesfulMsg.value = true
   store.handleModal()
   // setTimeout(() => {
   //   // showSuccesfulMsg.value = false
   // }, 1000)
-  history.back()
+  router.push("/tienda")
+  // history.back()
+
 }
 
 const currentIndex = ref(0)
