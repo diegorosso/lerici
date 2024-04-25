@@ -1,6 +1,15 @@
 <template>
   <div class="container-contact" id="contacto">
     <div class="item-contact">
+      <div v-if="showSuccesfulMsg || showErrorMsg || showSpinner" class="pop-up-container">
+        <div :class="{ visible: showSuccesfulMsg }" class="pop-up">
+          El mensaje ha sido enviado de manera exitosa!
+        </div>
+        <div :class="{ visible: showErrorMsg }" class="pop-up">
+          El mensaje no ha podido enviarse debido a un error inesperado, por favor vuelva a
+          intentarlo!
+        </div>
+      </div>
       <div class="contact">
         <img src="/src/assets/images/logo.png" class="logo-width" alt="" />
         <div class="photo-style">
@@ -9,25 +18,40 @@
       </div>
       <div class="submit-form">
         <h4 class="third-text">Contacto</h4>
-        <form class="class-form" action="">
+        <form class="class-form" action="" @submit.prevent="sendEmail">
           <div class="input-box">
-            <input type="text" class="input" required />
+            <input type="text" class="input" required v-model="formData.firstname" />
             <label for="">Nombre</label>
           </div>
           <div class="input-box">
-            <input type="email" class="input" required />
+            <input type="email" class="input" required v-model="formData.email" />
             <label for="">Email</label>
           </div>
           <div class="input-box">
-            <input type="tel" class="input" required />
+            <input type="number" class="input" required v-model="formData.phone" />
             <label for="">Teléfono</label>
           </div>
           <div class="input-box">
-            <textarea name="" class="input" required id="message" cols="30" rows="10"></textarea>
+            <textarea
+              name=""
+              class="input"
+              required
+              id="message"
+              cols="30"
+              rows="10"
+              v-model="formData.message"
+            ></textarea>
             <label for="">Mensaje</label>
           </div>
           <div class="button-width">
-            <input class="btn btn-contact" type="submit" value="Enviar" />
+            <button class="btn btn-contact" type="submit">
+              <span v-if="!showSpinner">
+                Enviar
+              </span>
+              <span>
+                <VueSpinner v-if="showSpinner" size="30" color="var(--color-eerie-black)" />
+              </span>
+            </button>
           </div>
         </form>
       </div>
@@ -35,17 +59,104 @@
   </div>
 </template>
 
-<style>
+<script setup>
+import { ref } from 'vue'
+import axios from 'axios'
+import { VueSpinner } from 'vue3-spinners'
+
+let showSpinner = ref(false)
+let showSuccesfulMsg = ref(false)
+let showErrorMsg = ref(false)
+
+const formData = ref({
+  firstname: '',
+  lastname: '',
+  phone: '',
+  email: '',
+  message: ''
+})
+
+const sendEmail = async () => {
+  showSpinner.value = true;
+  let data = {
+    service_id: import.meta.env.VITE_EMAILJS_SERVICE_ID,
+    template_id: import.meta.env.VITE_EMAILJS_TEMPLATE_ID,
+    user_id: import.meta.env.VITE_EMAILJS_USER_ID,
+    accessToken: import.meta.env.VITE_EMAILJS_ACCESS_TOKEN,
+    template_params: {
+      to_email: 'macakiven@gmail.com',
+      from_name: formData.value.firstname,
+      from_lastname: formData.value.lastname,
+      from_phone: formData.value.phone,
+      from_email: formData.value.email,
+      message: formData.value.message
+    }
+  }
+  try {
+    const url = 'https://api.emailjs.com/api/v1.0/email/send'
+    await axios.post(url, JSON.stringify(data), {
+      headers: {
+        'Content-Type': 'application/json'
+      }
+    })
+    showSpinner.value = false;
+    showSuccesfulMsg.value = true
+    setTimeout(() => {
+      showSuccesfulMsg.value = false
+    }, 2000)
+
+    formData.value = {
+      firstname: '',
+      lastname: '',
+      phone: '',
+      email: '',
+      message: ''
+    }
+  } catch (error) {
+    showSpinner.value = false;
+    showErrorMsg.value = true
+    setTimeout(() => {
+      showErrorMsg.value = false
+    }, 1000)
+    console.log({ error })
+  }
+}
+</script>
+
+<style scoped>
+.pop-up-container {
+  width: 100%;
+  height: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  position: absolute;
+  z-index: 9;
+}
+.pop-up {
+  visibility: hidden;
+  font-weight: 500;
+  width: 400px;
+  right: calc(50% - 400px / 2);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 2em;
+  background-color: var(--color-blue);
+  color: var(--color-light-blue);
+  transition: all 500ms ease-in;
+  box-shadow: 0 0 20px 10px rgba(0, 0, 0, 0.4);
+}
 .container-contact {
   display: flex;
   justify-content: center;
   align-items: center;
-  position: relative;
   width: 75%;
   background: var(--color-light-blue);
 }
 
 .item-contact {
+  position: relative;
   width: 100%;
   height: 550px;
   max-width: 1000px;

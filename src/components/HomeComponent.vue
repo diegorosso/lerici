@@ -110,7 +110,7 @@
 
 @media (min-width: 1200px) {
   .hero {
-    position: relative;
+    /* position: relative; */
   }
 
   .hero .container {
@@ -119,7 +119,7 @@
   }
 
   .hero-banner {
-    position: relative;
+    /* position: relative; */
     z-index: 1;
   }
 }
