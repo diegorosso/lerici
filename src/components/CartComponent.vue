@@ -20,7 +20,7 @@
             v-bind:key="index"
           >
             <div>
-              <img :src="product.Imagen" alt="Product" width="120%"/>
+              <img :src="product.Imagen" alt="Product" width="120%" />
             </div>
             <div class="product-details">
               <div class="product-style">
@@ -65,7 +65,7 @@
       </main>
       <footer class="modal-footer" v-if="store.userCart.cart.length >= 1">
         <p class="total-style">Total: ${{ store.totalPrice }}</p>
-        <button class="btn-cancel" @click="buy">Finalizar Compra</button>
+        <router-link to="/resumen" class="btn-cancel">Finalizar Comprar</router-link>
         <div id="wallet_container"></div>
       </footer>
     </div>
@@ -92,8 +92,8 @@ const closeModal = () => {
   emit('closeModal', false)
 }
 const buy = async () => {
-  console.log("je")
-  const orderData = store.userCart.cart.map(product => {
+  console.log('je')
+  const orderData = store.userCart.cart.map((product) => {
     return {
       name: product.Nombre,
       quantity: product.Cantidad,
@@ -107,12 +107,12 @@ const buy = async () => {
       // 'http://localhost:3000/create_preference',
       JSON.stringify(orderData),
       {
-      headers: {
-        'Content-Type': 'application/json',
-      },
-    }
+        headers: {
+          'Content-Type': 'application/json'
+        }
+      }
     )
-    const preference = response.data;
+    const preference = response.data
     createCheckoutButton(preference.id)
   } catch (error) {
     console.log(error)
