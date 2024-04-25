@@ -1,5 +1,7 @@
 <template>
-  <!-- <div :class="{ visible: showSuccesfulMsg }" class="pop-up">Producto agregado al carrito</div> -->
+  <div v-if="!loadedData" class="spinner-container">
+    <VueSpinner size="50" color="var(--color-eerie-black)" />
+  </div>
   <div class="main-wrap" v-if="loadedData">
     <div class="product-description">
       <div class="imagen-galery">

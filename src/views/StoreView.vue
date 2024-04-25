@@ -1,5 +1,8 @@
 <template>
-  <div class="container flex-row">
+  <div v-if="showSpinner" class="spinner-container">
+    <VueSpinner size="50" color="var(--color-eerie-black)" />
+  </div>
+  <div v-if="!showSpinner" class="container flex-row">
     <div class="filters">
       <!-- <div @click="handleFilters" class="cursor-pointer">
         <ion-icon v-if="!isFiltersOpen" name="filter-outline"></ion-icon>
@@ -39,14 +42,6 @@
           @paginate="setPage"
         />
       </div>
-
-      <!-- <vue-awesome-paginate
-        :total-items="filteredProducts.length"
-        :items-per-page="12"
-        :max-pages-shown="5"
-        v-model="currentPage"
-        :on-click="setPage"
-      /> -->
     </div>
   </div>
 </template>
@@ -57,6 +52,9 @@ import { useProductsStore } from '../stores/products.ts'
 import { ref, onMounted } from 'vue'
 import Pagination from 'v-pagination-3'
 import MyPagination from '../components/MyPagination.vue'
+import { VueSpinner } from 'vue3-spinners'
+
+let showSpinner = ref(false)
 
 const store = useProductsStore()
 
@@ -100,7 +98,9 @@ onMounted(async () => {
   })
 
   if (store.products.length === 0) {
+    showSpinner.value = true;
     await store.setAllProducts()
+    showSpinner.value = false;  
   }
 
   productsList.value = store.products
@@ -159,7 +159,6 @@ const getCategories = (data) => {
   color: var(--color-blue);
 }
 .filters-container {
-  /* font-family: 'Conceta', sans-serif; */
   font-family: 'Helvetica Neue', sans-serif;
   width: 18vw;
   min-width: 200px;
@@ -170,7 +169,6 @@ const getCategories = (data) => {
   justify-content: space-between;
   align-items: center;
   text-transform: uppercase;
-  /* font-style: italic; */
 }
 .filters-header > ion-icon {
   font-size: 22px;
