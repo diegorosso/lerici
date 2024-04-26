@@ -113,6 +113,7 @@ input,
 button,
 ion-icon {
   display: block;
+  outline: none;
 }
 
 a {
@@ -151,6 +152,10 @@ address {
 
 .visible{
   visibility: visible !important;
+}
+
+.hidden{
+  visibility: hidden !important;
 }
 
 .spinner-container{

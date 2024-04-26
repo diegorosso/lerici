@@ -93,16 +93,16 @@ export const useProductsStore = defineStore('products', {
       this.userCart = { fullname: '', email: '', phone: null, cart: [], totalPrice: 0 }
     },
     incrementQuantity(product: CartProduct) {
-      const selectedProduct = this.userCart.cart.find((p) => p.Articulo === product.Articulo)
+      const selectedProduct = this.userCart.cart.find((p) => p.Nombre === product.Nombre && p.Talle === product.Talle )
       if (selectedProduct) {
-        const quantity = product.Cantidad ? product.Cantidad : 1;
-        selectedProduct.Cantidad += quantity;
+        // const quantity = product.Cantidad ? product.Cantidad : 1;
+        selectedProduct.Cantidad++;
       } else {
         console.error('Product not found in cart')
       }
     },
     decrementQuantity(product: CartProduct) {
-      const selectedProduct = this.userCart.cart.find((p) => p.Articulo === product.Articulo)
+      const selectedProduct = this.userCart.cart.find((p) => p.Nombre === product.Nombre && p.Talle === product.Talle)
       if (selectedProduct && selectedProduct.Cantidad > 1) {
         selectedProduct.Cantidad--
       } else {

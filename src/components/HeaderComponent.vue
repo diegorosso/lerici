@@ -15,7 +15,7 @@
         </ul>
         <button class="card-btn" @click="store.handleModal">
           <ion-icon class="bag-width" name="bag-outline" aria-hidden="true"></ion-icon>
-          <span>{{ store.totalProducts }}</span>
+          <span v-if="store.totalProducts > 0">{{ store.totalProducts }}</span>
         </button>
         <a href="#contacto" class="btn font-weight" @click="routeHome($router)">Contacto</a>
       </nav>

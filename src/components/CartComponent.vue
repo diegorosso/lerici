@@ -1,5 +1,5 @@
 <template>
-  <div class="modal">
+  <div class="modal" v-on:keydown.esc="store.handleModal">
     <div class="modal-overlay" @click="store.handleModal"></div>
     <div class="modal-content right-aligned full-height">
       <header class="modal-header">
@@ -68,8 +68,7 @@
       </main>
       <footer class="modal-footer" v-if="store.userCart.cart.length >= 1">
         <p class="total-style">Total: ${{ store.totalPrice }}</p>
-        <router-link to="/resumen" class="btn-cancel">Finalizar Comprar</router-link>
-        <div id="wallet_container"></div>
+        <router-link to="/resumen" class="btn-cancel" @click="store.handleModal">Ver resumen</router-link>
       </footer>
     </div>
   </div>
@@ -84,7 +83,11 @@ const mp = new MercadoPago(import.meta.env.VITE_MP_PUBLIC_KEY, {
 })
 
 const store = useProductsStore()
-
+window.addEventListener('keydown', (event) => {
+  if (event.key === 'Escape') {
+    store.handleModal()
+  }
+})
 // const props = defineProps({
 //   isModalOpen: Boolean
 // })
@@ -94,53 +97,53 @@ const store = useProductsStore()
 // const closeModal = () => {
 //   emit('closeModal', false)
 // }
-const buy = async () => {
-  console.log('je')
-  const orderData = store.userCart.cart.map((product) => {
-    return {
-      name: product.Nombre,
-      quantity: product.Cantidad,
-      price: product.Precio
-    }
-  })
+// const buy = async () => {
+//   console.log('je')
+//   const orderData = store.userCart.cart.map((product) => {
+//     return {
+//       name: product.Nombre,
+//       quantity: product.Cantidad,
+//       price: product.Precio
+//     }
+//   })
 
-  try {
-    const response = await axios.post(
-      'https://lerici-backend.onrender.com/create_preference',
-      // 'http://localhost:3000/create_preference',
-      JSON.stringify(orderData),
-      {
-        headers: {
-          'Content-Type': 'application/json'
-        }
-      }
-    )
-    const preference = response.data
-    createCheckoutButton(preference.id)
-  } catch (error) {
-    console.log(error)
-  }
-}
+//   try {
+//     const response = await axios.post(
+//       'https://lerici-backend.onrender.com/create_preference',
+//       // 'http://localhost:3000/create_preference',
+//       JSON.stringify(orderData),
+//       {
+//         headers: {
+//           'Content-Type': 'application/json'
+//         }
+//       }
+//     )
+//     const preference = response.data
+//     createCheckoutButton(preference.id)
+//   } catch (error) {
+//     console.log(error)
+//   }
+// }
 
-const createCheckoutButton = (preferenceId) => {
-  const bricksBuilder = mp.bricks()
+// const createCheckoutButton = (preferenceId) => {
+//   const bricksBuilder = mp.bricks()
 
-  const renderComponent = async () => {
-    if (window.checkoutButton) window.checkoutButton.unmount()
+//   const renderComponent = async () => {
+//     if (window.checkoutButton) window.checkoutButton.unmount()
 
-    await bricksBuilder.create('wallet', 'wallet_container', {
-      initialization: {
-        preferenceId: preferenceId
-      },
-      customization: {
-        texts: {
-          valueProp: 'TEST DEVELOPMENT BUG'
-        }
-      }
-    })
-  }
-  renderComponent()
-}
+//     await bricksBuilder.create('wallet', 'wallet_container', {
+//       initialization: {
+//         preferenceId: preferenceId
+//       },
+//       customization: {
+//         texts: {
+//           valueProp: 'TEST DEVELOPMENT BUG'
+//         }
+//       }
+//     })
+//   }
+//   renderComponent()
+// }
 </script>
 
 <style scoped>
@@ -288,6 +291,7 @@ const createCheckoutButton = (preferenceId) => {
   border-radius: 4px;
   cursor: pointer;
   transition: border-color 0.3s ease;
+  text-align: center;
 }
 
 .btn-cancel {

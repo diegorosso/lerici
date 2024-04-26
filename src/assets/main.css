@@ -1,5 +1,11 @@
 @import './base.css';
 
+.flex-row{
+  display: flex;
+}
+.justify-between{
+  justify-content: space-between;
+}
 .pagination-container {
   display: flex;
   column-gap: 10px;
