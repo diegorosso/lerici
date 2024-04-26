@@ -79,7 +79,6 @@ const confirmPurchase = () => {
   if (formData.value.cash) {
     console.log('efectivo')
   } else {
-    console.log('online')
     setMercadoPago()
   }
 }
@@ -92,8 +91,6 @@ const setMercadoPago = async () => {
       price: product.Precio
     }
   })
-
-  console.log(orderData)
 
   try {
     const response = await axios.post(
@@ -115,7 +112,6 @@ const setMercadoPago = async () => {
 }
 
 const createCheckoutButton = (preferenceId) => {
-  console.log(preferenceId)
   const bricksBuilder = mp.bricks()
   showBuyBtn.value = false
   showMpBtn.value = true

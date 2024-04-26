@@ -68,82 +68,24 @@
       </main>
       <footer class="modal-footer" v-if="store.userCart.cart.length >= 1">
         <p class="total-style">Total: ${{ store.totalPrice }}</p>
-        <router-link to="/resumen" class="btn-cancel" @click="store.handleModal">Ver resumen</router-link>
+        <router-link to="/resumen" class="btn-cancel" @click="store.handleModal"
+          >Ver resumen</router-link
+        >
       </footer>
     </div>
   </div>
 </template>
 
 <script setup>
-import axios from 'axios'
 import { useProductsStore } from '../stores/products.ts'
 
-const mp = new MercadoPago(import.meta.env.VITE_MP_PUBLIC_KEY, {
-  locale: 'es-AR'
-})
-
 const store = useProductsStore()
+
 window.addEventListener('keydown', (event) => {
   if (event.key === 'Escape') {
     store.handleModal()
   }
 })
-// const props = defineProps({
-//   isModalOpen: Boolean
-// })
-
-// const emit = defineEmits(['closeModal'])
-
-// const closeModal = () => {
-//   emit('closeModal', false)
-// }
-// const buy = async () => {
-//   console.log('je')
-//   const orderData = store.userCart.cart.map((product) => {
-//     return {
-//       name: product.Nombre,
-//       quantity: product.Cantidad,
-//       price: product.Precio
-//     }
-//   })
-
-//   try {
-//     const response = await axios.post(
-//       'https://lerici-backend.onrender.com/create_preference',
-//       // 'http://localhost:3000/create_preference',
-//       JSON.stringify(orderData),
-//       {
-//         headers: {
-//           'Content-Type': 'application/json'
-//         }
-//       }
-//     )
-//     const preference = response.data
-//     createCheckoutButton(preference.id)
-//   } catch (error) {
-//     console.log(error)
-//   }
-// }
-
-// const createCheckoutButton = (preferenceId) => {
-//   const bricksBuilder = mp.bricks()
-
-//   const renderComponent = async () => {
-//     if (window.checkoutButton) window.checkoutButton.unmount()
-
-//     await bricksBuilder.create('wallet', 'wallet_container', {
-//       initialization: {
-//         preferenceId: preferenceId
-//       },
-//       customization: {
-//         texts: {
-//           valueProp: 'TEST DEVELOPMENT BUG'
-//         }
-//       }
-//     })
-//   }
-//   renderComponent()
-// }
 </script>
 
 <style scoped>
