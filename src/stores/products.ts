@@ -81,7 +81,7 @@ export const useProductsStore = defineStore('products', {
       }
     },
     deleteProduct(product: CartProduct) {
-      this.userCart.cart = this.userCart.cart.filter((p) => p.Articulo !== product.Articulo)
+      this.userCart.cart = this.userCart.cart.filter((p) => !(p.Nombre === product.Nombre && p.Talle === product.Talle))
     },
     getCartProducts(): CartProduct[] {
       return this.userCart.cart

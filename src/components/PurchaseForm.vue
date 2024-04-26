@@ -6,7 +6,7 @@
       </button>
     </div>
     <h1 class="third-text">Para concretar la compra necesitamos algunos datos:</h1>
-    <form action="" @submit.prevent="confirmPurchase">
+    <form action="" @submit.prevent="confirmPurchase($router)">
       <div class="flex-row">
         <div class="input-box">
           <input type="text" class="input" required v-model="formData.firstname" />
@@ -49,7 +49,11 @@ import { ref } from 'vue'
 import { VueSpinner } from 'vue3-spinners'
 import { useProductsStore } from '../stores/products.ts'
 import axios from 'axios'
+import pdfmake from 'pdfmake'
+import pdfMake from 'pdfmake/build/pdfmake'
+import pdfFonts from '../assets/fonts/vfs_fonts.js'
 
+pdfMake.vfs = pdfFonts
 const store = useProductsStore()
 
 const mp = new MercadoPago(import.meta.env.VITE_MP_PUBLIC_KEY, {
@@ -66,7 +70,8 @@ const formData = ref({
   lastname: null,
   phone: null,
   email: '',
-  cash: false
+  cash: false,
+  date: null
 })
 
 const emit = defineEmits(['closeModal'])
@@ -74,12 +79,65 @@ const handleModal = () => {
   emit('closeModal', false)
 }
 
-const confirmPurchase = () => {
+const confirmPurchase = async (router) => {
   showSpinner.value = true
-  if (formData.value.cash) {
-    console.log('efectivo')
-  } else {
-    setMercadoPago()
+  formData.value.date = formatDate(new Date(), 'es', {
+    dateStyle: 'long'
+  })
+  const pdf = await generatePdf(formData.value.date);
+  const templateUser = import.meta.env.VITE_EMAILJS_TEMPLATE_USER_PURCHASE
+  const templateClient = import.meta.env.VITE_EMAILJS_TEMPLATE_CLIENT_PURCHASE
+
+  if (!formData.value.cash) {
+    await setMercadoPago()
+  }
+  await sendEmail(pdf, templateClient)
+  await sendEmail(pdf, templateUser)
+  alert("Pedido realizado!")
+  router.push('/')
+}
+
+const sendEmail = async (pdf, templateId) => {
+  showSpinner.value = true
+  let data = {
+    service_id: import.meta.env.VITE_EMAILJS_SERVICE_ID,
+    template_id: templateId,
+    user_id: import.meta.env.VITE_EMAILJS_USER_ID,
+    accessToken: import.meta.env.VITE_EMAILJS_ACCESS_TOKEN,
+    template_params: {
+      client_name: 'Lerici Boots',
+      client_phone: '+54 911 27957486',
+      client_email: 'macarenaquiven@gmail.com',
+      // client_phone: '+54 911 27693948',
+      // client_email: 'bautistadcarucci@gmail.com',
+      user_name: formData.value.firstname,
+      user_lastname: formData.value.lastname,
+      user_email: formData.value.email,
+      date: formData.value.date,
+      cash: formData.value.cash ? 'Si' : 'No',
+      content: pdf
+    }
+  }
+  try {
+    const url = 'https://api.emailjs.com/api/v1.0/email/send'
+    await axios.post(url, JSON.stringify(data), {
+      headers: {
+        'Content-Type': 'application/json'
+      }
+    })
+    showSpinner.value = false
+    console.log("mensaje enviadooo")
+    // showSuccesfulMsg.value = true
+    setTimeout(() => {
+      // showSuccesfulMsg.value = false
+    }, 2000)
+  } catch (error) {
+    showSpinner.value = false
+    // showErrorMsg.value = true
+    setTimeout(() => {
+      // showErrorMsg.value = false
+    }, 1000)
+    console.log({ error })
   }
 }
 
@@ -126,7 +184,6 @@ const createCheckoutButton = (preferenceId) => {
         }
       })
     }
-    // if (window.checkoutButton) window.checkoutButton.unmount()
 
     showSpinner.value = false
   }
@@ -143,6 +200,80 @@ const handleBtns = () => {
     showMpBtn.value = true
     if (hasChildren) showBuyBtn.value = false
   }
+}
+
+const formatDate = (date, locale, options) => {
+  return new Intl.DateTimeFormat(locale, options).format(date)
+}
+
+const generatePdf = async (formatedDate) => {
+  let tableRows = [['Cantidad', 'Nombre', 'Talle', 'Precio unitario']]
+  store.userCart.cart.forEach((p) => {
+    let row = [p.Cantidad, p.Nombre, p.Talle, p.Precio]
+    tableRows.push(row)
+  })
+  const docDefinition = {
+    pageMargins: [40, 60, 40, 60],
+    header: {
+      text: formatedDate,
+      style: 'header'
+    },
+    content: [
+      {
+        text: `Pedido de ${formData.value.firstname} ${formData.value.lastname}`,
+        style: 'body'
+      },
+      {
+        table: {
+          headerRows: 1,
+          widths: ['*', 'auto', 100, '*'],
+          body: tableRows,
+          style: 'table'
+        }
+      },
+      {
+        text: `Total: ${store.totalPrice}`,
+        style: 'total'
+      }
+    ],
+    footer: {
+      text: 'Lerici Boots',
+      style: 'footer'
+    },
+    styles: {
+      header: {
+        fontSize: 12,
+        italics: true,
+        alignment: 'right',
+        margin: [20, 20]
+      },
+      body: {
+        fontSize: 12,
+        margin: [0, 20]
+      },
+      footer: {
+        fontSize: 14,
+        alignment: 'right',
+        margin: [20, 0]
+      },
+      total: {
+        fontSize: 12,
+        alignment: 'right',
+        bold: true,
+        margin: [0, 20]
+      }
+    }
+  }
+
+  return new Promise((resolve, reject) => {
+    pdfmake.createPdf(docDefinition).getBase64(async (data) => {
+      try {
+        resolve(data)
+      } catch (error) {
+        reject(error)
+      }
+    })
+  })
 }
 </script>
 
