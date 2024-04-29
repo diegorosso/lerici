@@ -6,7 +6,7 @@
       </button>
     </div>
     <h1 class="third-text">Para concretar la compra necesitamos algunos datos:</h1>
-    <form action="" @submit.prevent="confirmPurchase($router)">
+    <form action="" @submit.prevent="confirmPurchase()">
       <div class="flex-row">
         <div class="input-box">
           <input type="text" class="input" required v-model="formData.firstname" />
@@ -49,7 +49,9 @@ import { ref } from 'vue'
 import { VueSpinner } from 'vue3-spinners'
 import { useProductsStore } from '../stores/products.ts'
 import axios from 'axios'
+import { useRouter } from 'vue-router'
 
+const router = useRouter()
 const store = useProductsStore()
 
 const mp = new MercadoPago(import.meta.env.VITE_MP_PUBLIC_KEY, {
@@ -75,7 +77,7 @@ const handleModal = () => {
   emit('closeModal', false)
 }
 
-const confirmPurchase = async (router) => {
+const confirmPurchase = async () => {
   showSpinner.value = true
   formData.value.date = formatDate(new Date(), 'es', {
     dateStyle: 'long'
@@ -86,11 +88,13 @@ const confirmPurchase = async (router) => {
   localStorage.setItem('totalPrice', JSON.stringify(store.totalPrice) )
 
   if (!formData.value.cash) {
-    await setMercadoPago(router)
+    await setMercadoPago()
+  }else{
+    router.push("/exito")
   }
 }
 
-const setMercadoPago = async (router) => {
+const setMercadoPago = async () => {
   const orderData = store.userCart.cart.map((product) => {
     return {
       name: product.Nombre,
@@ -101,8 +105,8 @@ const setMercadoPago = async (router) => {
 
   try {
     const response = await axios.post(
-      // 'https://lerici-backend.onrender.com/create_preference',
-      'http://localhost:3000/create_preference',
+      'https://lerici-backend.onrender.com/create_preference',
+      // 'http://localhost:3000/create_preference',
       JSON.stringify(orderData),
       {
         headers: {
@@ -111,14 +115,14 @@ const setMercadoPago = async (router) => {
       }
     )
     const preference = response.data
-    createCheckoutButton(preference.id, router)
+    createCheckoutButton(preference.id)
   } catch (error) {
     showSpinner.value = false
     console.log(error)
   }
 }
 
-const createCheckoutButton = (preferenceId, router) => {
+const createCheckoutButton = (preferenceId) => {
   const bricksBuilder = mp.bricks()
 
   const renderComponent = async () => {
@@ -133,7 +137,6 @@ const createCheckoutButton = (preferenceId, router) => {
           onReady: () => {
             showBuyBtn.value = false
             showMpBtn.value = true
-            // router.push('/exito')
           }
         }
       })

@@ -13,7 +13,7 @@
       </figure>
 
       <div>
-        <button class="btn product-btn" @click="toDetail($router)">
+        <button class="btn product-btn" @click="toDetail()">
           <ion-icon name="bag" aria-hidden="true"></ion-icon>
           <span class="span">Agregar al carrito</span>
         </button>
@@ -31,9 +31,9 @@
 </template>
 
 <script setup>
-// import { useProductsStore } from '../stores/products.ts'
+import { useRouter } from 'vue-router'
 
-// const store = useProductsStore()
+const router = useRouter()
 
 const props = defineProps({
   product: {
@@ -46,7 +46,7 @@ const props = defineProps({
     Talles: []
   }
 })
-const toDetail = (router) => {
+const toDetail = () => {
   router.push({
     path: `/producto/${props.product.Nombre}`
   })

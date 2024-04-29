@@ -1,36 +1,46 @@
 <template>
   <div class="wrapper">
-    <h2 class="h2 flex-row">
-      ¡Gracias por elegirnos, <span class="highlighted"> {{ userCart.firstname }}</span
-      >!
-    </h2>
-    <p>Su pedido ha sido procesado.</p>
-    <p>Le enviaremos más información a {{ userCart.email }}</p>
+    <div>
+      <VueSpinner v-if="showSpinner" size="50" color="var(--color-blue)" />
+    </div>
+    <div v-if="!showSpinner">
+      <h2 class="h2 flex-row">
+        ¡Gracias por elegirnos, <span class="highlighted"> {{ userCart?.firstname }}</span
+        >!
+      </h2>
+      <p>Su pedido ha sido procesado.</p>
+      <p>Le enviaremos más información a {{ userCart?.email }}</p>
+    </div>
   </div>
 </template>
 
 <script setup>
-// import { useProductsStore } from '../stores/products.ts'
-import { onMounted } from 'vue'
+import { onMounted, ref } from 'vue'
+import { useRouter } from 'vue-router'
 import axios from 'axios'
+import { VueSpinner } from 'vue3-spinners'
+
 import pdfmake from 'pdfmake'
 import pdfMake from 'pdfmake/build/pdfmake'
 import pdfFonts from '../assets/fonts/vfs_fonts.js'
 
 pdfMake.vfs = pdfFonts
 
-// const store = useProductsStore()
+const router = useRouter()
+const showSpinner = ref(false)
 const templateUser = import.meta.env.VITE_EMAILJS_TEMPLATE_USER_PURCHASE
 const templateClient = import.meta.env.VITE_EMAILJS_TEMPLATE_CLIENT_PURCHASE
-const userCart = JSON.parse(localStorage.getItem("userCart"))
-const totalPrice = JSON.parse(localStorage.getItem("totalPrice"))
+const userCart = JSON.parse(localStorage.getItem('userCart'))
+const totalPrice = JSON.parse(localStorage.getItem('totalPrice'))
 
 onMounted(async () => {
+  showSpinner.value = true
   const pdf = await generatePdf(userCart.date)
 
   await sendEmail(pdf, templateClient)
   await sendEmail(pdf, templateUser)
 
+  showSpinner.value = false
   // store.resetCart()
 })
 
@@ -137,18 +147,23 @@ const sendEmail = async (pdf, templateId) => {
           'Content-Type': 'application/json'
         }
       })
+
       break
     } catch (error) {
       console.log('Error al enviar el correo electrónico. Reintentando...')
       retries++
     }
+    if (retries === maxRetries) {
+      router.push('/falla')
+    }
   }
 
-  if (retries === maxRetries) {
-    console.log('Se alcanzó el número máximo de intentos sin éxito.')
-  }
-
-  localStorage.clear()
+  setTimeout(() => {
+    if (router.currentRoute.value.path === '/exito') {
+      localStorage.clear()
+      router.push('/')
+    }
+  }, 3000)
 }
 </script>
 

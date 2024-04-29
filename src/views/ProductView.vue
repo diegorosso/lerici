@@ -81,7 +81,7 @@
           </div>
         </div>
         <div class="sub-btn">
-          <button class="submit btn" @click="setProduct($router)">Agregar al Carrito</button>
+          <button class="submit btn" @click="setProduct()">Agregar al Carrito</button>
         </div>
       </div>
     </div>
@@ -94,10 +94,10 @@ import { useProductsStore } from '@/stores/products'
 import { useRoute } from 'vue-router'
 import { VueSpinner } from 'vue3-spinners'
 
-const route = useRoute()
+const router = useRoute()
 const store = useProductsStore()
 
-const productName = computed(() => route.params.id)
+const productName = computed(() => router.params.id)
 
 let loadedData = ref(false)
 let productData = ref({})
@@ -136,15 +136,10 @@ onMounted(async () => {
   loadedData.value = true
 })
 
-const setProduct = (router) => {
+const setProduct = () => {
   store.addProduct({ ...product.value, Talle: selectedSize.value, Cantidad: quantity.value })
-  // showSuccesfulMsg.value = true
   store.handleModal()
-  // setTimeout(() => {
-  //   // showSuccesfulMsg.value = false
-  // }, 1000)
   router.push('/tienda')
-  // history.back()
 }
 
 const currentIndex = ref(0)

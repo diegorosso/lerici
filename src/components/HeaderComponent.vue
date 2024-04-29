@@ -12,13 +12,13 @@
         <nav class="navbar" :class="{ active: isNavbarActive }">
           <ul class="navbar-list">
             <li>
-              <a href="#nosotros" class="navbar-link" @click="routeHome($router)">Nuestro equipo</a>
+              <a href="#nosotros" class="navbar-link" @click="routeHome()">Nuestro equipo</a>
             </li>
             <li>
               <router-link to="/tienda" class="navbar-link">Tienda</router-link>
             </li>
           </ul>
-          <a href="#contacto" class="btn font-weight" @click="routeHome($router)">Contacto</a>
+          <a href="#contacto" class="btn font-weight" @click="routeHome()">Contacto</a>
         </nav>
         <button class="nav-open-btn" aria-label="toggle menu" @click="toggleNavbar">
           <ion-icon name="menu-outline" aria-hidden="true"></ion-icon>
@@ -32,21 +32,20 @@
 
 <script setup>
 import logo from '@/assets/images/logo.png'
-// import logoNegro from '@/assets/images/logo-negro.png'
 import CartComponent from '../components/CartComponent.vue'
 import { useProductsStore } from '../stores/products.ts'
 import { ref, onMounted, onUnmounted } from 'vue'
+import { useRouter } from 'vue-router'
 
+const router = useRouter()
 const store = useProductsStore()
 
 const isHeaderActive = ref(false)
 const isNavbarActive = ref(false)
-// const isLogoBlack = ref(false)
-// const isModalOpen = ref(false)
 
 const logoSource = ref(logo)
 
-const routeHome = (router) => {
+const routeHome = () => {
   if (router.path != '/') router.push({ path: '/' })
 }
 
