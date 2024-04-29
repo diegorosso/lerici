@@ -13,7 +13,7 @@
       <div class="contact">
         <img src="/src/assets/images/logo.png" class="logo-width" alt="" />
         <div class="photo-style">
-          <img src="/src/assets/images/hero-banner.png" alt="" class="img-contact" />
+          <img src="/src/assets/images/footer-contact.png" alt="" class="img-contact" />
         </div>
       </div>
       <div class="submit-form">
@@ -45,9 +45,7 @@
           </div>
           <div class="button-width">
             <button class="btn btn-contact" type="submit">
-              <span v-if="!showSpinner">
-                Enviar
-              </span>
+              <span v-if="!showSpinner"> Enviar </span>
               <span>
                 <VueSpinner v-if="showSpinner" size="30" color="var(--color-eerie-black)" />
               </span>
@@ -77,7 +75,7 @@ const formData = ref({
 })
 
 const sendEmail = async () => {
-  showSpinner.value = true;
+  showSpinner.value = true
   let data = {
     service_id: import.meta.env.VITE_EMAILJS_SERVICE_ID,
     template_id: import.meta.env.VITE_EMAILJS_TEMPLATE_ID,
@@ -99,7 +97,7 @@ const sendEmail = async () => {
         'Content-Type': 'application/json'
       }
     })
-    showSpinner.value = false;
+    showSpinner.value = false
     showSuccesfulMsg.value = true
     setTimeout(() => {
       showSuccesfulMsg.value = false
@@ -113,7 +111,7 @@ const sendEmail = async () => {
       message: ''
     }
   } catch (error) {
-    showSpinner.value = false;
+    showSpinner.value = false
     showErrorMsg.value = true
     setTimeout(() => {
       showErrorMsg.value = false
@@ -189,6 +187,7 @@ const sendEmail = async () => {
 .img-contact {
   height: 300px;
   width: 320px;
+  border-radius: 25px;
 }
 
 .third-text {

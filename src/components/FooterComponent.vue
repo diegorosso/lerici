@@ -39,7 +39,7 @@
           <li class="footer-item">
             <ion-icon name="location-outline"></ion-icon>
             <a href="https://maps.app.goo.gl/sJVe2SoBh993YsNZ9" target="_blank" class="footer-text">
-              Arcos 2419 - 9°B, CABA (Buenos Aires, Argentina)
+              Arcos 2419, CABA (Buenos Aires, Argentina)
             </a>
           </li>
 
@@ -51,7 +51,10 @@
           <li class="footer-item">
             <ion-icon name="logo-whatsapp"></ion-icon>
 
-            <a href="https://api.whatsapp.com/send?phone=5491127693948" class="call" target="__blank"
+            <a
+              href="https://api.whatsapp.com/send?phone=5491127693948"
+              class="call"
+              target="__blank"
               >+54 911 27693948</a
             >
           </li>
@@ -71,6 +74,11 @@
 
           <button class="btn btn-secondary font-weight">Suscribite</button>
         </div> -->
+        <div>
+          <a href="https://maps.app.goo.gl/sJVe2SoBh993YsNZ9" target="_blank">
+            <img class="image-width" src="/src/assets/images/mapslerici.png" alt="" />
+          </a>
+        </div>
       </div>
 
       <div class="footer-bottom">
@@ -114,8 +122,9 @@ export default {
 }
 
 .footer-top {
-  display: grid;
-  gap: 30px;
+  display: flex;
+  justify-content: space-between;
+  flex-direction: column;
   font-size: var(--fs-8);
   line-height: 1.7;
   margin-block-end: 60px;
@@ -249,9 +258,19 @@ address.footer-text {
   color: var(--color-light);
 }
 
+.image-width {
+  width: 100%;
+  margin-top: 5rem;
+  margin-bottom: 5rem;
+}
+
 @media (min-width: 768px) {
   .footer-top {
     grid-template-columns: 1fr 1fr;
+    flex-direction: row;
+  }
+  .image-width {
+    margin: 0;
   }
 }
 @media (min-width: 992px) {

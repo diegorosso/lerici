@@ -3,7 +3,7 @@
     <div class="card-banner">
       <figure class="product-banner img-holder" style="--width: 448; --height: 470">
         <img
-          :src="product.Imagen"
+          :src="product.Imagen ? product.Imagen : '/src/assets/images/no-image.jpg'"
           width="448"
           height="470"
           loading="lazy"
@@ -13,10 +13,10 @@
       </figure>
 
       <div>
-          <button class="btn product-btn" @click="toDetail($router)">
+        <button class="btn product-btn" @click="toDetail($router)">
           <ion-icon name="bag" aria-hidden="true"></ion-icon>
           <span class="span">Agregar al carrito</span>
-          </button>
+        </button>
       </div>
     </div>
 
@@ -48,8 +48,8 @@ const props = defineProps({
 })
 const toDetail = (router) => {
   router.push({
-    path: `/producto/${props.product.Nombre}`,
-  });
+    path: `/producto/${props.product.Nombre}`
+  })
 }
 </script>
 

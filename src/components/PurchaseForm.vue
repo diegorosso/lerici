@@ -255,4 +255,13 @@ form {
 .btn-contact:hover {
   color: var(--color-eerie-black);
 }
+
+@media (max-width: 576px) {
+  .third-text {
+    font-size: 3rem;
+  }
+  form {
+    padding: 2rem 0 0 0;
+  }
+}
 </style>

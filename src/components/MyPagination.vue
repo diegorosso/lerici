@@ -14,12 +14,18 @@
           v-for="page in props.pages"
           :key="page"
           :class="{
-            [props.theme.link]: true,
-            
+            [props.theme.link]: true
           }"
           v-on="props.pageEvents(page)"
         >
-          <button type="button" v-bind="props.aProps" :class="{[props.theme.link]: true, 'selected': props.page === page}" class="number">{{ page }}</button>
+          <button
+            type="button"
+            v-bind="props.aProps"
+            :class="{ [props.theme.link]: true, selected: props.page === page }"
+            class="number"
+          >
+            {{ page }}
+          </button>
         </li>
 
         <li :class="props.theme.next" @click="props.setNextPage">
@@ -40,7 +46,7 @@
 import { markRaw } from 'vue'
 export default markRaw({
   name: 'MyPagination',
-  props: ['props'],
+  props: ['props']
 })
 </script>
 
@@ -61,21 +67,23 @@ ul {
 li {
   margin: 1vw;
 }
-button.selected.page-link{
+button.selected.page-link {
   color: var(--color-red);
   font-weight: 800;
-} 
-.number, button {
+}
+.number,
+button {
   color: var(--color-blue);
   font-size: 1.2em;
 }
-.number:hover, button:hover{
+.number:hover,
+button:hover {
   color: var(--color-red);
 }
 
-@media (max-width: 600px){
+/* @media (max-width: 600px){
   ul{
     font-size: 0.8rem;
   }
-}
+} */
 </style>
