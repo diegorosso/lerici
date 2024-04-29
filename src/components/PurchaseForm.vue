@@ -34,6 +34,7 @@
       <div class="flex-row btns-wrapper">
         <button v-if="showBuyBtn" class="btn btn-contact" type="submit">
           <span v-if="!showSpinner"> Comprar </span>
+          <span v-if="showSpinner" style="margin-right: .8em;">Por favor, aguarde un minuto</span>
           <span>
             <VueSpinner v-if="showSpinner" size="30" color="var(--color-eerie-black)" />
           </span>
