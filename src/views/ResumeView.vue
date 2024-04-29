@@ -29,7 +29,7 @@
     <h2 class="title h2">Resumen de compra</h2>
     <div class="content right-aligned full-height">
       <main>
-        <div class="product-width" v-if="store.userCart.cart.length >= 1">
+        <div class="product-width" v-if="store.userCart.cart?.length >= 1">
           <div
             class="product-item"
             v-for="(product, index) in store.userCart.cart"

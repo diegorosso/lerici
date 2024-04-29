@@ -24,21 +24,25 @@ interface CartProduct {
 }
 
 interface UserData {
-  fullname: string
+  firstname: string
+  lastname: string
   email: string
   phone: number | null
+  cash: boolean
+  date: Date
   cart: CartProduct[]
-  totalPrice: number
 }
 
 export const useProductsStore = defineStore('products', {
   state: () => ({
     userCart: {
-      fullname: '',
+      firstname: '',
+      lastname: '',
       email: '',
       phone: null,
-      cart: [],
-      totalPrice: 0
+      cash: null,
+      date: null,
+      cart: []
     } as UserData,
     products: [] as any[],
     isModalOpen: false as boolean
@@ -62,14 +66,24 @@ export const useProductsStore = defineStore('products', {
   },
   actions: {
     handleModal() {
-      this.isModalOpen = !this.isModalOpen;
+      this.isModalOpen = !this.isModalOpen
+    },
+    setUser(user: UserData) {
+      this.userCart.firstname = `${user.firstname.charAt(0).toUpperCase() + user.firstname.slice(1)}`
+      this.userCart.lastname = `${user.lastname.charAt(0).toUpperCase() + user.lastname.slice(1)}`
+      this.userCart.email = user.email
+      this.userCart.phone = user.phone
+      this.userCart.cash = user.cash
+      this.userCart.date = user.date
     },
     addProduct(product: CartProduct) {
       if (
         !this.userCart.cart.some((p) => p.Nombre === product.Nombre) ||
         this.userCart.cart.some((p) => p.Nombre === product.Nombre && p.Talle !== product.Talle)
       ) {
-        if(this.userCart.cart.some((p) => p.Nombre === product.Nombre && p.Talle === product.Talle)){
+        if (
+          this.userCart.cart.some((p) => p.Nombre === product.Nombre && p.Talle === product.Talle)
+        ) {
           this.incrementQuantity(product)
         }
 
@@ -81,7 +95,9 @@ export const useProductsStore = defineStore('products', {
       }
     },
     deleteProduct(product: CartProduct) {
-      this.userCart.cart = this.userCart.cart.filter((p) => !(p.Nombre === product.Nombre && p.Talle === product.Talle))
+      this.userCart.cart = this.userCart.cart.filter(
+        (p) => !(p.Nombre === product.Nombre && p.Talle === product.Talle)
+      )
     },
     getCartProducts(): CartProduct[] {
       return this.userCart.cart
@@ -89,20 +105,37 @@ export const useProductsStore = defineStore('products', {
     getUserCart(): UserData {
       return this.userCart
     },
+    resetUserData() {
+      this.userCart = {
+        firstname: '',
+        lastname: '',
+        email: '',
+        phone: null,
+        cash: null,
+        date: null,
+        cart: []
+      }
+    },
     resetCart() {
-      this.userCart = { fullname: '', email: '', phone: null, cart: [], totalPrice: 0 }
+      this.userCart.cash = null
+      this.userCart.date = null
+      this.userCart.cart = []
     },
     incrementQuantity(product: CartProduct) {
-      const selectedProduct = this.userCart.cart.find((p) => p.Nombre === product.Nombre && p.Talle === product.Talle )
+      const selectedProduct = this.userCart.cart.find(
+        (p) => p.Nombre === product.Nombre && p.Talle === product.Talle
+      )
       if (selectedProduct) {
         // const quantity = product.Cantidad ? product.Cantidad : 1;
-        selectedProduct.Cantidad++;
+        selectedProduct.Cantidad++
       } else {
         console.error('Product not found in cart')
       }
     },
     decrementQuantity(product: CartProduct) {
-      const selectedProduct = this.userCart.cart.find((p) => p.Nombre === product.Nombre && p.Talle === product.Talle)
+      const selectedProduct = this.userCart.cart.find(
+        (p) => p.Nombre === product.Nombre && p.Talle === product.Talle
+      )
       if (selectedProduct && selectedProduct.Cantidad > 1) {
         selectedProduct.Cantidad--
       } else {
