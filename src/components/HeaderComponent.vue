@@ -4,30 +4,30 @@
       <router-link to="/" class="logo">
         <img :src="logoSource" width="132" height="27" alt="shoppie home" />
       </router-link>
-      <nav class="navbar" :class="{ active: isNavbarActive }">
-        <ul class="navbar-list">
-          <li>
-            <a href="#nosotros" class="navbar-link" @click="routeHome($router)">Nuestro equipo</a>
-          </li>
-          <li>
-            <router-link to="/tienda" class="navbar-link">Tienda</router-link>
-          </li>
-        </ul>
-        <button class="card-btn" @click="store.handleModal">
+      <div class="flex-row">
+        <button class="card-btn display-none" @click="store.handleModal">
           <ion-icon class="bag-width" name="bag-outline" aria-hidden="true"></ion-icon>
           <span v-if="store.totalProducts > 0">{{ store.totalProducts }}</span>
         </button>
-        <a href="#contacto" class="btn font-weight" @click="routeHome($router)">Contacto</a>
-      </nav>
-      <button class="nav-open-btn" aria-label="toggle menu" @click="toggleNavbar">
-        <ion-icon name="menu-outline" aria-hidden="true"></ion-icon>
-      </button>
+        <nav class="navbar" :class="{ active: isNavbarActive }">
+          <ul class="navbar-list">
+            <li>
+              <a href="#nosotros" class="navbar-link" @click="routeHome($router)">Nuestro equipo</a>
+            </li>
+            <li>
+              <router-link to="/tienda" class="navbar-link">Tienda</router-link>
+            </li>
+          </ul>
+          <a href="#contacto" class="btn font-weight" @click="routeHome($router)">Contacto</a>
+        </nav>
+        <button class="nav-open-btn" aria-label="toggle menu" @click="toggleNavbar">
+          <ion-icon name="menu-outline" aria-hidden="true"></ion-icon>
+        </button>
+      </div>
     </div>
   </header>
 
-  <CartComponent
-    v-if="store.isModalOpen"
-  ></CartComponent>
+  <CartComponent v-if="store.isModalOpen"></CartComponent>
 </template>
 
 <script setup>
@@ -38,7 +38,6 @@ import { useProductsStore } from '../stores/products.ts'
 import { ref, onMounted, onUnmounted } from 'vue'
 
 const store = useProductsStore()
-
 
 const isHeaderActive = ref(false)
 const isNavbarActive = ref(false)

@@ -84,7 +84,7 @@ const confirmPurchase = async (router) => {
   formData.value.date = formatDate(new Date(), 'es', {
     dateStyle: 'long'
   })
-  const pdf = await generatePdf(formData.value.date);
+  const pdf = await generatePdf(formData.value.date)
   const templateUser = import.meta.env.VITE_EMAILJS_TEMPLATE_USER_PURCHASE
   const templateClient = import.meta.env.VITE_EMAILJS_TEMPLATE_CLIENT_PURCHASE
 
@@ -93,7 +93,7 @@ const confirmPurchase = async (router) => {
   }
   await sendEmail(pdf, templateClient)
   await sendEmail(pdf, templateUser)
-  alert("Pedido realizado!")
+  alert('Pedido realizado!')
   router.push('/')
 }
 
@@ -126,7 +126,7 @@ const sendEmail = async (pdf, templateId) => {
       }
     })
     showSpinner.value = false
-    console.log("mensaje enviadooo")
+    console.log('mensaje enviadooo')
     // showSuccesfulMsg.value = true
     setTimeout(() => {
       // showSuccesfulMsg.value = false
@@ -368,5 +368,14 @@ form {
 
 .btn-contact:hover {
   color: var(--color-eerie-black);
+}
+
+@media (max-width: 576px) {
+  .third-text {
+    font-size: 3rem;
+  }
+  form {
+    padding: 2rem 0 0 0;
+  }
 }
 </style>

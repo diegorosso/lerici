@@ -35,7 +35,7 @@
             <div class="card-banner">
               <figure class="product-banner img-holder" style="--width: 448; --height: 470">
                 <img
-                  :src="product.Imagen"
+                  :src="product.Imagen ? product.Imagen : '/src/assets/images/no-image.jpg'"
                   width="448"
                   height="470"
                   loading="lazy"
@@ -75,12 +75,12 @@
 <script setup>
 import { useProductsStore } from '../stores/products.ts'
 
-const store = useProductsStore();
+const store = useProductsStore()
 
 const toDetail = (router, productName) => {
   router.push({
-    path: `/producto/${productName}`,
-  });
+    path: `/producto/${productName}`
+  })
 }
 </script>
 

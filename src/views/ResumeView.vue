@@ -280,4 +280,20 @@ main button {
   justify-content: center;
   align-items: center;
 }
+
+@media (max-width: 576px) {
+  .content {
+    flex-direction: column;
+  }
+  .content > aside {
+    width: 95%;
+  }
+  .container-image {
+    width: 50%;
+  }
+  main button {
+    width: 25px;
+    height: 25px;
+  }
+}
 </style>

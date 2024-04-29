@@ -98,9 +98,9 @@ onMounted(async () => {
   })
 
   if (store.products.length === 0) {
-    showSpinner.value = true;
+    showSpinner.value = true
     await store.setAllProducts()
-    showSpinner.value = false;  
+    showSpinner.value = false
   }
 
   productsList.value = store.products
@@ -225,6 +225,9 @@ ion-icon:hover {
 @media screen and (max-width: 570px) {
   .filters-container {
     display: none;
+  }
+  .product-card {
+    width: 100%;
   }
 }
 .flex-row {

@@ -9,15 +9,11 @@
 
       <ul class="product-list has-scrollbar">
         <li class="scrollbar-item">
-          <ProductComponent
-            :product="store.products[5]"
-          ></ProductComponent>
+          <ProductComponent :product="store.products[5]"></ProductComponent>
         </li>
 
         <li class="scrollbar-item">
-          <ProductComponent
-            :product="store.products[12]"
-          ></ProductComponent>
+          <ProductComponent :product="store.products[12]"></ProductComponent>
         </li>
       </ul>
     </div>
@@ -29,7 +25,6 @@ import ProductComponent from './ProductComponent.vue'
 import { useProductsStore } from '../stores/products.ts'
 
 const store = useProductsStore()
-
 </script>
 
 <style scoped>

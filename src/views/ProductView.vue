@@ -143,9 +143,8 @@ const setProduct = (router) => {
   // setTimeout(() => {
   //   // showSuccesfulMsg.value = false
   // }, 1000)
-  router.push("/tienda")
+  router.push('/tienda')
   // history.back()
-
 }
 
 const currentIndex = ref(0)
@@ -393,5 +392,18 @@ const changeImage = (index) => {
 
 .btn {
   padding: 15px 25px;
+}
+
+@media (max-width: 576px) {
+  .main-wrap .product-description {
+    flex-direction: column;
+  }
+  .main-wrap .product-description .imagen-galery {
+    transform: none;
+    box-shadow: none;
+  }
+  .size-form {
+    padding: 0 0 0 1rem;
+  }
 }
 </style>
