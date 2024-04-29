@@ -89,6 +89,7 @@ export const useProductsStore = defineStore('products', {
 
         if (!product.Cantidad) product.Cantidad = 1
 
+        // product.Precio = 1
         this.userCart.cart.push(product)
       } else {
         this.incrementQuantity(product)

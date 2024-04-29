@@ -91,10 +91,10 @@
 <script setup>
 import { ref, onMounted, computed } from 'vue'
 import { useProductsStore } from '@/stores/products'
-import { useRoute } from 'vue-router'
+import { useRouter } from 'vue-router'
 import { VueSpinner } from 'vue3-spinners'
 
-const router = useRoute()
+const router = useRouter()
 const store = useProductsStore()
 
 const productName = computed(() => router.params.id)
