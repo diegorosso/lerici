@@ -28,8 +28,8 @@ interface UserData {
   lastname: string
   email: string
   phone: number | null
-  cash: boolean
-  date: Date
+  cash: boolean | null
+  date: Date | null
   cart: CartProduct[]
 }
 
