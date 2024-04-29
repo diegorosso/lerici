@@ -97,7 +97,7 @@ import { VueSpinner } from 'vue3-spinners'
 const router = useRouter()
 const store = useProductsStore()
 
-const productName = computed(() => router.params.id)
+const productName = computed(() => router.currentRoute.value.params.id)
 
 let loadedData = ref(false)
 let productData = ref({})
