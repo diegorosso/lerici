@@ -41,7 +41,6 @@ onMounted(async () => {
   await sendEmail(pdf, templateUser)
 
   showSpinner.value = false
-  // store.resetCart()
 })
 
 const generatePdf = async (formatedDate) => {
@@ -122,10 +121,8 @@ const sendEmail = async (pdf, templateId) => {
     accessToken: import.meta.env.VITE_EMAILJS_ACCESS_TOKEN,
     template_params: {
       client_name: 'Lerici Boots',
-      client_phone: '+54 911 27957486',
-      client_email: 'macarenaquiven@gmail.com',
-      // client_phone: '+54 911 27693948',
-      // client_email: 'bautistadcarucci@gmail.com',
+      client_phone: '+54 911 27693948',
+      client_email: 'bautistadcarucci@gmail.com',
       user_name: userCart.firstname,
       user_lastname: userCart.lastname,
       user_email: userCart.email,

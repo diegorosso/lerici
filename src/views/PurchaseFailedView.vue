@@ -1,7 +1,7 @@
 <template>
   <div class="wrapper">
     <h2 class="h2 flex-row">
-      <span class="highlighted"> {{ store.userCart.firstname }}</span
+      <span class="highlighted"> {{ userCart?.firstname }}</span
       >, hubo un error al procesar la compra!
     </h2>
     <p>Por favor, vuelve a intentarlo.</p>
@@ -15,8 +15,8 @@
 </template>
 
 <script setup>
-import { useProductsStore } from '../stores/products.ts'
-const store = useProductsStore()
+const userCart = JSON.parse(localStorage.getItem('userCart'))
+
 </script>
 
 <style scoped>

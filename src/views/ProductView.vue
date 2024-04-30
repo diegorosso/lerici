@@ -104,7 +104,6 @@ let productData = ref({})
 let product = ref({})
 let selectedSize = ref(null)
 let quantity = ref(1)
-// let showSuccesfulMsg = ref(false)
 
 onMounted(async () => {
   window.scrollTo({
