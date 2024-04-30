@@ -3,7 +3,7 @@
     <div class="card-banner">
       <figure class="product-banner img-holder" style="--width: 448; --height: 470">
         <img
-          :src="product.Imagen ? product.Imagen : '/src/assets/images/no-image.jpg'"
+          :src="product.Imagen ? product.Imagen : '/img/products/no-image.jpg'"
           width="448"
           height="470"
           loading="lazy"
