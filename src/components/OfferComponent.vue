@@ -7,7 +7,9 @@
 
     <div class="container">
       <div class="offer-card">
-        <h2 class="title card-title">35% Off</h2>
+        <img src="../assets/images/etiqueta-calidad-sin-letras.png" alt="">
+
+        <!-- <h2 class="title card-title">35% Off</h2>
 
         <p class="card-text">
           Lorem ipsum dolor sit amet consectetur adipisicing elit. Corrupti nulla veniam iure
@@ -17,7 +19,7 @@
         <a href="#" class="btn btn-secondary">
           <span class="span font-weight">Comprar ahora</span>
           <ion-icon name="arrow-forward" aria-hidden="true"></ion-icon>
-        </a>
+        </a> -->
       </div>
       <ContactFormComponent></ContactFormComponent>
     </div>
@@ -32,6 +34,11 @@ import ContactFormComponent from '@/components/ContactFormComponent.vue'
 .container {
   display: flex;
   justify-content: space-between;
+}
+
+.container > .offer-card > img{
+  height: 550px;
+  width: auto;
 }
 .logos-container {
   display: flex;
@@ -50,10 +57,14 @@ import ContactFormComponent from '@/components/ContactFormComponent.vue'
 }
 
 .offer-card {
-  background-color: var(--color-white);
-  border: 2px solid var(--color-eerie-black);
-  box-shadow: var(--shadow-2);
-  padding: 80px 30px;
+  /* background-color: var(--color-white); */
+  /* border: 2px solid var(--color-eerie-black); */
+  /* box-shadow: var(--shadow-2); */
+  /* padding: 80px 30px; */
+  padding: .3em !important;
+  display: flex;
+  /* justify-content: flex-end; */
+  align-items: center;
   width: 100%;
   max-width: 400px;
   margin: 0 auto;
