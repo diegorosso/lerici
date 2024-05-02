@@ -44,9 +44,9 @@ onMounted(async () => {
 })
 
 const generatePdf = async (formatedDate) => {
-  let tableRows = [['Cantidad', 'Nombre', 'Talle', 'Precio unitario']]
+  let tableRows = [['Cantidad', 'Nombre', 'Variante', 'Talle', 'Precio unitario']]
   userCart.cart.forEach((p) => {
-    let row = [p.Cantidad, p.Nombre, p.Talle, p.Precio]
+    let row = [p.Cantidad, p.Nombre, p.Variante, p.Talle, p.Precio]
     tableRows.push(row)
   })
   const docDefinition = {
