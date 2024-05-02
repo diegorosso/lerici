@@ -2,7 +2,7 @@ import { defineStore } from 'pinia'
 import axios from 'axios'
 
 interface Product {
-  Imagen: string
+  Imagenes: string[]
   Categoria: string
   Articulo: string
   Nombre: string
@@ -14,6 +14,7 @@ interface Product {
 
 interface CartProduct {
   Imagen: string
+  Variante: string
   Categoria: string
   Articulo: string
   Nombre: string
@@ -78,11 +79,18 @@ export const useProductsStore = defineStore('products', {
     },
     addProduct(product: CartProduct) {
       if (
-        !this.userCart.cart.some((p) => p.Nombre === product.Nombre) ||
+        !this.userCart.cart.some(
+          (p) => p.Nombre === product.Nombre && p.Variante === product.Variante
+        ) ||
         this.userCart.cart.some((p) => p.Nombre === product.Nombre && p.Talle !== product.Talle)
       ) {
         if (
-          this.userCart.cart.some((p) => p.Nombre === product.Nombre && p.Talle === product.Talle)
+          this.userCart.cart.some(
+            (p) =>
+              p.Nombre === product.Nombre &&
+              p.Talle === product.Talle &&
+              p.Variante === product.Variante
+          )
         ) {
           this.incrementQuantity(product)
         }
@@ -96,7 +104,12 @@ export const useProductsStore = defineStore('products', {
     },
     deleteProduct(product: CartProduct) {
       this.userCart.cart = this.userCart.cart.filter(
-        (p) => !(p.Nombre === product.Nombre && p.Talle === product.Talle)
+        (p) =>
+          !(
+            p.Nombre === product.Nombre &&
+            p.Variante === product.Variante &&
+            p.Talle === product.Talle
+          )
       )
     },
     getCartProducts(): CartProduct[] {
@@ -123,10 +136,12 @@ export const useProductsStore = defineStore('products', {
     },
     incrementQuantity(product: CartProduct) {
       const selectedProduct = this.userCart.cart.find(
-        (p) => p.Nombre === product.Nombre && p.Talle === product.Talle
+        (p) =>
+          p.Nombre === product.Nombre &&
+          p.Talle === product.Talle &&
+          p.Variante === product.Variante
       )
       if (selectedProduct) {
-        // const quantity = product.Cantidad ? product.Cantidad : 1;
         selectedProduct.Cantidad++
       } else {
         console.error('Product not found in cart')
@@ -134,7 +149,10 @@ export const useProductsStore = defineStore('products', {
     },
     decrementQuantity(product: CartProduct) {
       const selectedProduct = this.userCart.cart.find(
-        (p) => p.Nombre === product.Nombre && p.Talle === product.Talle
+        (p) =>
+          p.Nombre === product.Nombre &&
+          p.Talle === product.Talle &&
+          p.Variante === product.Variante
       )
       if (selectedProduct && selectedProduct.Cantidad > 1) {
         selectedProduct.Cantidad--
@@ -205,12 +223,14 @@ export const useProductsStore = defineStore('products', {
         key.replace(/^..\/..\/public\/img\/products\/|\.jpg$/g, '')
       )
       const newProducts = products.map((p: any) => {
-        const img = imageNames.find((i) => i.toLowerCase() === p.Nombre.toLowerCase())
-        if (img) {
-          return { ...p, Imagen: `/img/products/${img}.jpg` }
-        } else {
-          return { ...p, Imagen: null }
-        }
+        const imgs = imageNames.filter((i) => i.toLowerCase().includes(p.Nombre.toLowerCase()))
+        const imgArray = imgs.map((i) => `/img/products/${i}.jpg`)
+        // if (img) {
+        return { ...p, Imagenes: imgArray }
+        // }
+        // else {
+        //   return { ...p, Imagenes: [] }
+        // }
       })
 
       return newProducts

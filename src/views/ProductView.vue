@@ -5,16 +5,16 @@
   <div class="main-wrap" v-if="loadedData">
     <div class="product-description">
       <div class="imagen-galery">
-        <img :src="product.Imagen" id="productImg" alt="" />
-        <!-- <div class="controls">
+        <img :src="product.Imagenes[currentIndex]" id="productImg" alt="" />
+        <div class="controls">
           <span
-            v-for="(image, index) in images"
+            v-for="(image, index) in product.Imagenes"
             v-bind:key="index"
             class="btn-option"
             :class="{ active: currentIndex === index }"
             @click="changeImage(index)"
           ></span>
-        </div> -->
+        </div>
       </div>
       <div class="product-details">
         <div class="details">
@@ -119,11 +119,13 @@ onMounted(async () => {
     return p.Nombre.toLowerCase() === productName.value.toLowerCase()
   })
 
+  console.log(productData.value)
+
   selectedSize.value = productData.value.Talles[0]
 
   product.value = {
     Nombre: productData.value.Nombre,
-    Imagen: productData.value.Imagen,
+    Imagenes: productData.value.Imagenes,
     Categoria: productData.value.Categoria,
     Articulo: productData.value.Articulo,
     Descripcion: productData.value.Descripcion,
@@ -136,16 +138,19 @@ onMounted(async () => {
 })
 
 const setProduct = () => {
-  store.addProduct({ ...product.value, Talle: selectedSize.value, Cantidad: quantity.value })
+  console.log(productData.value.Imagenes)
+  store.addProduct({
+    ...product.value,
+    Talle: selectedSize.value,
+    Cantidad: quantity.value,
+    Imagen: product.value.Imagenes[currentIndex.value],
+    Variante: product.value.Imagenes[currentIndex.value].replace(/^\/img\/products\/|\/*.jpg$/g, '')
+  })
   store.handleModal()
   router.push('/tienda')
 }
 
 const currentIndex = ref(0)
-
-const currentImage = () => {
-  return images[currentIndex.value]
-}
 
 const changeImage = (index) => {
   currentIndex.value = index
@@ -201,6 +206,7 @@ const changeImage = (index) => {
 }
 
 .main-wrap .product-description .imagen-galery .controls {
+  display: flex;
   position: absolute;
   bottom: 40px;
   right: 20px;
@@ -209,6 +215,7 @@ const changeImage = (index) => {
 .main-wrap .product-description .imagen-galery .controls .btn-option {
   width: 10px;
   height: 10px;
+  margin-inline: 0.3em;
   border-radius: 50%;
   background: rgba(255, 255, 255, 0.5);
   display: block;
