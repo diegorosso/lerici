@@ -45,7 +45,7 @@
 
           <li class="footer-item">
             <ion-icon name="mail-outline"></ion-icon>
-            <a href="mailto:info.shoppie@support.com" class="email">bautistadcarucci@gmail.com</a>
+            <a href="mailto:ventas@lericiboots.com.ar" class="email">ventas@lericiboots.com.ar</a>
           </li>
 
           <li class="footer-item">

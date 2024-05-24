@@ -1,6 +1,7 @@
 :root {
   /* Colores */
-  --color-light-blue: #d4e4e8;
+  /* --color-light-blue: #d4e4e8;  color de fondo anterior*/
+  --color-light-blue: hsla(0, 0%, 100%, 1);
   --color-green: #008438;
   --color-red: #b70000;
   --color-blue: #173751;
@@ -144,21 +145,21 @@ address {
   font-style: normal;
 }
 
-.disabled{
+.disabled {
   pointer-events: none;
   opacity: .8;
   cursor: default;
 }
 
-.visible{
+.visible {
   visibility: visible !important;
 }
 
-.hidden{
+.hidden {
   visibility: hidden !important;
 }
 
-.spinner-container{
+.spinner-container {
   width: 100vw;
   height: 100vh;
   position: relative;

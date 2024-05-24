@@ -226,7 +226,7 @@ main button {
 }
 
 .highlighted {
-  color: var(--color-red);
+  color: var(--color-eerie-black);
   font-weight: 800;
   padding-block: 0.3em;
   padding-right: 0.3em;

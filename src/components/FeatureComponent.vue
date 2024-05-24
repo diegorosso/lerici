@@ -35,7 +35,11 @@
             <div class="card-banner">
               <figure class="product-banner img-holder" style="--width: 448; --height: 470">
                 <img
-                  :src="product.Imagenes.length >= 1 ? product.Imagenes[0] : '/img/products/no-image.jpg'"
+                  :src="
+                    product.Imagenes.length >= 1
+                      ? product.Imagenes[0]
+                      : '/img/products/no-image.jpg'
+                  "
                   width="448"
                   height="470"
                   loading="lazy"
@@ -85,6 +89,9 @@ const toDetail = (productName) => {
 </script>
 
 <style scoped>
+.price {
+  color: #1d1d1b;
+}
 .logos-container {
   display: flex;
   justify-content: space-around;

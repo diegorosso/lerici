@@ -54,6 +54,9 @@ const toDetail = () => {
 </script>
 
 <style scoped>
+.price {
+  color: #1d1d1b;
+}
 .product-card {
   width: 28vw;
 }
